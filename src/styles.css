@@ -48,7 +48,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-sans);
   color: var(--cal-text);
-  background: var(--cal-white);
+  background: #f4f6f8;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
