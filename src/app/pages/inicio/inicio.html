@@ -1,1 +1,261 @@
-<p>inicio works!</p>
+<div class="home-premium-view">
+  
+  <section class="hero-premium-slider">
+    
+    <div class="hero-slider-track"
+         (mouseenter)="pauseAutoPlay()"
+         (touchstart)="onTouchStart($event)" 
+         (touchend)="onTouchEnd($event)"
+         (mousedown)="onMouseDown($event)"
+         (mouseup)="onMouseUp($event)"
+         (mouseleave)="onMouseLeave()">
+      
+      <div *ngFor="let slide of heroSlides; let i = index" [class]="'hero-slide ' + getSlideClass(i)">
+        <a [href]="slide.link" class="slide-link-wrapper" draggable="false" (click)="onSlideClick($event)">
+          <div class="slide-image" [style.background-image]="'url(' + slide.imageUrl + ')'"></div>
+          <div class="slide-overlay"></div>
+        </a>
+      </div>
+
+    </div>
+
+    <button class="slider-arrow prev" aria-label="Anterior imagen" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" (click)="prevSlide()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="slider-arrow next" aria-label="Siguiente imagen" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" (click)="nextSlide()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="hero-loading-container" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()">
+      <div *ngFor="let slide of heroSlides; let i = index" class="loading-segment" (click)="goToSlide(i)">
+        <div class="fill" [style.width.%]="getSegmentWidth(i)"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <main class="home-main-container">
+
+    <section class="quick-links-section">
+      
+      <div class="quick-links-layout-wrapper">
+        
+        <div class="dashboard-widget-block">
+          
+          <div class="dashboard-header-inner">
+            <div class="title-wrapper" style="margin-bottom: 0;">
+              <div class="accent-bar" style="background-color: var(--cal-gold);"></div>
+              <h3 class="section-title text-white">Panel de Control</h3>
+            </div>
+          </div>
+          
+          <div class="dashboard-tiles-grid">
+            <a href="#" *ngFor="let link of quickLinks" [href]="link.url" class="dash-tile-card">
+              <div class="icon-wrapper" [innerHTML]="link.svgIcon"></div>
+              <span>{{ link.title }}</span>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="side-carousel-wrapper" (mouseenter)="pauseSideBanner()" (mouseleave)="resumeSideBanner()">
+          <div class="dash-carousel-container">
+            <a *ngFor="let banner of sideBannerSlides; let i = index" 
+               [href]="banner.link" 
+               class="dash-carousel-slide"
+               [class.active-side-slide]="i === currentSideIndex">
+              <img [src]="banner.imageUrl" alt="Banner Institucional" draggable="false">
+            </a>
+          </div>
+          
+          <button class="side-slider-arrow prev" aria-label="Anterior banner" (click)="prevSideSlide()">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="side-slider-arrow next" aria-label="Siguiente banner" (click)="nextSideSlide()">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="news-section">
+      <div class="section-header-center">
+        <h3 class="section-title">Últimas noticias</h3>
+        <p>Entérate de lo que sucede en nuestra ilustre institución</p>
+      </div>
+      
+      <div class="news-grid">
+        <article class="news-card" *ngFor="let news of latestNews">
+          <div class="news-img-wrapper">
+            <img [src]="news.imageUrl" [alt]="news.title">
+            <span class="news-category">{{ news.category }}</span>
+          </div>
+          <div class="news-content">
+            <h4 class="news-title">{{ news.title }}</h4>
+            <div class="news-meta">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 
+                {{ news.date }}
+              </span>
+            </div>
+            <p class="news-excerpt">{{ news.excerpt }}</p>
+            <a [href]="news.link" class="news-link">
+              Leer nota completa 
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="center-action">
+        <a href="#" class="btn-primary">Ver todas las noticias</a>
+      </div>
+    </section>
+
+    <section class="announcements-section">
+      <div class="section-header-center">
+        <h3 class="section-title">Comunicados Oficiales</h3>
+        <p>Documentos y pronunciamientos institucionales</p>
+      </div>
+      <div class="announcements-layout">
+        <div class="announcements-graphic">
+          <div class="graphic-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"></path></svg>
+            <span>Ilustración Institucional</span>
+          </div>
+        </div>
+        <div class="announcements-list">
+          <a href="#" class="announcement-item">
+            <div class="announcement-date">
+              <span class="day">15</span>
+              <span class="month">FEB</span>
+            </div>
+            <div class="announcement-text">
+              <h4>Suspensión de Actividades por Elecciones Generales 2026</h4>
+              <p>Ver comunicado en formato PDF</p>
+            </div>
+          </a>
+          <a href="#" class="announcement-item">
+            <div class="announcement-date">
+              <span class="day">12</span>
+              <span class="month">FEB</span>
+            </div>
+            <div class="announcement-text">
+              <h4>Pronunciamiento sobre el señalamiento del domicilio procesal</h4>
+              <p>Procesos contenciosos y no contenciosos ante el Poder Judicial</p>
+            </div>
+          </a>
+          <a href="#" class="announcement-item">
+            <div class="announcement-date">
+              <span class="day">08</span>
+              <span class="month">FEB</span>
+            </div>
+            <div class="announcement-text">
+              <h4>CAL expresa su preocupación por decisiones del Gobierno</h4>
+              <p>Inseguridad jurídica en materia contractual y obras de infraestructura</p>
+            </div>
+          </a>
+          <a href="#" class="announcement-item">
+            <div class="announcement-date">
+              <span class="day">02</span>
+              <span class="month">FEB</span>
+            </div>
+            <div class="announcement-text">
+              <h4>Comunicado del Comité Electoral</h4>
+              <p>Respecto a las próximas elecciones institucionales del CAL</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main> 
+  
+  <section class="schedules-band">
+    <div class="schedules-container">
+      <div class="section-header-center">
+        <h3 class="section-title text-white">Horarios de atención en nuestras sedes</h3>
+        <p class="text-white-dim">Ubica la sede más cercana y conoce nuestros horarios de atención actualizados.</p>
+      </div>
+      <div class="schedules-grid">
+        <div class="schedule-card">
+          <div class="schedule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+          <h4>Sede Miraflores</h4>
+          <p class="address">Av. Santa Cruz N° 255</p>
+          <div class="hours">
+            <span>Lunes a Viernes: 8:00am - 5:15pm</span>
+            <span>Refrigerio: 1:30pm a 2:15pm</span>
+          </div>
+        </div>
+        <div class="schedule-card active-card">
+          <div class="schedule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+          <h4>Lima Centro</h4>
+          <p class="address">Jirón Lampa N° 1175</p>
+          <div class="hours">
+            <span>Lunes a Viernes: 8:00am - 5:15pm</span>
+            <span>Trámites hasta 4:45pm</span>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <div class="schedule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+          <h4>Lima Norte</h4>
+          <p class="address">Calle San Marcos N° 108, Urb. Palao</p>
+          <div class="hours">
+            <span>Lunes a Viernes: 8:00am - 5:15pm</span>
+            <span>Refrigerio: 1:30pm a 2:15pm</span>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <div class="schedule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+          <h4>Policlínico</h4>
+          <p class="address">Av. Javier Prado Este N° 202</p>
+          <div class="hours">
+            <span>Lunes a Viernes: 8:00am - 5:15pm</span>
+            <span>Sábados: 8:00am a 1:00pm</span>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <div class="schedule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+          <h4>Sede CECAL</h4>
+          <p class="address">Av. Paseo de la República N° 3295</p>
+          <div class="hours">
+            <span>Lunes a Viernes: 8:00am - 5:15pm</span>
+            <span>Cursos y eventos programados</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="videos-section home-main-container">
+    <div class="section-header-center">
+      <h3 class="section-title">Últimos videos</h3>
+    </div>
+    <div class="videos-grid">
+      <div class="video-card">
+        <h4>¡El Policlínico del CAL al servicio del agremiado!</h4>
+        <div class="video-container">
+          <img src="https://www.cal.org.pe/v1/wp-content/uploads/2026/05/EXTENSION-SOCIAL.jpg-1024x1024.jpeg" alt="Video 1" class="video-thumbnail">
+          <div class="play-button"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div>
+        </div>
+      </div>
+      <div class="video-card">
+        <h4>CECAL: ¡Un espacio renovado para nuestros agremiados y sus familias!</h4>
+        <div class="video-container">
+           <img src="https://www.cal.org.pe/v1/wp-content/uploads/2026/05/ETICA-PROFESIONAL.jpg-1-scaled.jpeg" alt="Video 2" class="video-thumbnail">
+           <div class="play-button"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
