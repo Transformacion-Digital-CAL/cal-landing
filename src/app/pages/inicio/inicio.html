@@ -101,12 +101,19 @@
           </div>
           <div class="news-content">
             <h4 class="news-title">{{ news.title }}</h4>
+            
             <div class="news-meta">
               <span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 
-                {{ news.date }}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg> 
+                {{ news.fechaPublicacion }}
               </span>
             </div>
+
             <p class="news-excerpt">{{ news.excerpt }}</p>
             <a [href]="news.link" class="news-link">
               Leer nota completa 
@@ -122,60 +129,51 @@
     </section>
 
     <section class="announcements-section">
+      
       <div class="section-header-center">
         <h3 class="section-title">Comunicados Oficiales</h3>
         <p>Documentos y pronunciamientos institucionales</p>
       </div>
-      <div class="announcements-layout">
-        <div class="announcements-graphic">
-          <div class="graphic-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"></path></svg>
-            <span>Ilustración Institucional</span>
+
+      <div class="announcements-premium-wrapper">
+        <div class="announcements-layout">
+          
+          <div class="announcements-graphic">
+            <div class="graphic-side-wrapper">
+              <div class="graphic-placeholder">
+                <img src="https://www.cal.org.pe/v1/wp-content/uploads/2024/08/CAL-ACUARELA.png" alt="Acuarela CAL">
+                <div class="graphic-overlay"></div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="announcements-list">
-          <a href="#" class="announcement-item">
-            <div class="announcement-date">
-              <span class="day">15</span>
-              <span class="month">FEB</span>
-            </div>
-            <div class="announcement-text">
-              <h4>Suspensión de Actividades por Elecciones Generales 2026</h4>
-              <p>Ver comunicado en formato PDF</p>
-            </div>
-          </a>
-          <a href="#" class="announcement-item">
-            <div class="announcement-date">
-              <span class="day">12</span>
-              <span class="month">FEB</span>
-            </div>
-            <div class="announcement-text">
-              <h4>Pronunciamiento sobre el señalamiento del domicilio procesal</h4>
-              <p>Procesos contenciosos y no contenciosos ante el Poder Judicial</p>
-            </div>
-          </a>
-          <a href="#" class="announcement-item">
-            <div class="announcement-date">
-              <span class="day">08</span>
-              <span class="month">FEB</span>
-            </div>
-            <div class="announcement-text">
-              <h4>CAL expresa su preocupación por decisiones del Gobierno</h4>
-              <p>Inseguridad jurídica en materia contractual y obras de infraestructura</p>
-            </div>
-          </a>
-          <a href="#" class="announcement-item">
-            <div class="announcement-date">
-              <span class="day">02</span>
-              <span class="month">FEB</span>
-            </div>
-            <div class="announcement-text">
-              <h4>Comunicado del Comité Electoral</h4>
-              <p>Respecto a las próximas elecciones institucionales del CAL</p>
-            </div>
-          </a>
+
+          <div class="announcements-list">
+            
+            <a *ngFor="let item of announcements" [href]="item.link" class="announcement-item">
+              <div class="announcement-date">
+                <span class="day">{{ item.day }}</span>
+                <span class="month">{{ item.month }}</span>
+              </div>
+              <div class="announcement-text">
+                <h4>{{ item.title }}</h4>
+                <p>{{ item.description }}</p>
+              </div>
+              <div class="announcement-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </a>
+            
+          </div>
+
         </div>
       </div>
+      
+      <div class="center-action" style="margin-top: 3.5rem;">
+        <a href="#" class="btn-primary">Ver todos los comunicados</a>
+      </div>
+        
     </section>
 
   </main> 
