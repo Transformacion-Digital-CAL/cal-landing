@@ -33,6 +33,16 @@ export interface AnnouncementItem {
   link: string;
 }
 
+// Interfaz para las Sedes (Actualizada para soportar hasta 3 líneas)
+export interface ScheduleItem {
+  title: string;
+  address: string;
+  hoursLine1: string;
+  hoursLine2?: string;
+  hoursLine3?: string;
+  mapLink: string; 
+}
+
 @Component({
   selector: 'app-inicio',
   standalone: false,
@@ -196,6 +206,55 @@ export class Inicio implements OnInit, OnDestroy {
       title: 'Actualización del Cuadro de Valores',
       description: 'Nuevas tarifas para trámites administrativos, certificados y colegiatura',
       link: '#'
+    }
+  ];
+
+  // ==========================================
+  // 6. ARREGLO DINÁMICO DE SEDES (DATOS CORREGIDOS)
+  // ==========================================
+  schedules: ScheduleItem[] = [
+    { 
+      title: 'Sede Miraflores', 
+      address: 'Av. Santa Cruz N° 255', 
+      hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', 
+      hoursLine2: 'Sábados: 8 a.m. a 1 p.m.',
+      hoursLine3: 'Teléfono: 710-6600',
+      mapLink: 'https://maps.google.com/?q=Av.+Santa+Cruz+255,+Miraflores'
+    },
+    { 
+      title: 'Lima Centro', 
+      address: 'Jr. Lampa N° 1174', 
+      hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', 
+      hoursLine2: 'Teléfono: 710-6600 Anexo 6791 / 710-6600 Anexo 6780',
+      mapLink: 'https://maps.google.com/?q=Jr.+Lampa+1174,+Lima'
+    },
+    { 
+      title: 'Lima Norte', 
+      address: 'Calle San Héctor N° 219, Los Olivos', 
+      hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', 
+      hoursLine2: 'Teléfono: 710-6600 Anexo 6680',
+      mapLink: 'https://maps.google.com/?q=Calle+San+Héctor+219,+Los+Olivos'
+    },
+    { 
+      title: 'Caja Policlínico', 
+      address: 'Jr. Luis Sáenz N° 232, Jesús María', 
+      hoursLine1: 'Lunes a viernes: 9 a.m. a 6 p.m.', 
+      hoursLine2: 'Teléfono: 463-1755 / 261-5169',
+      mapLink: 'https://maps.google.com/?q=Jr.+Luis+Sáenz+232,+Jesús+María'
+    },
+    { 
+      title: 'Caja CECAL', 
+      address: 'Alt. Km 40.5 Carretera Central Ricardo Palma', 
+      hoursLine1: 'Miércoles a domingo: 9 a.m. a 6 p.m.', 
+      hoursLine2: 'Teléfono: 353-9584 / 353-9616',
+      mapLink: 'https://maps.google.com/?q=Km+40.5+Carretera+Central,+Ricardo+Palma'
+    },
+    { 
+      title: 'Caja CECAL', 
+      address: 'Alt. Km 40.5 Carretera Central Ricardo Palma', 
+      hoursLine1: 'Miércoles a domingo: 9 a.m. a 6 p.m.', 
+      hoursLine2: 'Teléfono: 353-9584 / 353-9616',
+      mapLink: 'https://maps.google.com/?q=Km+40.5+Carretera+Central,+Ricardo+Palma'
     }
   ];
 

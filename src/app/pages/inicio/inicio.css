@@ -77,7 +77,7 @@
 }
 
 /* ==========================================================================
-   1. HERO SLIDER
+   1. HERO PREMIUM SLIDER
    ========================================================================== */
 .hero-premium-slider {
   position: relative;
@@ -257,7 +257,7 @@
 
 
 /* ==========================================================================
-   2. PANEL OSCURO CON BOTONES
+   2. PANEL OSCURO CON BOTONES HORIZONTALES DINÁMICOS
    ========================================================================== */
 .quick-links-section { margin-bottom: 5rem; }
 
@@ -346,6 +346,7 @@
 
 .dash-tile-card:hover span { color: #ffffff; }
 
+/* MARCO BICOLOR PARA EL CARRUSEL LATERAL (Dinámico) */
 .side-carousel-wrapper {
   position: relative; 
   width: 100%;
@@ -401,6 +402,7 @@
   transform: scale(1.04); 
 }
 
+/* FLECHAS DEL BANNER LATERAL */
 .side-slider-arrow {
   position: absolute;
   top: 50%;
@@ -437,11 +439,12 @@
 
 
 /* ==========================================================================
-   3. ÚLTIMAS NOTICIAS
+   3. ÚLTIMAS NOTICIAS (Premium Dark Theme)
    ========================================================================== */
 .news-section { margin-bottom: 5rem; }
 .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
 
+/* Tarjetas base rediseñadas al estilo panel de control */
 .news-card { 
   background-color: #0b1524; 
   border: 1px solid rgba(255, 255, 255, 0.05); 
@@ -459,6 +462,7 @@
   box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15); 
 }
 
+/* Imagen y Categoría */
 .news-img-wrapper { position: relative; height: 220px; overflow: hidden; border-bottom: 2px solid var(--cal-gold); }
 .news-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
 .news-card:hover .news-img-wrapper img { transform: scale(1.05); }
@@ -478,6 +482,7 @@
   letter-spacing: 0.5px;
 }
 
+/* Contenido de texto */
 .news-content { padding: 1.8rem; display: flex; flex-direction: column; flex-grow: 1; }
 
 .news-meta { 
@@ -529,6 +534,7 @@
   overflow: hidden;
 }
 
+/* Enlace inferior */
 .news-link { 
   color: var(--cal-gold); 
   font-weight: 700; 
@@ -551,6 +557,7 @@
    ========================================================================== */
 .announcements-section { margin-bottom: 6rem; }
 
+/* Contenedor Premium Oscuro que envuelve solo el contenido */
 .announcements-premium-wrapper {
   background-color: #0b1524;
   background-image: radial-gradient(circle at top right, rgba(212, 175, 55, 0.15) 0%, transparent 60%);
@@ -562,6 +569,7 @@
 
 .announcements-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; }
 
+/* Gráfico lateral con marco bicolor */
 .graphic-side-wrapper {
   position: relative; 
   width: 100%;
@@ -582,6 +590,7 @@
   box-shadow: 0 25px 60px rgba(212, 175, 55, 0.2); 
 }
 
+/* Contenedor interno de la imagen */
 .graphic-placeholder { 
   position: relative;
   width: 100%;
@@ -591,6 +600,7 @@
   overflow: hidden;
 }
 
+/* Escala base a 1.35 para hacerle zoom a la acuarela */
 .graphic-placeholder img {
   position: absolute;
   top: 0;
@@ -600,13 +610,14 @@
   object-fit: cover;
   transition: transform 0.6s ease;
   z-index: 1;
-  transform: scale(1.35);
+  transform: scale(1.35); 
 }
-
+/* Efecto hover sobre el zoom base */
 .graphic-side-wrapper:hover .graphic-placeholder img {
   transform: scale(1.42); 
 }
 
+/* Overlay sutil de la imagen */
 .graphic-overlay {
   position: absolute;
   top: 0;
@@ -624,12 +635,12 @@
   display: flex; 
   flex-direction: column; 
   gap: 1.2rem; 
-  max-height: 855px;
+  max-height: 678px; 
   overflow-y: auto; 
   padding-right: 12px; 
 }
 
-/* DISEÑO DEL SCROLLBAR */
+/* DISEÑO DEL SCROLLBAR PERSONALIZADO */
 .announcements-list::-webkit-scrollbar {
   width: 10px; 
 }
@@ -647,6 +658,7 @@
   background: var(--cal-gold); 
 }
 
+/* Tarjetas individuales de comunicados de TAMAÑO FIJO */
 .announcement-item { 
   display: flex; 
   align-items: center; 
@@ -692,6 +704,7 @@
 .announcement-date .day { font-size: 1.8rem; font-weight: 800; line-height: 1.1; }
 .announcement-date .month { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
 
+/* Contenedor del texto (Truncado) */
 .announcement-text { 
   flex-grow: 1; 
   min-width: 0; 
@@ -741,25 +754,83 @@
 
 
 /* ==========================================================================
-   5. HORARIOS DE SEDES
+   5. HORARIOS DE SEDES CON LINKS A GOOGLE MAPS
    ========================================================================== */
-.schedules-band { background-color: var(--cal-navy); padding: 5rem 0; margin-bottom: 5rem; }
+.schedules-band { 
+  background-color: #0b1524; 
+  padding: 6rem 0; 
+  margin-bottom: 5rem; 
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
 .schedules-container { max-width: 1250px; margin: 0 auto; padding: 0 1.5rem; }
 
-.schedules-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+.schedules-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; }
 
-.schedule-card { background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 2rem 1.2rem; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; }
-.schedule-card:hover { transform: translateY(-5px); background-color: rgba(255,255,255,0.1); border-color: var(--gold); }
-.schedule-card.active-card { background-color: var(--primary-blue); border-color: var(--primary-blue); }
+/* Tarjetas Base Oscuras convertidas en enlaces */
+.schedule-card { 
+  background-color: rgba(255, 255, 255, 0.02); 
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Aumentado para que el marco sea más visible */
+  border-radius: 16px; 
+  padding: 2.5rem 1.2rem; 
+  text-align: center; 
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  cursor: pointer;
+  text-decoration: none; 
+  outline: none;
+}
 
-.schedule-icon { background-color: rgba(255,255,255,0.1); width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 1.2rem; }
-.schedule-icon svg { width: 24px; height: 24px; stroke: #ffffff; }
-.active-card .schedule-icon { background-color: #ffffff; }
-.active-card .schedule-icon svg { stroke: var(--primary-blue); }
+/* ----------------------------------------------------
+   EFECTO HOVER (Estilo Botón Dorado Puro) 
+   ---------------------------------------------------- */
+.schedule-card:hover { 
+  transform: translateY(-8px); 
+  background-color: var(--cal-gold); 
+  border-color: var(--cal-gold); 
+  box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+}
 
-.schedule-card h4 { color: #ffffff; font-size: 1.1rem; font-weight: 800; margin: 0 0 0.5rem 0; }
-.schedule-card .address { color: var(--gold); font-size: 0.85rem; font-weight: 600; margin: 0 0 1rem 0; min-height: 40px;}
-.schedule-card .hours { display: flex; flex-direction: column; gap: 0.4rem; color: rgba(255,255,255,0.8); font-size: 0.85rem; line-height: 1.4; }
+/* Textos de la tarjeta base */
+.schedule-card h4 { color: #ffffff; font-size: 1.15rem; font-weight: 800; margin: 0 0 0.8rem 0; transition: color 0.3s ease; }
+.schedule-card .address { color: var(--cal-gold); font-size: 0.85rem; font-weight: 600; margin: 0 0 1.2rem 0; min-height: 40px; transition: color 0.3s ease;}
+.schedule-card .hours { display: flex; flex-direction: column; gap: 0.4rem; color: #a0aec0; font-size: 0.85rem; line-height: 1.4; font-weight: 500; transition: color 0.3s ease;}
+
+/* Textos en Hover (Se vuelven Azules Oscuros) */
+.schedule-card:hover h4 { 
+  color: var(--cal-navy); 
+}
+.schedule-card:hover .address { 
+  color: var(--cal-navy); 
+}
+.schedule-card:hover .hours { 
+  color: rgba(13, 27, 42, 0.85); /* Azul oscuro ligeramente suave */
+  font-weight: 600;
+}
+
+/* Iconos de la tarjeta base */
+.schedule-icon { 
+  background-color: rgba(255, 255, 255, 0.05); 
+  width: 55px; 
+  height: 55px; 
+  border-radius: 50%; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  margin-bottom: 1.5rem; 
+  transition: all 0.3s ease;
+}
+.schedule-icon svg { width: 26px; height: 26px; stroke: #a0aec0; transition: stroke 0.3s ease;}
+
+/* Iconos en Hover */
+.schedule-card:hover .schedule-icon { 
+  background-color: var(--cal-navy); 
+}
+.schedule-card:hover .schedule-icon svg { 
+  stroke: var(--cal-gold); 
+}
 
 
 /* ==========================================================================
@@ -838,7 +909,7 @@
      FIXES PARA COMUNICADOS OFICIALES EN MÓVILES
      ---------------------------------------------------- */
   .announcements-premium-wrapper { padding: 2rem 1.5rem; }
-
+  
   .graphic-side-wrapper { 
     min-height: 450px; 
   }
