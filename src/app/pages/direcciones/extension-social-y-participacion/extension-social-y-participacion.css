@@ -1,0 +1,289 @@
+/* ==========================================================================
+   CONFIGURACIÓN DE LA VISTA Y FONDO BLANCO CON PUNTOS AZULES
+   ========================================================================== */
+.extension-social-view {
+  --primary-blue: #2980b9; 
+  --text-dark: #1a252f;
+  --text-gray: #5a6b7c;
+  --bg-card: #ffffff;             
+  
+  --shadow-soft: 0 12px 30px rgba(13, 27, 42, 0.08); 
+  --shadow-hover: 0 20px 40px rgba(41, 128, 185, 0.15);
+  
+  font-family: var(--font-sans); 
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  
+  background-color: #ffffff; 
+  background-image: 
+    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px), 
+    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px); 
+  
+  background-position: 0 0, 16px 16px;
+  background-size: 32px 32px; 
+  background-attachment: fixed;
+  
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ==========================================================================
+   CABECERA
+   ========================================================================== */
+.extension-social-header {
+  background-color: transparent; text-align: center; padding: 4rem 1rem 2rem 1rem; margin-bottom: 4rem;
+}
+.header-content { display: flex; flex-direction: column; align-items: center; }
+.header-content h1 { font-size: 3.2rem; font-weight: 800; color: #0D1B2A; margin: 0 0 0.8rem 0; letter-spacing: -0.5px; }
+.header-content h2 { font-size: 1.35rem; font-weight: 600; color: var(--primary-blue); margin: 0 0 0.5rem 0; }
+.header-content p { font-size: 1rem; font-weight: 500; margin: 0; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; }
+.header-separator { width: 60px; height: 4px; background-color: var(--primary-blue); border-radius: 2px; margin-top: 1.5rem; opacity: 0.8; }
+
+/* ==========================================================================
+   ESTRUCTURA PRINCIPAL Y COLUMNAS
+   ========================================================================== */
+.extension-social-main-container { max-width: 1250px; margin: 0 auto; padding: 0 1.5rem; }
+
+.content-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 5rem; align-items: start; margin-bottom: 4rem; }
+
+.text-column { color: var(--text-dark); line-height: 1.8; }
+.title-wrapper { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+.title-margin-top { margin-top: 2.5rem; }
+.accent-bar { width: 6px; height: 30px; background-color: var(--primary-blue); border-radius: 4px; }
+.section-title { color: #0D1B2A; font-size: 2.2rem; font-weight: 800; margin: 0; }
+.intro-text p { font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-dark); }
+
+.functions-list { list-style-type: none; padding-left: 0; margin-bottom: 3.5rem; }
+.functions-list li { margin-bottom: 1.5rem; font-size: 1.05rem; color: var(--text-gray); position: relative; padding-left: 1.8rem; }
+.functions-list li::before { content: "•"; color: var(--primary-blue); font-weight: bold; font-size: 1.8rem; position: absolute; left: 0; top: -0.5rem; }
+.functions-list strong { color: #0D1B2A; font-weight: 700; }
+
+/* ==========================================================================
+   TARJETAS COMPONENTES (CONTACTO Y DESCARGA)
+   ========================================================================== */
+.info-cards-wrapper { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
+
+.info-card {
+  background-color: rgba(13, 27, 42, 0.97); border: none; border-radius: 16px; padding: 1.8rem 2rem;
+  box-shadow: var(--shadow-soft); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.info-card:hover { transform: translateY(-5px); background-color: rgba(13, 27, 42, 1); box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); }
+
+.icon-wrapper {
+  display: flex; justify-content: center; align-items: center; border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.07); padding: 12px; transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.icon-wrapper svg { width: 28px; height: 28px; stroke: #d4af37; }
+
+.contact-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1.5rem; }
+.contact-group { display: flex; align-items: center; gap: 1.2rem; max-width: 100%; }
+
+.contact-text { 
+  color: #ffffff; 
+  font-size: 1.05rem; 
+  font-weight: 600; 
+  word-break: break-word; 
+  overflow-wrap: anywhere; 
+  line-height: 1.3;
+}
+.contact-text-multi { display: flex; flex-direction: column; color: #ffffff; font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
+
+.downloads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+  gap: 1.5rem;
+}
+
+.download-card {
+  text-decoration: none; 
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.card-text-content {
+  display: flex;
+  flex-direction: column;
+  padding-right: 1rem;
+}
+
+.card-text-content h4 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.4rem 0;
+  line-height: 1.2;
+}
+
+.card-text-content p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.card-action { display: flex; flex-direction: column; align-items: center; }
+.download-icon-box { border-radius: 50%; margin-bottom: 0.5rem; }
+.download-icon-box svg { width: 24px; height: 24px; }
+.download-card:hover .download-icon-box { transform: scale(1.1); background-color: rgba(212, 175, 55, 0.15); }
+.card-action .btn-text { color: #d4af37; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ==========================================================================
+   COMPONENTE: ACORDEÓN PREMIUM
+   ========================================================================== */
+.accordions-group { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; }
+.acervo-section { margin-top: 1rem; }
+
+.premium-accordion {
+  background-color: rgba(13, 27, 42, 0.97); border-radius: 16px; overflow: hidden; transition: box-shadow 0.4s ease;
+}
+.accordion-checkbox { display: none; }
+.accordion-header {
+  padding: 1.5rem 2rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+}
+.accordion-title-text { color: #ffffff; font-size: 1.15rem; font-weight: 700; }
+.accordion-icon svg { width: 22px; height: 22px; stroke: #d4af37; transition: transform 0.4s ease; }
+.accordion-checkbox:checked + .accordion-header .accordion-icon { transform: rotate(180deg); }
+.accordion-content-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s ease-in-out; }
+.accordion-checkbox:checked ~ .accordion-content-wrapper { grid-template-rows: 1fr; }
+.accordion-body { overflow: hidden; background-color: rgba(255, 255, 255, 0.02); }
+.accordion-body-inner { padding: 2rem; opacity: 0; transform: translateY(-20px); transition: all 0.45s; }
+.accordion-checkbox:checked ~ .accordion-content-wrapper .accordion-body-inner { opacity: 1; transform: translateY(0); }
+
+/* Placeholder */
+.placeholder-content { text-align: center; }
+.placeholder-icon { display: inline-flex; padding: 16px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.05); margin-bottom: 1rem; }
+.placeholder-icon svg { width: 32px; height: 32px; stroke: var(--text-gray); }
+.placeholder-title { color: #d4af37; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; }
+.placeholder-content p { color: rgba(255, 255, 255, 0.6); max-width: 480px; margin: 0 auto; }
+
+/* ==========================================================================
+   INTERIOR ACORDEÓN 1: GRILLA ASOCIACIONES
+   ========================================================================== */
+.ada-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.ada-item {
+  display: flex; align-items: flex-start; gap: 1.2rem;
+  background-color: rgba(255, 255, 255, 0.03); padding: 1.5rem;
+  border-radius: 12px; border-left: 4px solid var(--primary-blue);
+  transition: all 0.3s ease;
+}
+.ada-item:hover { background-color: rgba(255, 255, 255, 0.08); border-left-color: #d4af37; transform: translateX(4px); }
+.ada-icon { flex-shrink: 0; margin-top: 2px; }
+.ada-icon svg { width: 24px; height: 24px; stroke: var(--primary-blue); transition: stroke 0.3s ease; }
+.ada-item:hover .ada-icon svg { stroke: #d4af37; }
+.ada-details { display: flex; flex-direction: column; gap: 0.3rem; }
+.ada-title { color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 0; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(255, 255, 255, 0.2); transition: text-decoration-color 0.3s ease; }
+.ada-item:hover .ada-title { text-decoration-color: #d4af37; }
+.ada-president { color: rgba(255, 255, 255, 0.9); font-size: 1rem; margin: 0; line-height: 1.4; }
+.ada-president .label { color: rgba(255, 255, 255, 0.5); font-size: 0.85rem; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ==========================================================================
+   INTERIOR ACORDEÓN 2: DEFENSORES SOCIALES
+   ========================================================================== */
+.defensores-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.defensor-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.defensor-item svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--primary-blue);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   INTERIOR ACORDEÓN 3: REGLAMENTOS
+   ========================================================================== */
+.reglamentos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.reglamento-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.reglamento-item:last-child { border-bottom: none; }
+.reglamento-item:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  padding-left: 1.8rem;
+}
+.reglamento-icon { flex-shrink: 0; }
+.reglamento-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--primary-blue);
+  transition: stroke 0.3s ease;
+}
+.reglamento-item:hover .reglamento-icon svg { stroke: #d4af37; }
+.reglamento-title {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+.reglamento-item:hover .reglamento-title { color: #d4af37; }
+
+/* ==========================================================================
+   FOTO DE LA AUTORIDAD
+   ========================================================================== */
+.director-card {
+  background-color: rgba(13, 27, 42, 0.97); border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(13, 27, 42, 0.1);
+  position: sticky; top: 2rem; 
+}
+.director-card .img-container img { width: 100%; height: auto; display: block; object-fit: cover; }
+
+/* ==========================================================================
+   MEDIA QUERIES (Responsividad)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .content-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .image-column { order: -1; }
+  .director-card { position: relative; top: 0; }
+}
+
+@media (max-width: 768px) {
+  .extension-social-header { padding: 3rem 1rem 1rem 1rem; margin-bottom: 2rem; }
+  .header-content h1 { font-size: 2rem; }
+  .section-title { font-size: 1.8rem; }
+  
+  .content-grid { gap: 2rem; margin-bottom: 2.5rem; }
+  
+  .info-card { padding: 1.5rem 1.2rem; }
+  .contact-text { font-size: 0.95rem; } 
+  .contact-group { gap: 1rem; }
+  .icon-wrapper { padding: 10px; }
+  
+  .download-card { flex-direction: column; text-align: center; gap: 1rem; }
+  .card-text-content { padding-right: 0; }
+  
+  .accordion-header { padding: 1.2rem 1.5rem; }
+  .accordion-title-text { font-size: 1.05rem; }
+  .accordion-body-inner { padding: 1.5rem 1rem !important; }
+  
+  .ada-grid, .defensores-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .ada-item { padding: 1.2rem; }
+  .reglamento-item { padding: 1rem; }
+}

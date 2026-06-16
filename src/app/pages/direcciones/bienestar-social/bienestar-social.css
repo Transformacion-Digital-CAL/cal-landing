@@ -1,0 +1,512 @@
+/* ==========================================================================
+   CONFIGURACIÓN DE LA VISTA Y FONDO BLANCO CON PUNTOS AZULES
+   ========================================================================== */
+.bienestar-view {
+  --primary-blue: #2980b9; 
+  --text-dark: #1a252f;
+  --text-gray: #5a6b7c;
+  --bg-card: #ffffff;             
+  
+  /* Sombras de alta fidelidad para fondo claro */
+  --shadow-soft: 0 12px 30px rgba(13, 27, 42, 0.08); 
+  --shadow-hover: 0 20px 40px rgba(41, 128, 185, 0.15);
+  
+  font-family: var(--font-sans); 
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  
+  background-color: #ffffff; 
+  background-image: 
+    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px), 
+    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px); 
+  
+  background-position: 0 0, 16px 16px;
+  background-size: 32px 32px; 
+  background-attachment: fixed;
+}
+
+/* ==========================================================================
+   CABECERA / BANNER MINIMALISTA
+   ========================================================================== */
+.bienestar-header {
+  background-color: transparent;
+  text-align: center;
+  padding: 4rem 1rem 2rem 1rem;
+  margin-bottom: 4rem;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-content h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #0D1B2A;
+  margin: 0 0 0.8rem 0;
+  letter-spacing: -0.5px;
+}
+
+.header-content h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--primary-blue); 
+  margin: 0 0 0.5rem 0;
+}
+
+.header-content p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-separator {
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-blue);
+  border-radius: 2px;
+  margin-top: 1.5rem;
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   GRILLA Y CONTENEDOR ESTRUCTURAL
+   ========================================================================== */
+.bienestar-main-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr; 
+  gap: 5rem;
+  align-items: start;
+}
+
+/* ==========================================================================
+   COLUMNA IZQUIERDA (CONTENIDO TEXTUAL)
+   ========================================================================== */
+.text-column {
+  color: var(--text-dark);
+  line-height: 1.8;
+}
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.accent-bar {
+  width: 6px;
+  height: 30px;
+  background-color: var(--primary-blue);
+  border-radius: 4px;
+}
+
+.section-title {
+  color: #0D1B2A;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+}
+
+.functions-list {
+  list-style-type: none; 
+  padding-left: 0;
+  margin-bottom: 3.5rem;
+}
+
+.functions-list li {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  color: var(--text-gray);
+  position: relative;
+  padding-left: 1.8rem; 
+}
+
+.functions-list li::before {
+  content: "•";
+  color: var(--primary-blue);
+  font-weight: bold;
+  font-size: 1.8rem;
+  position: absolute;
+  left: 0;
+  top: -0.5rem; 
+}
+
+.functions-list strong {
+  color: #0D1B2A;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   COMPONENTE: TARJETAS (ESTILO OSCURO SIN BORDES)
+   ========================================================================== */
+.info-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+}
+
+.info-card {
+  background-color: rgba(13, 27, 42, 0.97); 
+  border: none; 
+  border-radius: 16px; 
+  padding: 1.8rem 2rem;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-soft); 
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(13, 27, 42, 1); 
+  box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); 
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.07); 
+  padding: 12px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.icon-wrapper svg {
+  width: 28px;
+  height: 28px;
+  stroke: #d4af37; 
+}
+
+/* --- TARJETA DE CONTACTO (APILADO VERTICALMENTE) --- */
+.contact-card {
+  display: flex;
+  flex-direction: column; /* Apila el correo y el teléfono */
+  align-items: flex-start; /* Los alinea a la izquierda */
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.contact-group {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  max-width: 100%;
+}
+
+.email-group { 
+  flex: 1 1 auto; 
+  min-width: 0;
+}
+
+.phone-group { min-width: max-content; }
+
+.contact-text {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  word-break: break-word;
+  display: block;
+}
+
+.contact-text-multi {
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* --- TARJETAS DE DESCARGA --- */
+.downloads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+  gap: 1.5rem;
+}
+
+.download-card {
+  text-decoration: none; 
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.card-text-content {
+  display: flex;
+  flex-direction: column;
+  padding-right: 1rem;
+}
+
+.card-text-content h4 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.4rem 0;
+  line-height: 1.2;
+}
+
+.card-text-content p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.card-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.download-icon-box {
+  border-radius: 50%; 
+  margin-bottom: 0.5rem;
+}
+
+.download-icon-box svg {
+  width: 24px;
+  height: 24px;
+}
+
+.download-card:hover .download-icon-box {
+  transform: scale(1.1);
+  background-color: rgba(212, 175, 55, 0.15); 
+}
+
+.card-action .btn-text {
+  color: #d4af37;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   COMPONENTE: ACORDEÓN PREMIUM (ANIMADO CON GRID Y CHECKBOX)
+   ========================================================================== */
+.acervo-section {
+  margin-top: 2rem; 
+}
+
+.title-margin-top {
+  margin-bottom: 1.2rem;
+}
+
+.acervo-section .section-title {
+  font-size: 1.7rem; 
+}
+
+.acervo-section .accent-bar {
+  height: 24px; 
+}
+
+.premium-accordion {
+  background-color: rgba(13, 27, 42, 0.97); 
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden; 
+  transition: box-shadow 0.4s ease;
+}
+
+.premium-accordion:hover {
+  box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25);
+}
+
+.accordion-checkbox {
+  display: none;
+}
+
+.accordion-header {
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  position: relative; 
+  z-index: 10;
+}
+
+.accordion-header:hover {
+  background-color: rgba(255, 255, 255, 0.03); 
+}
+
+.accordion-title-text {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.accordion-icon {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
+}
+
+.accordion-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: #d4af37; 
+}
+
+.accordion-checkbox:checked + .accordion-header .accordion-icon {
+  transform: rotate(180deg); 
+  background-color: rgba(212, 175, 55, 0.15); 
+}
+
+.accordion-checkbox:checked + .accordion-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.accordion-content-wrapper {
+  display: grid;
+  grid-template-rows: 0fr; 
+  transition: grid-template-rows 0.45s ease-in-out;
+}
+
+.accordion-checkbox:checked ~ .accordion-content-wrapper {
+  grid-template-rows: 1fr; 
+}
+
+.accordion-body {
+  overflow: hidden; 
+  background-color: rgba(255, 255, 255, 0.02); 
+}
+
+.accordion-body-inner {
+  padding: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.4s ease-out, transform 0.45s ease-out;
+}
+
+.accordion-checkbox:checked ~ .accordion-content-wrapper .accordion-body-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA EL TEXTO DEL ACERVO (DENTRO DEL ACORDEÓN) --- */
+.acervo-text-content {
+  width: 100%;
+  color: #ffffff;
+  text-align: left;
+}
+
+.acervo-text-content .acervo-link {
+  display: inline-block;
+  color: #5fa8d3;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  margin-bottom: 1.8rem;
+  transition: color 0.3s ease;
+}
+
+.acervo-text-content .acervo-link:hover {
+  color: #d4af37;
+  text-decoration: underline;
+}
+
+.acervo-text-content .acervo-subtitle {
+  color: #d4af37;
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.acervo-text-content p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+.acervo-text-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   COLUMNA DERECHA: FOTO DE LA AUTORIDAD
+   ========================================================================== */
+.director-card {
+  background-color: rgba(13, 27, 42, 0.97); 
+  border: none; 
+  border-radius: 16px;
+  overflow: hidden; 
+  box-shadow: 0 12px 30px rgba(13, 27, 42, 0.1); 
+  transition: all 0.4s ease;
+}
+
+.director-card:hover {
+  box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); 
+}
+
+.director-card .img-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (Responsividad)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .content-grid {
+    grid-template-columns: 1fr; 
+    gap: 3rem;
+  }
+  .image-column {
+    order: -1; 
+  }
+}
+
+@media (max-width: 768px) {
+  .bienestar-header { padding: 3rem 1rem 1rem 1rem; }
+  .header-content h1 { font-size: 2.2rem; }
+  .section-title { font-size: 1.8rem; }
+  
+  .contact-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+  
+  .accordion-header {
+    padding: 1.2rem 1.5rem; 
+  }
+  
+  .accordion-body-inner {
+    padding: 1.5rem;
+  }
+}

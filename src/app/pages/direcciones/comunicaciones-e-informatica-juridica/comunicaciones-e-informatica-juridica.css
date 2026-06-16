@@ -1,0 +1,281 @@
+/* ==========================================================================
+   CONFIGURACIÓN DE LA VISTA Y FONDO BLANCO CON PUNTOS AZULES
+   ========================================================================== */
+.comunicaciones-e-informatica-juridica-view {
+  --primary-blue: #2980b9; 
+  --text-dark: #1a252f;
+  --text-gray: #5a6b7c;
+  --bg-card: #ffffff;             
+  
+  --shadow-soft: 0 12px 30px rgba(13, 27, 42, 0.08); 
+  --shadow-hover: 0 20px 40px rgba(41, 128, 185, 0.15);
+  
+  font-family: var(--font-sans); 
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  
+  background-color: #ffffff; 
+  background-image: 
+    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px), 
+    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px); 
+  
+  background-position: 0 0, 16px 16px;
+  background-size: 32px 32px; 
+  background-attachment: fixed;
+}
+
+/* ==========================================================================
+   CABECERA / BANNER
+   ========================================================================== */
+.comunicaciones-e-informatica-juridica-header {
+  background-color: transparent; text-align: center; padding: 4rem 1rem 2rem 1rem; margin-bottom: 4rem;
+}
+.header-content { display: flex; flex-direction: column; align-items: center; }
+.header-content h1 { font-size: 3.2rem; font-weight: 800; color: #0D1B2A; margin: 0 0 0.8rem 0; letter-spacing: -0.5px; }
+.header-content h2 { font-size: 1.35rem; font-weight: 600; color: var(--primary-blue); margin: 0 0 0.5rem 0; }
+.header-content p { font-size: 1rem; font-weight: 500; margin: 0; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; }
+.header-separator { width: 60px; height: 4px; background-color: var(--primary-blue); border-radius: 2px; margin-top: 1.5rem; opacity: 0.8; }
+
+/* ==========================================================================
+   GRILLA Y CONTENEDOR ESTRUCTURAL
+   ========================================================================== */
+.comunicaciones-e-informatica-juridica-main-container { max-width: 1250px; margin: 0 auto; padding: 0 1.5rem; }
+.content-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 5rem; align-items: start; }
+
+/* ==========================================================================
+   COLUMNA IZQUIERDA (CONTENIDO TEXTUAL)
+   ========================================================================== */
+.text-column { color: var(--text-dark); line-height: 1.8; }
+.title-wrapper { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+.accent-bar { width: 6px; height: 30px; background-color: var(--primary-blue); border-radius: 4px; }
+.section-title { color: #0D1B2A; font-size: 2.2rem; font-weight: 800; margin: 0; }
+.intro-text p { font-size: 1.1rem; margin-bottom: 1.2rem; color: var(--text-dark); }
+.intro-text p:last-child { margin-bottom: 2.5rem; }
+
+/* ==========================================================================
+   COMPONENTE: TARJETAS (ESTILO OSCURO)
+   ========================================================================== */
+.info-cards-wrapper { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
+.info-card { background-color: rgba(13, 27, 42, 0.97); border: none; border-radius: 16px; padding: 1.8rem 2rem; box-shadow: var(--shadow-soft); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.info-card:hover { transform: translateY(-5px); background-color: rgba(13, 27, 42, 1); box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); }
+
+.icon-wrapper { display: flex; justify-content: center; align-items: center; border-radius: 12px; background-color: rgba(255, 255, 255, 0.07); padding: 12px; transition: transform 0.3s ease, background-color 0.3s ease; }
+.icon-wrapper svg { width: 28px; height: 28px; stroke: #d4af37; }
+
+.contact-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1.5rem; }
+.contact-group { display: flex; align-items: center; gap: 1.2rem; max-width: 100%; }
+.contact-text { color: #ffffff; font-size: 1.05rem; font-weight: 600; word-break: break-word; display: block; }
+.contact-text-multi { display: flex; flex-direction: column; color: #ffffff; font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
+
+/* ==========================================================================
+   COMPONENTE: DESCARGAS APILADAS (DOCUMENTOS DE GESTIÓN)
+   ========================================================================== */
+.documentos-section { margin-top: 3.5rem; }
+.title-margin-top { margin-bottom: 1.8rem; }
+.documentos-section .section-title { font-size: 1.8rem; }
+.documentos-section .accent-bar { height: 26px; }
+
+.stacked-downloads {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem; 
+}
+
+.download-card {
+  text-decoration: none; 
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+/* El texto principal toma todo el espacio posible empujando el bloque de acción a la derecha */
+.card-text-content { 
+  display: flex; 
+  flex-direction: column; 
+  padding-right: 1rem; 
+  flex: 1; 
+}
+.card-text-content h4 { color: #ffffff; font-size: 1.25rem; font-weight: 800; margin: 0 0 0.4rem 0; line-height: 1.2; }
+.card-text-content p { color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin: 0; }
+
+/* --- MAGIA DE ALINEACIÓN --- 
+   Al darle un ancho fijo (width: 220px) evitamos que el bloque se redimensione
+   dependiendo del texto inferior. Así, todos los íconos quedan en línea recta. */
+.card-action { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  width: 220px; 
+  flex-shrink: 0; 
+}
+
+.download-icon-box { border-radius: 50%; margin-bottom: 0.5rem; }
+.download-icon-box svg { width: 24px; height: 24px; }
+.download-card:hover .download-icon-box { transform: scale(1.1); background-color: rgba(212, 175, 55, 0.15); }
+
+.card-action .btn-text { color: #d4af37; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.card-action .btn-subtext { color: rgba(255, 255, 255, 0.45); font-size: 0.75rem; margin-top: 0.3rem; font-weight: 500; text-align: center; }
+
+/* ==========================================================================
+   COMPONENTE: ACORDEÓN PREMIUM (CARRUSEL INCLUIDO)
+   ========================================================================== */
+.premium-accordion {
+  background-color: rgba(13, 27, 42, 0.97); 
+  border-radius: 16px; 
+  box-shadow: var(--shadow-soft);
+  overflow: hidden; 
+  transition: box-shadow 0.4s ease; 
+  margin-top: 2rem; 
+}
+
+.accordion-checkbox { display: none; }
+
+.accordion-header {
+  padding: 1.5rem 2rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  background-color: transparent; user-select: none; transition: background-color 0.3s ease; position: relative; z-index: 10;
+}
+.accordion-header:hover { background-color: rgba(255, 255, 255, 0.03); }
+.accordion-title-text { color: #ffffff; font-size: 1.15rem; font-weight: 700; letter-spacing: 0.5px; }
+
+.accordion-icon {
+  background-color: rgba(255, 255, 255, 0.07); border-radius: 50%; padding: 8px; display: flex;
+  justify-content: center; align-items: center; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.accordion-icon svg { width: 22px; height: 22px; stroke: #d4af37; }
+
+.accordion-checkbox:checked + .accordion-header .accordion-icon { transform: rotate(180deg); background-color: rgba(212, 175, 55, 0.15); }
+.accordion-checkbox:checked + .accordion-header { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+
+.accordion-content-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s ease-in-out; }
+.accordion-checkbox:checked ~ .accordion-content-wrapper { grid-template-rows: 1fr; }
+
+.accordion-body {
+  overflow: hidden; 
+  background-color: #1e2f42; 
+}
+
+.accordion-body-inner {
+  padding: 2.2rem 0; 
+  display: block; 
+  width: 100%;
+  position: relative;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease-out, transform 0.45s ease-out;
+}
+
+.accordion-checkbox:checked ~ .accordion-content-wrapper .accordion-body-inner {
+  opacity: 1; transform: translateY(0);
+}
+
+/* ==========================================================================
+   CARRUSEL CSS DE BOLETINES (PAGINACIÓN ESTRICTA DE 3 EN 3)
+   ========================================================================== */
+.boletin-carousel-wrapper {
+  position: relative; 
+  width: 100%; 
+  max-width: 650px; 
+  margin: 0 auto; 
+  padding: 0 60px; /* Margen lateral donde vivirán las flechas */
+  box-sizing: border-box;
+}
+
+.slider-radio { display: none; }
+
+.carousel-viewport {
+  width: 100%; 
+  overflow: hidden; 
+  padding: 15px 0;
+  margin: -15px 0;
+}
+
+.carousel-track {
+  display: flex; 
+  width: 100%;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-slide {
+  flex: 0 0 100%; 
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; 
+  justify-items: center;
+}
+
+.boletin-card {
+  display: block; 
+  border-radius: 8px; 
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  width: 100%;
+  max-width: 135px; 
+}
+
+.boletin-card img { width: 100%; height: auto; display: block; object-fit: cover; }
+.boletin-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); }
+
+#slide-1:checked ~ .carousel-viewport .carousel-track { transform: translateX(0%); }
+#slide-2:checked ~ .carousel-viewport .carousel-track { transform: translateX(-100%); }
+
+.control-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px; 
+  background-color: rgba(13, 27, 42, 0.6); 
+  border-radius: 50%; display: none; 
+  justify-content: center; align-items: center; cursor: pointer; z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.control-arrow:hover { background-color: rgba(13, 27, 42, 0.9); }
+.control-arrow svg { width: 20px; height: 20px; stroke: #ffffff; transition: stroke 0.3s ease; }
+.control-arrow:hover svg { stroke: #d4af37; } 
+
+.left-arrow { left: 12px; }
+.right-arrow { right: 12px; }
+
+#slide-1:checked ~ .go-to-2 { display: flex; }
+#slide-2:checked ~ .go-to-1 { display: flex; }
+
+/* ==========================================================================
+   COLUMNA DERECHA: FOTO DE LA AUTORIDAD
+   ========================================================================== */
+.director-card {
+  background-color: rgba(13, 27, 42, 0.97); border: none; border-radius: 16px;
+  overflow: hidden; box-shadow: 0 12px 30px rgba(13, 27, 42, 0.1); transition: all 0.4s ease;
+}
+.director-card:hover { box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); }
+.director-card .img-container img { width: 100%; height: auto; display: block; object-fit: cover; }
+
+/* ==========================================================================
+   MEDIA QUERIES (Responsividad)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .content-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .image-column { order: -1; }
+}
+
+@media (max-width: 768px) {
+  .comunicaciones-e-informatica-juridica-header { padding: 3rem 1rem 1rem 1rem; }
+  .header-content h1 { font-size: 2.2rem; }
+  .contact-card { padding: 1.5rem; }
+  
+  .accordion-body-inner { padding: 1.5rem 0; }
+  .carousel-slide { gap: 0.8rem; }
+  .boletin-card { max-width: 100%; }
+  
+  .boletin-carousel-wrapper { padding: 0 40px; }
+  .left-arrow { left: 5px; }
+  .right-arrow { right: 5px; }
+  .control-arrow { width: 30px; height: 30px; }
+  .control-arrow svg { width: 16px; height: 16px; }
+  
+  /* Ajuste responsivo de la tarjeta de descarga para celulares */
+  .download-card { flex-direction: column; text-align: center; gap: 1rem; padding: 1.5rem; }
+  .card-text-content { padding-right: 0; align-items: center; }
+  .card-action { width: 100%; } /* Restablece el ancho en celulares */
+}
