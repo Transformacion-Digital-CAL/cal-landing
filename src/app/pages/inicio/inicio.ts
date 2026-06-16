@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 
 // Interfaz para los botones de accesos directos
 export interface QuickLink {
@@ -8,7 +8,7 @@ export interface QuickLink {
   svgIcon: SafeHtml;
 }
 
-// Interfaz reutilizable para los banners dinámicos (Imagen + Enlace)
+// Interfaz reutilizable para los banners dinámicos
 export interface SlideItem {
   imageUrl: string;
   link: string;
@@ -33,7 +33,7 @@ export interface AnnouncementItem {
   link: string;
 }
 
-// Interfaz para las Sedes (Actualizada para soportar hasta 3 líneas)
+// Interfaz para las Sedes (Horarios y Mapas)
 export interface ScheduleItem {
   title: string;
   address: string;
@@ -41,6 +41,14 @@ export interface ScheduleItem {
   hoursLine2?: string;
   hoursLine3?: string;
   mapLink: string; 
+}
+
+// NUEVA: Interfaz para los Videos de YouTube
+export interface VideoItem {
+  subtitle: string;
+  title: string;
+  url: string;
+  safeUrl?: SafeResourceUrl; 
 }
 
 @Component({
@@ -55,44 +63,20 @@ export class Inicio implements OnInit, OnDestroy {
   // 1. ARREGLO DINÁMICO DEL BANNER PRINCIPAL
   // ==========================================
   heroSlides: SlideItem[] = [
-    { 
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2024/12/PORTADA-DIA-NORMAL.jpg',
-      link: '/' 
-    },
-    { 
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/SLIDER-4-ASAMBLEA-10-DE-JUNIO-2026-scaled.jpeg',
-      link: '/' 
-    },
-    { 
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/SLIDER-3-DNA-v2-scaled.jpeg',
-      link: '/' 
-    },
-    { 
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2025/07/SLIDEER-MAPA.jpg',
-      link: '/' 
-    },
-    { 
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2025/11/RECURSOS-1.jpg',
-      link: '/' 
-    }
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2024/12/PORTADA-DIA-NORMAL.jpg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/SLIDER-4-ASAMBLEA-10-DE-JUNIO-2026-scaled.jpeg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/SLIDER-3-DNA-v2-scaled.jpeg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2025/07/SLIDEER-MAPA.jpg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2025/11/RECURSOS-1.jpg', link: '/' }
   ];
 
   // ==========================================
   // 2. ARREGLO DINÁMICO DEL BANNER LATERAL
   // ==========================================
   sideBannerSlides: SlideItem[] = [
-    {
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/BANER-CONVOCATORIA-EXTENSION-SOCIAL.jpeg',
-      link: '/' 
-    },
-    {
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/BANER-CONVOCATORIA-COMISIONES-Y-CONSULTAS-scaled.jpeg',
-      link: '/'
-    },
-    {
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/BANER-CONVOCATORIA-DDHH.jpeg',
-      link: '/'
-    }
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/BANER-CONVOCATORIA-EXTENSION-SOCIAL.jpeg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/BANER-CONVOCATORIA-COMISIONES-Y-CONSULTAS-scaled.jpeg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/BANER-CONVOCATORIA-DDHH.jpeg', link: '/' }
   ];
 
   // ==========================================
@@ -162,99 +146,41 @@ export class Inicio implements OnInit, OnDestroy {
   ];
 
   // ==========================================
-  // 5. ARREGLO DINÁMICO DE COMUNICADOS OFICIALES
+  // 5. ARREGLO DINÁMICO DE COMUNICADOS
   // ==========================================
   announcements: AnnouncementItem[] = [
-    {
-      day: '15',
-      month: 'FEB',
-      title: 'Suspensión de Actividades por Elecciones Generales 2026',
-      description: 'Ver comunicado en formato PDF',
-      link: '#'
-    },
-    {
-      day: '12',
-      month: 'FEB',
-      title: 'Pronunciamiento sobre el señalamiento del domicilio procesal',
-      description: 'Procesos contenciosos y no contenciosos ante el Poder Judicial',
-      link: '#'
-    },
-    {
-      day: '08',
-      month: 'FEB',
-      title: 'CAL expresa su preocupación por decisiones del Gobierno',
-      description: 'Inseguridad jurídica en materia contractual y obras de infraestructura',
-      link: '#'
-    },
-    {
-      day: '02',
-      month: 'FEB',
-      title: 'Comunicado del Comité Electoral',
-      description: 'Respecto a las próximas elecciones institucionales del CAL',
-      link: '#'
-    },
-    {
-      day: '28',
-      month: 'ENE',
-      title: 'Convocatoria a Asamblea General Ordinaria',
-      description: 'Presentación de memoria anual y balance general a los agremiados',
-      link: '#'
-    },
-    {
-      day: '20',
-      month: 'ENE',
-      title: 'Actualización del Cuadro de Valores',
-      description: 'Nuevas tarifas para trámites administrativos, certificados y colegiatura',
-      link: '#'
-    }
+    { day: '15', month: 'FEB', title: 'Suspensión de Actividades por Elecciones Generales 2026', description: 'Ver comunicado en formato PDF', link: '#' },
+    { day: '12', month: 'FEB', title: 'Pronunciamiento sobre el señalamiento del domicilio procesal', description: 'Procesos contenciosos y no contenciosos ante el Poder Judicial', link: '#' },
+    { day: '08', month: 'FEB', title: 'CAL expresa su preocupación por decisiones del Gobierno', description: 'Inseguridad jurídica en materia contractual y obras de infraestructura', link: '#' },
+    { day: '02', month: 'FEB', title: 'Comunicado del Comité Electoral', description: 'Respecto a las próximas elecciones institucionales del CAL', link: '#' },
+    { day: '28', month: 'ENE', title: 'Convocatoria a Asamblea General Ordinaria', description: 'Presentación de memoria anual y balance general a los agremiados', link: '#' },
+    { day: '20', month: 'ENE', title: 'Actualización del Cuadro de Valores', description: 'Nuevas tarifas para trámites administrativos, certificados y colegiatura', link: '#' }
   ];
 
   // ==========================================
-  // 6. ARREGLO DINÁMICO DE SEDES (DATOS CORREGIDOS)
+  // 6. ARREGLO DINÁMICO DE SEDES 
   // ==========================================
   schedules: ScheduleItem[] = [
-    { 
-      title: 'Sede Miraflores', 
-      address: 'Av. Santa Cruz N° 255', 
-      hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', 
-      hoursLine2: 'Sábados: 8 a.m. a 1 p.m.',
-      hoursLine3: 'Teléfono: 710-6600',
-      mapLink: 'https://maps.google.com/?q=Av.+Santa+Cruz+255,+Miraflores'
+    { title: 'Sede Miraflores', address: 'Av. Santa Cruz N° 255', hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', hoursLine2: 'Sábados: 8 a.m. a 1 p.m.', hoursLine3: 'Teléfono: 710-6600', mapLink: 'https://maps.google.com/?q=Av.+Santa+Cruz+255,+Miraflores' },
+    { title: 'Lima Centro', address: 'Jr. Lampa N° 1174', hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', hoursLine2: 'Teléfono: 710-6600 Anexo 6791 / 710-6600 Anexo 6780', mapLink: 'https://maps.google.com/?q=Jr.+Lampa+1174,+Lima' },
+    { title: 'Lima Norte', address: 'Calle San Héctor N° 219, Los Olivos', hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', hoursLine2: 'Teléfono: 710-6600 Anexo 6680', mapLink: 'https://maps.google.com/?q=Calle+San+Héctor+219,+Los+Olivos' },
+    { title: 'Caja Policlínico', address: 'Jr. Luis Sáenz N° 232, Jesús María', hoursLine1: 'Lunes a viernes: 9 a.m. a 6 p.m.', hoursLine2: 'Teléfono: 463-1755 / 261-5169', mapLink: 'https://maps.google.com/?q=Jr.+Luis+Sáenz+232,+Jesús+María' },
+    { title: 'Caja CECAL', address: 'Alt. Km 40.5 Carretera Central Ricardo Palma', hoursLine1: 'Miércoles a domingo: 9 a.m. a 6 p.m.', hoursLine2: 'Teléfono: 353-9584 / 353-9616', mapLink: 'https://maps.google.com/?q=Km+40.5+Carretera+Central,+Ricardo+Palma' }
+  ];
+
+  // ==========================================
+  // 7. ARREGLO DINÁMICO DE VIDEOS (YOUTUBE)
+  // ==========================================
+  videos: VideoItem[] = [
+    {
+      subtitle: 'Lo más destacado',
+      title: '¡El Policlínico del CAL al servicio del agremiado!',
+      url: 'https://www.youtube.com/embed/KTzimDzi40w'
     },
-    { 
-      title: 'Lima Centro', 
-      address: 'Jr. Lampa N° 1174', 
-      hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', 
-      hoursLine2: 'Teléfono: 710-6600 Anexo 6791 / 710-6600 Anexo 6780',
-      mapLink: 'https://maps.google.com/?q=Jr.+Lampa+1174,+Lima'
-    },
-    { 
-      title: 'Lima Norte', 
-      address: 'Calle San Héctor N° 219, Los Olivos', 
-      hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', 
-      hoursLine2: 'Teléfono: 710-6600 Anexo 6680',
-      mapLink: 'https://maps.google.com/?q=Calle+San+Héctor+219,+Los+Olivos'
-    },
-    { 
-      title: 'Caja Policlínico', 
-      address: 'Jr. Luis Sáenz N° 232, Jesús María', 
-      hoursLine1: 'Lunes a viernes: 9 a.m. a 6 p.m.', 
-      hoursLine2: 'Teléfono: 463-1755 / 261-5169',
-      mapLink: 'https://maps.google.com/?q=Jr.+Luis+Sáenz+232,+Jesús+María'
-    },
-    { 
-      title: 'Caja CECAL', 
-      address: 'Alt. Km 40.5 Carretera Central Ricardo Palma', 
-      hoursLine1: 'Miércoles a domingo: 9 a.m. a 6 p.m.', 
-      hoursLine2: 'Teléfono: 353-9584 / 353-9616',
-      mapLink: 'https://maps.google.com/?q=Km+40.5+Carretera+Central,+Ricardo+Palma'
-    },
-    { 
-      title: 'Caja CECAL', 
-      address: 'Alt. Km 40.5 Carretera Central Ricardo Palma', 
-      hoursLine1: 'Miércoles a domingo: 9 a.m. a 6 p.m.', 
-      hoursLine2: 'Teléfono: 353-9584 / 353-9616',
-      mapLink: 'https://maps.google.com/?q=Km+40.5+Carretera+Central,+Ricardo+Palma'
+    {
+      subtitle: 'Últimos videos',
+      title: 'CECAL: ¡Un espacio renovado para nuestros agremiados y sus familias!',
+      url: 'https://www.youtube.com/embed/aS92mCGvHvY'
     }
   ];
 
@@ -271,7 +197,6 @@ export class Inicio implements OnInit, OnDestroy {
   slideDuration: number = 4000;     
   tickRate: number = 20;            
 
-  // Controladores para el Banner Lateral
   currentSideIndex: number = 0;
   sideBannerInterval: any;
   isSidePaused: boolean = false;
@@ -283,19 +208,19 @@ export class Inicio implements OnInit, OnDestroy {
   constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-    // 1. Inicializar Banner Principal
     this.totalSlides = this.heroSlides.length; 
     this.startProgressTimer(); 
-
-    // 2. Inicializar Banner Lateral (Dashboard)
     this.startSideBannerTimer();
 
-    // 3. Procesar Arreglo de Accesos Directos
     this.quickLinks = this.rawQuickLinks.map(link => ({
       title: link.title,
       url: link.url,
       svgIcon: this.sanitizer.bypassSecurityTrustHtml(link.icon)
     }));
+
+    this.videos.forEach(video => {
+      video.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(video.url);
+    });
   }
 
   ngOnDestroy() {
@@ -303,18 +228,13 @@ export class Inicio implements OnInit, OnDestroy {
     if (this.sideBannerInterval) clearInterval(this.sideBannerInterval);
   }
 
-  // ==========================================
-  // LÓGICA: BANNER PRINCIPAL (BARRAS DE CARGA)
-  // ==========================================
+  // LOGICAS DEL COMPONENTE...
   startProgressTimer() {
     if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
-
     this.autoPlayInterval = setInterval(() => {
       if (!this.isPaused && !this.isTransitioning) {
         this.slideProgress += (this.tickRate / this.slideDuration) * 100;
-        if (this.slideProgress >= 100) {
-          this.nextSlide();
-        }
+        if (this.slideProgress >= 100) this.nextSlide();
         this.cdr.detectChanges(); 
       }
     }, this.tickRate);
@@ -353,12 +273,8 @@ export class Inicio implements OnInit, OnDestroy {
     setTimeout(() => { this.isTransitioning = false; }, 600);
   }
 
-  // ==========================================
-  // LÓGICA: BANNER LATERAL DINÁMICO
-  // ==========================================
   startSideBannerTimer() {
     if (this.sideBannerInterval) clearInterval(this.sideBannerInterval);
-    
     this.sideBannerInterval = setInterval(() => {
       if (!this.isSidePaused) {
         this.currentSideIndex = (this.currentSideIndex + 1) % this.sideBannerSlides.length;
@@ -380,9 +296,6 @@ export class Inicio implements OnInit, OnDestroy {
     this.cdr.detectChanges();
   }
 
-  // ==========================================
-  // LÓGICA TÁCTIL Y RATÓN (BANNER PRINCIPAL)
-  // ==========================================
   onTouchStart(event: TouchEvent) {
     this.pauseAutoPlay();
     this.touchStartX = event.changedTouches[0].screenX;

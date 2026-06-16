@@ -82,7 +82,7 @@
 .hero-premium-slider {
   position: relative;
   width: 100%; 
-  height: 520px;
+  height: 480px; 
   overflow: hidden;
   margin: 2rem 0 4rem 0; 
   border: none; 
@@ -96,7 +96,7 @@
 .hero-slider-track {
   position: relative;
   width: 100%;
-  height: 84%; 
+  height: 90%; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,8 +113,8 @@
 
 .hero-slide {
   position: absolute;
-  width: 65%; 
-  max-width: 900px; 
+  width: 82%; 
+  max-width: 1200px; 
   height: 100%; 
   border-radius: 24px; 
   overflow: hidden;
@@ -122,7 +122,7 @@
               opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
               z-index 0s;
               
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); 
+  box-shadow: none; 
   
   backface-visibility: hidden; 
   -webkit-backface-visibility: hidden;
@@ -138,14 +138,14 @@
 }
 
 .hero-slide.prev {
-  transform: translateX(-55%) scale(0.85) translateZ(0);
+  transform: translateX(-65%) scale(0.85) translateZ(0);
   z-index: 5;
   opacity: 0.6;
   pointer-events: none;
 }
 
 .hero-slide.next {
-  transform: translateX(55%) scale(0.85) translateZ(0);
+  transform: translateX(65%) scale(0.85) translateZ(0);
   z-index: 5;
   opacity: 0.6;
   pointer-events: none;
@@ -225,7 +225,7 @@
 /* BARRAS DE CARGA DEL BANNER */
 .hero-loading-container {
   position: absolute;
-  bottom: 25px;
+  bottom: 8px; 
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -235,9 +235,9 @@
 
 .loading-segment {
   width: 45px;
-  height: 8px; 
-  background-color: rgba(255, 255, 255, 0.6); 
-  border: 1px solid #000000; 
+  height: 6px; 
+  background-color: rgba(13, 27, 42, 0.15); 
+  border: none; 
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer; 
@@ -770,7 +770,7 @@
 /* Tarjetas Base Oscuras convertidas en enlaces */
 .schedule-card { 
   background-color: rgba(255, 255, 255, 0.02); 
-  border: 1px solid rgba(255, 255, 255, 0.15); /* Aumentado para que el marco sea más visible */
+  border: 1px solid rgba(255, 255, 255, 0.15); 
   border-radius: 16px; 
   padding: 2.5rem 1.2rem; 
   text-align: center; 
@@ -781,6 +781,7 @@
   cursor: pointer;
   text-decoration: none; 
   outline: none;
+  box-sizing: border-box;
 }
 
 /* ----------------------------------------------------
@@ -799,16 +800,9 @@
 .schedule-card .hours { display: flex; flex-direction: column; gap: 0.4rem; color: #a0aec0; font-size: 0.85rem; line-height: 1.4; font-weight: 500; transition: color 0.3s ease;}
 
 /* Textos en Hover (Se vuelven Azules Oscuros) */
-.schedule-card:hover h4 { 
-  color: var(--cal-navy); 
-}
-.schedule-card:hover .address { 
-  color: var(--cal-navy); 
-}
-.schedule-card:hover .hours { 
-  color: rgba(13, 27, 42, 0.85); /* Azul oscuro ligeramente suave */
-  font-weight: 600;
-}
+.schedule-card:hover h4 { color: var(--cal-navy); }
+.schedule-card:hover .address { color: var(--cal-navy); }
+.schedule-card:hover .hours { color: rgba(13, 27, 42, 0.85); font-weight: 600; }
 
 /* Iconos de la tarjeta base */
 .schedule-icon { 
@@ -825,30 +819,105 @@
 .schedule-icon svg { width: 26px; height: 26px; stroke: #a0aec0; transition: stroke 0.3s ease;}
 
 /* Iconos en Hover */
-.schedule-card:hover .schedule-icon { 
-  background-color: var(--cal-navy); 
-}
-.schedule-card:hover .schedule-icon svg { 
-  stroke: var(--cal-gold); 
-}
+.schedule-card:hover .schedule-icon { background-color: var(--cal-navy); }
+.schedule-card:hover .schedule-icon svg { stroke: var(--cal-gold); }
 
 
 /* ==========================================================================
-   6. VIDEOS
+   7. SECCIÓN DE VIDEOS YOUTUBE (Premium Dark Theme)
    ========================================================================== */
-.videos-section { margin-bottom: 4rem; }
-.videos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+.videos-section { margin-bottom: 6rem; }
 
-.video-card h4 { color: var(--dark-blue); font-size: 1.2rem; font-weight: 700; text-align: center; margin: 0 0 1.5rem 0; line-height: 1.4; }
-.video-container { position: relative; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-soft); cursor: pointer; aspect-ratio: 16/9; }
-.video-thumbnail { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.video-container::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(13, 27, 42, 0.3); transition: background-color 0.3s ease; }
-.video-container:hover .video-thumbnail { transform: scale(1.05); }
-.video-container:hover::after { background-color: rgba(13, 27, 42, 0.1); }
+.videos-premium-wrapper {
+  background-color: #0b1524;
+  background-image: radial-gradient(circle at top left, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 24px;
+  padding: 4rem 3rem; 
+  box-shadow: 0 30px 60px rgba(13, 27, 42, 0.15);
+}
 
-.play-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; background-color: var(--gold); width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; padding-left: 5px; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4); transition: all 0.3s ease; }
-.play-button svg { width: 30px; height: 30px; fill: #ffffff; }
-.video-container:hover .play-button { transform: translate(-50%, -50%) scale(1.1); background-color: var(--primary-blue); box-shadow: 0 10px 20px rgba(41, 128, 185, 0.4); }
+.videos-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 4rem; 
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.video-subtitle {
+  color: var(--cal-gold);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 0;
+}
+
+.video-title { 
+  color: #ffffff; 
+  font-size: 1.3rem; 
+  font-weight: 800; 
+  text-align: center; 
+  margin: 0 0 1rem 0; 
+  line-height: 1.4; 
+  
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  min-height: 3.6rem; 
+}
+
+/* MARCO ESTILIZADO DE LOS VIDEOS */
+.video-frame { 
+  position: relative; 
+  width: 100%;
+  padding-top: 56.25%; 
+  border-radius: 16px; 
+  overflow: hidden; 
+  border: 3px solid rgba(255, 255, 255, 0.08); 
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); 
+  transition: all 0.4s ease;
+  background-color: #000;
+}
+
+.video-frame:hover {
+  transform: translateY(-8px);
+  border-color: var(--cal-gold); 
+  box-shadow: 0 25px 50px rgba(212, 175, 55, 0.25); 
+}
+
+/* Iframe ocupando todo el marco 16:9 */
+.video-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Botón adaptado al fondo oscuro */
+.videos-premium-wrapper .btn-primary {
+  background-color: var(--cal-gold);
+  border-color: var(--cal-gold);
+  color: var(--cal-navy);
+}
+.videos-premium-wrapper .btn-primary:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: var(--cal-navy);
+  transform: translateY(-4px); 
+  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.2); 
+}
 
 
 /* ==========================================================================
@@ -861,30 +930,48 @@
 }
 
 @media (max-width: 1024px) {
-  .hero-premium-slider { height: 450px; margin-top: 1rem; }
-  .hero-slide { width: 75%; }
+  .hero-premium-slider { height: 420px; margin-top: 1rem; }
+  .hero-slide { width: 88%; }
+  .hero-slide.prev { transform: translateX(-60%) scale(0.85) translateZ(0); }
+  .hero-slide.next { transform: translateX(60%) scale(0.85) translateZ(0); }
   
   .news-grid { grid-template-columns: repeat(2, 1fr); }
   .announcements-layout { grid-template-columns: 1fr; gap: 2rem; }
   .graphic-side-wrapper { min-height: 250px; } 
   .schedules-grid { grid-template-columns: repeat(3, 1fr); }
+  
+  .videos-grid { gap: 2rem; }
 }
 
 @media (max-width: 768px) {
-  .hero-premium-slider { height: 240px; margin-top: 1rem; }
-  .hero-slider-track { height: 75%; } 
-  .hero-slide { width: 85%; height: 100%; border-radius: 12px; }
   
-  .slide-image, .slide-overlay { border-radius: 12px; }
+  /* ----------------------------------------------------
+     BANNER "FULL-BLEED" PANORÁMICO (MÓVIL)
+     ---------------------------------------------------- */
+  .hero-premium-slider { 
+    height: 50vw; /* Ajuste mágico: Altura proporcional al ancho (2:1) */
+    min-height: 200px;
+    margin-top: 0; 
+    margin-bottom: 2rem; 
+  }
+  .hero-slider-track { height: 100%; width: 100%; }
   
-  .hero-slide.prev { transform: translateX(-42%) scale(0.85) translateZ(0); opacity: 0.4; }
-  .hero-slide.next { transform: translateX(42%) scale(0.85) translateZ(0); opacity: 0.4; }
+  .hero-slide { width: 100%; height: 100%; border-radius: 0; }
+  .slide-image { 
+    border-radius: 0; 
+    background-size: cover; 
+    background-position: center; 
+  }
+  .slide-overlay { border-radius: 0; }
   
-  .hero-loading-container { bottom: 12px; }
+  .hero-slide.prev { transform: translateX(-100%) scale(1) translateZ(0); opacity: 0; }
+  .hero-slide.next { transform: translateX(100%) scale(1) translateZ(0); opacity: 0; }
+  
+  .hero-loading-container { bottom: 10px; }
   .loading-segment { width: 32px; height: 5px; }
 
-  .slider-arrow { padding: 8px; }
-  .slider-arrow svg { width: 18px; height: 18px; }
+  .slider-arrow { padding: 8px; background-color: rgba(13, 27, 42, 0.4); border: none; }
+  .slider-arrow svg { width: 18px; height: 18px; stroke: #fff;}
   .slider-arrow.prev { left: 10px; }
   .slider-arrow.next { right: 10px; }
 
@@ -901,13 +988,50 @@
   
   .news-grid { grid-template-columns: 1fr; }
   .schedules-band { padding: 3rem 0; }
-  .schedules-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .schedule-card .address { min-height: auto; }
-  .videos-grid { grid-template-columns: 1fr; gap: 2rem; }
-
+  
   /* ----------------------------------------------------
-     FIXES PARA COMUNICADOS OFICIALES EN MÓVILES
+     SEDEDS (MÓVILES) - Estilo Botón 2 Columnas
      ---------------------------------------------------- */
+  .schedules-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1rem; 
+  }
+  
+  .schedules-grid .schedule-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 0.5rem); 
+  }
+  
+  .schedule-card {
+    padding: 1.5rem 0.5rem;
+    min-height: 130px; 
+    justify-content: center;
+  }
+  
+  .schedule-card .hours {
+    display: none; 
+  }
+  
+  .schedule-icon {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 0.8rem;
+  }
+  
+  .schedule-card h4 {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .schedule-card .address {
+    display: block; 
+    font-size: 0.75rem;
+    margin: 0.5rem 0 0 0;
+    min-height: auto;
+    line-height: 1.3;
+  }
+
   .announcements-premium-wrapper { padding: 2rem 1.5rem; }
   
   .graphic-side-wrapper { 
@@ -958,4 +1082,11 @@
   .announcement-arrow {
     display: none; 
   }
+
+  /* ----------------------------------------------------
+     VIDEOS (MÓVILES)
+     ---------------------------------------------------- */
+  .videos-premium-wrapper { padding: 2rem 1.5rem; }
+  .videos-grid { grid-template-columns: 1fr; gap: 3rem; margin-top: 1rem; }
+  .video-title { min-height: auto; }
 }

@@ -72,7 +72,6 @@
             </a>
           </div>
           
-          <!-- Flechas del banner lateral -->
           <button class="side-slider-arrow prev" aria-label="Anterior banner" (click)="prevSideSlide()">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
@@ -94,7 +93,6 @@
         <p>Entérate de lo que sucede en nuestra ilustre institución</p>
       </div>
       
-      <!-- Grid Dinámico de Noticias -->
       <div class="news-grid">
         <article class="news-card" *ngFor="let news of latestNews">
           <div class="news-img-wrapper">
@@ -130,7 +128,6 @@
       </div>
     </section>
 
-    <!-- SECCIÓN DE COMUNICADOS -->
     <section class="announcements-section">
       
       <div class="section-header-center">
@@ -179,7 +176,6 @@
 
   </main> 
   
-  <!-- SECCIÓN DE HORARIOS DE SEDES (LINKS A MAPS) -->
   <section class="schedules-band">
     <div class="schedules-container">
       
@@ -189,7 +185,6 @@
       </div>
 
       <div class="schedules-grid">
-        <!-- Tarjetas convertidas en 'a' con target="_blank" para abrir el mapa -->
         <a class="schedule-card" 
            *ngFor="let schedule of schedules" 
            [href]="schedule.mapLink" 
@@ -207,8 +202,9 @@
           <p class="address">{{ schedule.address }}</p>
           
           <div class="hours">
-            <span>{{ schedule.hoursLine1 }}</span>
-            <span>{{ schedule.hoursLine2 }}</span>
+            <span *ngIf="schedule.hoursLine1">{{ schedule.hoursLine1 }}</span>
+            <span *ngIf="schedule.hoursLine2">{{ schedule.hoursLine2 }}</span>
+            <span *ngIf="schedule.hoursLine3">{{ schedule.hoursLine3 }}</span>
           </div>
 
         </a>
@@ -218,24 +214,28 @@
   </section>
 
   <section class="videos-section home-main-container">
-    <div class="section-header-center">
-      <h3 class="section-title">Últimos videos</h3>
-    </div>
-    <div class="videos-grid">
-      <div class="video-card">
-        <h4>¡El Policlínico del CAL al servicio del agremiado!</h4>
-        <div class="video-container">
-          <img src="https://www.cal.org.pe/v1/wp-content/uploads/2026/05/EXTENSION-SOCIAL.jpg-1024x1024.jpeg" alt="Video 1" class="video-thumbnail">
-          <div class="play-button"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div>
+    <div class="videos-premium-wrapper">
+      
+      <div class="videos-grid">
+        <div class="video-card" *ngFor="let video of videos">
+          <p class="video-subtitle">{{ video.subtitle }}</p>
+          <h4 class="video-title">{{ video.title }}</h4>
+          
+          <div class="video-frame">
+            <iframe 
+              [src]="video.safeUrl" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
         </div>
       </div>
-      <div class="video-card">
-        <h4>CECAL: ¡Un espacio renovado para nuestros agremiados y sus familias!</h4>
-        <div class="video-container">
-           <img src="https://www.cal.org.pe/v1/wp-content/uploads/2026/05/ETICA-PROFESIONAL.jpg-1-scaled.jpeg" alt="Video 2" class="video-thumbnail">
-           <div class="play-button"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div>
-        </div>
+
+      <div class="center-action" style="margin-top: 3.5rem;">
+        <a href="https://www.youtube.com/@ColegioDeAbogadosLima" target="_blank" rel="noopener noreferrer" class="btn-primary">Ver todos los videos</a>
       </div>
+      
     </div>
   </section>
 
