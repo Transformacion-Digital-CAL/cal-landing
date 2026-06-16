@@ -1,7 +1,5 @@
 import { Component, HostListener, OnInit, OnDestroy, ViewChild } from '@angular/core';
-
-interface onDestroy {
-}
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,7 +7,9 @@ interface onDestroy {
   templateUrl: './toolbar.html',
   styleUrl: './toolbar.css',
 })
-export class Toolbar implements OnInit, onDestroy {
+export class Toolbar implements OnInit, OnDestroy {
+  constructor(private router: Router) {}
+
   scrolled = false;
   menuOpen = false;
   activeDropdown = '';
@@ -24,11 +24,35 @@ export class Toolbar implements OnInit, onDestroy {
 
   ngOnInit(): void {
     document.addEventListener('click', this.clickOutside);
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.activeDropdown = '';
+      }
+    });
   }
 
   ngOnDestroy(): void {
     document.removeEventListener('click', this.clickOutside);
     document.body.style.overflow = '';
+  }
+
+  isDireccionesSection(): boolean {
+    const url = this.router.url;
+
+    return [
+      '/direcciones',
+      '/academica-y-promocion-cultural',
+      '/biblioteca-y-centro-de-documentacion',
+      '/bienestar-social',
+      '/comisiones-y-consultas',
+      '/comunicaciones-e-informatica-juridica',
+      '/defensa-gremial',
+      '/derechos-humanos',
+      '/economia',
+      '/etica-profesional',
+      '/extension-social-y-participacion',
+    ].includes(url);
   }
 
   @HostListener('window:scroll')

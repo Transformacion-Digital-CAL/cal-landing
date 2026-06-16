@@ -60,6 +60,7 @@
             </div>
           </li>
 
+          <!-- Servicios -->
           <li class="navbar__nav-item navbar__nav-item--dropdown">
             <button class="navbar__nav-link navbar__nav-link--btn" [attr.aria-expanded]="activeDropdown === 'servicios'" (click)="toggleDropdown('servicios')">
               Servicios
@@ -78,12 +79,40 @@
             </div>
           </li>
 
+          <!-- Direcciones -->
           <li class="navbar__nav-item navbar__nav-item--dropdown">
-            <button class="navbar__nav-link navbar__nav-link--btn" [attr.aria-expanded]="activeDropdown === 'direcciones'" (click)="toggleDropdown('direcciones')">
-              Direcciones
-              <svg class="navbar__nav-caret" [class.open]="activeDropdown === 'direcciones'" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </button>
-            <div class="navbar__dropdown" [class.navbar__dropdown--open]="activeDropdown === 'direcciones'">
+            <div class="navbar__nav-dropdown-trigger">
+
+              <a routerLink="/direcciones" class="navbar__nav-link" [class.active]="isDireccionesSection()">
+                Direcciones
+              </a>
+
+
+
+              <button
+                type="button"
+                class="navbar__nav-link navbar__nav-link--btn"
+                [attr.aria-expanded]="activeDropdown === 'direcciones'"
+                (click)="toggleDropdown('direcciones')">
+
+                <svg
+                  class="navbar__nav-caret"
+                  [class.open]="activeDropdown === 'direcciones'"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none">
+                  <path d="M2 4l4 4 4-4"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"/>
+                </svg>
+              </button>
+
+            </div>
+
+            <div class="navbar__dropdown"
+                 [class.navbar__dropdown--open]="activeDropdown === 'direcciones'">
               <div class="navbar__dropdown-inner">
                 <a routerLink="/academica-y-promocion-cultural" class="navbar__dropdown-item">Académica y Promoción Cultural</a>
                 <a routerLink="/biblioteca-y-centro-de-documentacion" class="navbar__dropdown-item">Biblioteca y Centro de Documentación</a>
@@ -162,8 +191,11 @@
           <a href="https://incorporacion.cal.org.pe/" target="_blank" (click)="closeMenu()">Incorporaciones</a>
         </div>
       </div>
+
       <a routerLink="/prensa" (click)="closeMenu()" class="navbar__mobile-link">Prensa</a>
+
       <a routerLink="/contacto" (click)="closeMenu()" class="navbar__mobile-link">Contacto</a>
+
       <a href="https://beneficios.cal.org.pe/" target="_blank" class="navbar__mobile-cta">Club de Beneficios</a>
     </nav>
   </div>

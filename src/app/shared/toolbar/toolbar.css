@@ -170,6 +170,11 @@
 .navbar__nav-caret.open {
   transform: rotate(180deg);
 }
+.navbar__nav-dropdown-trigger {
+  display: flex;
+  align-items: center;
+
+}
 
 /* ---- Dropdown ---- */
 .navbar__dropdown {
@@ -187,6 +192,7 @@
   transition: opacity 0.2s, transform 0.2s;
   z-index: 100;
 }
+
 
 .navbar__dropdown--open {
   opacity: 1;
