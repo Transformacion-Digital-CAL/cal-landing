@@ -1,55 +1,12 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 
-// Interfaz para los botones de accesos directos
-export interface QuickLink {
-  title: string;
-  url: string;
-  svgIcon: SafeHtml;
-}
-
-// Interfaz reutilizable para los banners dinámicos
-export interface SlideItem {
-  imageUrl: string;
-  link: string;
-}
-
-// Interfaz para las Noticias
-export interface NewsItem {
-  title: string;
-  category: string;
-  fechaPublicacion: string; 
-  excerpt: string;
-  imageUrl: string;
-  link: string;
-}
-
-// Interfaz para los Comunicados Oficiales
-export interface AnnouncementItem {
-  day: string;
-  month: string;
-  title: string;
-  description: string;
-  link: string;
-}
-
-// Interfaz para las Sedes (Horarios y Mapas)
-export interface ScheduleItem {
-  title: string;
-  address: string;
-  hoursLine1: string;
-  hoursLine2?: string;
-  hoursLine3?: string;
-  mapLink: string; 
-}
-
-// NUEVA: Interfaz para los Videos de YouTube
-export interface VideoItem {
-  subtitle: string;
-  title: string;
-  url: string;
-  safeUrl?: SafeResourceUrl; 
-}
+export interface QuickLink { title: string; url: string; svgIcon: SafeHtml; }
+export interface SlideItem { imageUrl: string; link: string; }
+export interface NewsItem { title: string; category: string; fechaPublicacion: string; excerpt: string; imageUrl: string; link: string; }
+export interface AnnouncementItem { day: string; month: string; title: string; description: string; link: string; }
+export interface ScheduleItem { title: string; address: string; hoursLine1: string; hoursLine2?: string; hoursLine3?: string; mapLink: string; }
+export interface VideoItem { subtitle: string; title: string; url: string; safeUrl?: SafeResourceUrl; }
 
 @Component({
   selector: 'app-inicio',
@@ -60,9 +17,9 @@ export interface VideoItem {
 export class Inicio implements OnInit, OnDestroy {
   
   // ==========================================
-  // 1. ARREGLO DINÁMICO DEL BANNER PRINCIPAL
+  // ARREGLO 1: IMÁGENES PANORÁMICAS (Banner Superior en PC)
   // ==========================================
-  heroSlides: SlideItem[] = [
+  panoramicSlides: SlideItem[] = [
     { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2024/12/PORTADA-DIA-NORMAL.jpg', link: '/' },
     { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/SLIDER-4-ASAMBLEA-10-DE-JUNIO-2026-scaled.jpeg', link: '/' },
     { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/SLIDER-3-DNA-v2-scaled.jpeg', link: '/' },
@@ -71,16 +28,48 @@ export class Inicio implements OnInit, OnDestroy {
   ];
 
   // ==========================================
-  // 2. ARREGLO DINÁMICO DEL BANNER LATERAL
+  // ARREGLO 2: IMÁGENES CUADRADAS (Banner Superior en MÓVIL)
   // ==========================================
-  sideBannerSlides: SlideItem[] = [
-    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/BANER-CONVOCATORIA-EXTENSION-SOCIAL.jpeg', link: '/' },
-    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/BANER-CONVOCATORIA-COMISIONES-Y-CONSULTAS-scaled.jpeg', link: '/' },
-    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/BANER-CONVOCATORIA-DDHH.jpeg', link: '/' }
+  mobileSquareSlides: SlideItem[] = [
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/BANER-I-CONGRESO-DE-ARBITRAJE-CEARCAL-scaled.jpeg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/Diplomado-2-banner.jpeg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/BANER-CONCILIACION-JUNIO-scaled.jpeg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/SPIJ-BANNER.jpeg', link: '/' }
   ];
 
   // ==========================================
-  // 3. ARREGLO DINÁMICO DE ACCESOS DIRECTOS
+  // ARREGLO 3: IMÁGENES CARRUSEL LATERAL (Visible en PC y Móvil)
+  // ==========================================
+  sideSquareSlides: SlideItem[] = [
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/BANER-CONVOCATORIA-COMISIONES-Y-CONSULTAS-scaled.jpeg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/BANER-CONVOCATORIA-DDHH.jpeg', link: '/' },
+    { imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/BANER-CONVOCATORIA-EXTENSION-SOCIAL.jpeg', link: '/' }
+  ];
+
+  // ESTADOS DEL BANNER PRINCIPAL (PC)
+  desktopIndex: number = 0;
+  desktopProgress: number = 0;
+  desktopInterval: any;
+  isDesktopPaused: boolean = false;
+  isDesktopTransitioning: boolean = false;
+  touchStartDesktopX: number = 0; touchEndDesktopX: number = 0; isDraggingDesktop: boolean = false;
+
+  // ESTADOS DEL BANNER PRINCIPAL (MÓVIL)
+  mobileIndex: number = 0;
+  mobileProgress: number = 0;
+  mobileInterval: any;
+  isMobilePaused: boolean = false;
+  isMobileTransitioning: boolean = false;
+  touchStartMobileX: number = 0; touchEndMobileX: number = 0; isDraggingMobile: boolean = false;
+
+  // ESTADOS DEL CARRUSEL LATERAL (AMBOS)
+  sideIndex: number = 0;
+  sideInterval: any;
+  isSidePaused: boolean = false;
+  touchStartSideX: number = 0; touchEndSideX: number = 0;
+
+  // ==========================================
+  // DATOS DEL RESTO DE LA PÁGINA
   // ==========================================
   rawQuickLinks = [
     { title: 'Pago online e impresión', url: '#', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>' },
@@ -96,58 +85,16 @@ export class Inicio implements OnInit, OnDestroy {
     { title: 'Conoce a tu Juez Abogado', url: '#', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>' },
     { title: 'Abogados voluntarios', url: '#', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>' }
   ];
-
   quickLinks: QuickLink[] = [];
 
-  // ==========================================
-  // 4. ARREGLO DINÁMICO DE NOTICIAS
-  // ==========================================
   latestNews: NewsItem[] = [
-    {
-      title: 'Diplomado Especializado en Nuevas tendencias del Derecho Familiar',
-      category: 'Formación Integral',
-      fechaPublicacion: '12 JUN, 2026',
-      excerpt: 'Aprende las actualizaciones más recientes en derecho de familia con nuestros expertos invitados de alto nivel...',
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/02/FORMACION-INTEGRAL.jpg',
-      link: '#'
-    },
-    {
-      title: 'Corte Suprema de Justicia: Selección de Personal CAS',
-      category: 'Convocatoria',
-      fechaPublicacion: '09 JUN, 2026',
-      excerpt: 'Conoce los requisitos, bases y el cronograma para la selección de personal bajo la modalidad CAS D. Leg. N° 115...',
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/PORTADA-CONVOCATORIA-VARIOS.jpg-scaled.jpeg',
-      link: '#'
-    },
-    {
-      title: 'Diplomado Especializado en Políticas Públicas contra la violencia',
-      category: 'Formación Integral',
-      fechaPublicacion: '05 JUN, 2026',
-      excerpt: 'Un enfoque integral para abordar la violencia hacia las mujeres e integrantes del grupo familiar...',
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/02/FORMACION-INTEGRAL.jpg',
-      link: '#'
-    },
-    {
-      title: 'Curso - Conciliación Extrajudicial',
-      category: 'Formación Integral',
-      fechaPublicacion: '08 JUN, 2026',
-      excerpt: 'Participa en nuestro próximo curso para especializarte en temas de conciliación extrajudicial.',
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/02/FORMACION-INTEGRAL.jpg',
-      link: '#'
-    },
-    {
-      title: 'Corte Suprema de Justicia: Selección de Personal N. 110-2026',
-      category: 'Convocatoria',
-      fechaPublicacion: '08 JUN, 2026',
-      excerpt: 'El Comité de Selección de Personal Ad Hoc de la Corte Suprema de Justicia invita a...',
-      imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/PORTADA-CONVOCATORIA-VARIOS.jpg-scaled.jpeg',
-      link: '#'
-    }
+    { title: 'Diplomado Especializado en Nuevas tendencias del Derecho Familiar', category: 'Formación Integral', fechaPublicacion: '12 JUN, 2026', excerpt: 'Aprende las actualizaciones más recientes en derecho de familia con nuestros expertos invitados de alto nivel...', imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/02/FORMACION-INTEGRAL.jpg', link: '#' },
+    { title: 'Corte Suprema de Justicia: Selección de Personal CAS', category: 'Convocatoria', fechaPublicacion: '09 JUN, 2026', excerpt: 'Conoce los requisitos, bases y el cronograma para la selección de personal bajo la modalidad CAS D. Leg. N° 115...', imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/PORTADA-CONVOCATORIA-VARIOS.jpg-scaled.jpeg', link: '#' },
+    { title: 'Diplomado Especializado en Políticas Públicas contra la violencia', category: 'Formación Integral', fechaPublicacion: '05 JUN, 2026', excerpt: 'Un enfoque integral para abordar la violencia hacia las mujeres e integrantes del grupo familiar...', imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/02/FORMACION-INTEGRAL.jpg', link: '#' },
+    { title: 'Curso - Conciliación Extrajudicial', category: 'Formación Integral', fechaPublicacion: '08 JUN, 2026', excerpt: 'Participa en nuestro próximo curso para especializarte en temas de conciliación extrajudicial.', imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/02/FORMACION-INTEGRAL.jpg', link: '#' },
+    { title: 'Corte Suprema de Justicia: Selección de Personal N. 110-2026', category: 'Convocatoria', fechaPublicacion: '08 JUN, 2026', excerpt: 'El Comité de Selección de Personal Ad Hoc de la Corte Suprema de Justicia invita a...', imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/05/PORTADA-CONVOCATORIA-VARIOS.jpg-scaled.jpeg', link: '#' }
   ];
 
-  // ==========================================
-  // 5. ARREGLO DINÁMICO DE COMUNICADOS
-  // ==========================================
   announcements: AnnouncementItem[] = [
     { day: '15', month: 'FEB', title: 'Suspensión de Actividades por Elecciones Generales 2026', description: 'Ver comunicado en formato PDF', link: '#' },
     { day: '12', month: 'FEB', title: 'Pronunciamiento sobre el señalamiento del domicilio procesal', description: 'Procesos contenciosos y no contenciosos ante el Poder Judicial', link: '#' },
@@ -157,9 +104,6 @@ export class Inicio implements OnInit, OnDestroy {
     { day: '20', month: 'ENE', title: 'Actualización del Cuadro de Valores', description: 'Nuevas tarifas para trámites administrativos, certificados y colegiatura', link: '#' }
   ];
 
-  // ==========================================
-  // 6. ARREGLO DINÁMICO DE SEDES 
-  // ==========================================
   schedules: ScheduleItem[] = [
     { title: 'Sede Miraflores', address: 'Av. Santa Cruz N° 255', hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', hoursLine2: 'Sábados: 8 a.m. a 1 p.m.', hoursLine3: 'Teléfono: 710-6600', mapLink: 'https://maps.google.com/?q=Av.+Santa+Cruz+255,+Miraflores' },
     { title: 'Lima Centro', address: 'Jr. Lampa N° 1174', hoursLine1: 'Lunes a viernes: 8 a.m. a 6 p.m.', hoursLine2: 'Teléfono: 710-6600 Anexo 6791 / 710-6600 Anexo 6780', mapLink: 'https://maps.google.com/?q=Jr.+Lampa+1174,+Lima' },
@@ -168,183 +112,154 @@ export class Inicio implements OnInit, OnDestroy {
     { title: 'Caja CECAL', address: 'Alt. Km 40.5 Carretera Central Ricardo Palma', hoursLine1: 'Miércoles a domingo: 9 a.m. a 6 p.m.', hoursLine2: 'Teléfono: 353-9584 / 353-9616', mapLink: 'https://maps.google.com/?q=Km+40.5+Carretera+Central,+Ricardo+Palma' }
   ];
 
-  // ==========================================
-  // 7. ARREGLO DINÁMICO DE VIDEOS (YOUTUBE)
-  // ==========================================
   videos: VideoItem[] = [
-    {
-      subtitle: 'Lo más destacado',
-      title: '¡El Policlínico del CAL al servicio del agremiado!',
-      url: 'https://www.youtube.com/embed/KTzimDzi40w'
-    },
-    {
-      subtitle: 'Últimos videos',
-      title: 'CECAL: ¡Un espacio renovado para nuestros agremiados y sus familias!',
-      url: 'https://www.youtube.com/embed/aS92mCGvHvY'
-    }
+    { subtitle: 'Lo más destacado', title: '¡El Policlínico del CAL al servicio del agremiado!', url: 'https://youtu.be/KTzimDzi40w' },
+    { subtitle: 'Últimos videos', title: 'CECAL: ¡Un espacio renovado para nuestros agremiados y sus familias!', url: 'https://youtu.be/A1TWie-_Jlk' }
   ];
-
-  // ==========================================
-  // VARIABLES DE CONTROL GENERALES
-  // ==========================================
-  currentIndex: number = 0;
-  totalSlides: number = 0; 
-  isTransitioning: boolean = false;
-
-  slideProgress: number = 0;        
-  autoPlayInterval: any;            
-  isPaused: boolean = false;        
-  slideDuration: number = 4000;     
-  tickRate: number = 20;            
-
-  currentSideIndex: number = 0;
-  sideBannerInterval: any;
-  isSidePaused: boolean = false;
-
-  touchStartX: number = 0;
-  touchEndX: number = 0;
-  isDragging: boolean = false; 
 
   constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-    this.totalSlides = this.heroSlides.length; 
-    this.startProgressTimer(); 
-    this.startSideBannerTimer();
+    this.startDesktopTimer();
+    this.startMobileTimer();
+    this.startSideTimer();
 
     this.quickLinks = this.rawQuickLinks.map(link => ({
-      title: link.title,
-      url: link.url,
-      svgIcon: this.sanitizer.bypassSecurityTrustHtml(link.icon)
+      title: link.title, url: link.url, svgIcon: this.sanitizer.bypassSecurityTrustHtml(link.icon)
     }));
 
     this.videos.forEach(video => {
-      video.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(video.url);
+      const embedUrl = this.formatYouTubeUrl(video.url);
+      video.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
     });
   }
 
+  private formatYouTubeUrl(url: string): string {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    if (match && match[2].length === 11) {
+      return 'https://www.youtube.com/embed/' + match[2];
+    }
+    return url;
+  }
+
   ngOnDestroy() {
-    if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
-    if (this.sideBannerInterval) clearInterval(this.sideBannerInterval);
+    clearInterval(this.desktopInterval);
+    clearInterval(this.mobileInterval);
+    clearInterval(this.sideInterval);
   }
 
-  // LOGICAS DEL COMPONENTE...
-  startProgressTimer() {
-    if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
-    this.autoPlayInterval = setInterval(() => {
-      if (!this.isPaused && !this.isTransitioning) {
-        this.slideProgress += (this.tickRate / this.slideDuration) * 100;
-        if (this.slideProgress >= 100) this.nextSlide();
-        this.cdr.detectChanges(); 
-      }
-    }, this.tickRate);
-  }
-
-  pauseAutoPlay() { this.isPaused = true; }
-  resumeAutoPlay() { this.isPaused = false; }
-
-  getSegmentWidth(index: number): number {
-    if (index < this.currentIndex) return 100; 
-    if (index === this.currentIndex) return this.slideProgress; 
-    return 0; 
-  }
-
-  nextSlide() {
-    if (this.isTransitioning) return;
-    this.isTransitioning = true;
-    this.slideProgress = 0; 
-    this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
-    setTimeout(() => { this.isTransitioning = false; }, 600); 
-  }
-
-  prevSlide() {
-    if (this.isTransitioning) return;
-    this.isTransitioning = true;
-    this.slideProgress = 0; 
-    this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
-    setTimeout(() => { this.isTransitioning = false; }, 600);
-  }
-
-  goToSlide(index: number) {
-    if (this.isTransitioning || this.currentIndex === index) return;
-    this.isTransitioning = true;
-    this.slideProgress = 0; 
-    this.currentIndex = index;
-    setTimeout(() => { this.isTransitioning = false; }, 600);
-  }
-
-  startSideBannerTimer() {
-    if (this.sideBannerInterval) clearInterval(this.sideBannerInterval);
-    this.sideBannerInterval = setInterval(() => {
-      if (!this.isSidePaused) {
-        this.currentSideIndex = (this.currentSideIndex + 1) % this.sideBannerSlides.length;
+  // ==========================================
+  // LÓGICA: BANNER PRINCIPAL (PC - PANORÁMICO)
+  // ==========================================
+  startDesktopTimer() {
+    this.desktopInterval = setInterval(() => {
+      if (!this.isDesktopPaused && !this.isDesktopTransitioning && this.panoramicSlides.length > 0) {
+        this.desktopProgress += (20 / 4000) * 100;
+        if (this.desktopProgress >= 100) this.nextDesktopSlide();
         this.cdr.detectChanges();
       }
-    }, 4000); 
+    }, 20);
   }
-
-  pauseSideBanner() { this.isSidePaused = true; }
-  resumeSideBanner() { this.isSidePaused = false; }
-
-  nextSideSlide() {
-    this.currentSideIndex = (this.currentSideIndex + 1) % this.sideBannerSlides.length;
-    this.cdr.detectChanges();
-  }
-
-  prevSideSlide() {
-    this.currentSideIndex = (this.currentSideIndex - 1 + this.sideBannerSlides.length) % this.sideBannerSlides.length;
-    this.cdr.detectChanges();
-  }
-
-  onTouchStart(event: TouchEvent) {
-    this.pauseAutoPlay();
-    this.touchStartX = event.changedTouches[0].screenX;
-  }
+  pauseDesktop() { this.isDesktopPaused = true; }
+  resumeDesktop() { this.isDesktopPaused = false; }
+  getDesktopSegmentWidth(i: number) { return i < this.desktopIndex ? 100 : (i === this.desktopIndex ? this.desktopProgress : 0); }
   
-  onTouchEnd(event: TouchEvent) {
-    this.touchEndX = event.changedTouches[0].screenX;
-    this.handleSwipe();
-    this.resumeAutoPlay();
+  nextDesktopSlide() {
+    if (this.isDesktopTransitioning) return;
+    this.isDesktopTransitioning = true; this.desktopProgress = 0;
+    this.desktopIndex = (this.desktopIndex + 1) % this.panoramicSlides.length;
+    setTimeout(() => this.isDesktopTransitioning = false, 600);
   }
+  prevDesktopSlide() {
+    if (this.isDesktopTransitioning) return;
+    this.isDesktopTransitioning = true; this.desktopProgress = 0;
+    this.desktopIndex = (this.desktopIndex - 1 + this.panoramicSlides.length) % this.panoramicSlides.length;
+    setTimeout(() => this.isDesktopTransitioning = false, 600);
+  }
+  goToDesktopSlide(i: number) { this.desktopProgress = 0; this.desktopIndex = i; }
   
-  onMouseDown(event: MouseEvent) {
-    this.pauseAutoPlay();
-    this.isDragging = true;
-    this.touchStartX = event.clientX;
-  }
-  
-  onMouseUp(event: MouseEvent) {
-    if (!this.isDragging) return;
-    this.isDragging = false;
-    this.touchEndX = event.clientX;
-    this.handleSwipe();
-    this.resumeAutoPlay();
-  }
-  
-  onMouseLeave() {
-    this.isDragging = false;
-    this.resumeAutoPlay();
-  }
-  
-  handleSwipe() {
-    const swipeThreshold = 50; 
-    const diff = this.touchStartX - this.touchEndX;
-    if (diff > swipeThreshold) { this.nextSlide(); } else if (diff < -swipeThreshold) { this.prevSlide(); }
-  }
-
-  onSlideClick(event: MouseEvent) {
-    const diff = Math.abs(this.touchStartX - this.touchEndX);
-    if (diff > 15) {
-      event.preventDefault(); 
-    }
-  }
-
-  getSlideClass(index: number): string {
-    if (index === this.currentIndex) return 'active';
-    const prevIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
-    const nextIndex = (this.currentIndex + 1) % this.totalSlides;
-    if (index === prevIndex) return 'prev';
-    if (index === nextIndex) return 'next';
+  getDesktopClass(i: number) {
+    if (i === this.desktopIndex) return 'active';
+    if (i === (this.desktopIndex - 1 + this.panoramicSlides.length) % this.panoramicSlides.length) return 'prev';
+    if (i === (this.desktopIndex + 1) % this.panoramicSlides.length) return 'next';
     return 'hidden';
   }
+
+  onDesktopTouchStart(e: TouchEvent) { this.pauseDesktop(); this.touchStartDesktopX = e.changedTouches[0].screenX; }
+  onDesktopTouchEnd(e: TouchEvent) { this.touchEndDesktopX = e.changedTouches[0].screenX; this.handleDesktopSwipe(); this.resumeDesktop(); }
+  onDesktopMouseDown(e: MouseEvent) { this.pauseDesktop(); this.isDraggingDesktop = true; this.touchStartDesktopX = e.clientX; }
+  onDesktopMouseUp(e: MouseEvent) { if (!this.isDraggingDesktop) return; this.isDraggingDesktop = false; this.touchEndDesktopX = e.clientX; this.handleDesktopSwipe(); this.resumeDesktop(); }
+  onDesktopMouseLeave() { this.isDraggingDesktop = false; this.resumeDesktop(); }
+  handleDesktopSwipe() { const d = this.touchStartDesktopX - this.touchEndDesktopX; if (d > 50) this.nextDesktopSlide(); else if (d < -50) this.prevDesktopSlide(); }
+  onDesktopClick(e: MouseEvent) { if (Math.abs(this.touchStartDesktopX - this.touchEndDesktopX) > 15) e.preventDefault(); }
+
+  // ==========================================
+  // LÓGICA: BANNER PRINCIPAL (MÓVIL - CUADRADO)
+  // ==========================================
+  startMobileTimer() {
+    this.mobileInterval = setInterval(() => {
+      if (!this.isMobilePaused && !this.isMobileTransitioning && this.mobileSquareSlides.length > 0) {
+        this.mobileProgress += (20 / 4000) * 100;
+        if (this.mobileProgress >= 100) this.nextMobileSlide();
+        this.cdr.detectChanges();
+      }
+    }, 20);
+  }
+  pauseMobile() { this.isMobilePaused = true; }
+  resumeMobile() { this.isMobilePaused = false; }
+  getMobileSegmentWidth(i: number) { return i < this.mobileIndex ? 100 : (i === this.mobileIndex ? this.mobileProgress : 0); }
+  
+  nextMobileSlide() {
+    if (this.isMobileTransitioning) return;
+    this.isMobileTransitioning = true; this.mobileProgress = 0;
+    this.mobileIndex = (this.mobileIndex + 1) % this.mobileSquareSlides.length;
+    setTimeout(() => this.isMobileTransitioning = false, 600);
+  }
+  prevMobileSlide() {
+    if (this.isMobileTransitioning) return;
+    this.isMobileTransitioning = true; this.mobileProgress = 0;
+    this.mobileIndex = (this.mobileIndex - 1 + this.mobileSquareSlides.length) % this.mobileSquareSlides.length;
+    setTimeout(() => this.isMobileTransitioning = false, 600);
+  }
+  goToMobileSlide(i: number) { this.mobileProgress = 0; this.mobileIndex = i; }
+  
+  getMobileClass(i: number) {
+    if (i === this.mobileIndex) return 'active';
+    if (i === (this.mobileIndex - 1 + this.mobileSquareSlides.length) % this.mobileSquareSlides.length) return 'prev';
+    if (i === (this.mobileIndex + 1) % this.mobileSquareSlides.length) return 'next';
+    return 'hidden';
+  }
+
+  onMobileTouchStart(e: TouchEvent) { this.pauseMobile(); this.touchStartMobileX = e.changedTouches[0].screenX; }
+  onMobileTouchEnd(e: TouchEvent) { this.touchEndMobileX = e.changedTouches[0].screenX; this.handleMobileSwipe(); this.resumeMobile(); }
+  onMobileMouseDown(e: MouseEvent) { this.pauseMobile(); this.isDraggingMobile = true; this.touchStartMobileX = e.clientX; }
+  onMobileMouseUp(e: MouseEvent) { if (!this.isDraggingMobile) return; this.isDraggingMobile = false; this.touchEndMobileX = e.clientX; this.handleMobileSwipe(); this.resumeMobile(); }
+  onMobileMouseLeave() { this.isDraggingMobile = false; this.resumeMobile(); }
+  handleMobileSwipe() { const d = this.touchStartMobileX - this.touchEndMobileX; if (d > 50) this.nextMobileSlide(); else if (d < -50) this.prevMobileSlide(); }
+  onMobileClick(e: MouseEvent) { if (Math.abs(this.touchStartMobileX - this.touchEndMobileX) > 15) e.preventDefault(); }
+
+  // ==========================================
+  // LÓGICA: CARRUSEL LATERAL (SIEMPRE VISIBLE - CUADRADO)
+  // ==========================================
+  startSideTimer() {
+    this.sideInterval = setInterval(() => {
+      if (!this.isSidePaused && this.sideSquareSlides.length > 0) this.nextSideSlide();
+    }, 4000); 
+  }
+  pauseSide() { this.isSidePaused = true; }
+  resumeSide() { this.isSidePaused = false; }
+  
+  nextSideSlide() { 
+    this.sideIndex = (this.sideIndex + 1) % this.sideSquareSlides.length; 
+    this.cdr.detectChanges(); 
+  }
+  prevSideSlide() { 
+    this.sideIndex = (this.sideIndex - 1 + this.sideSquareSlides.length) % this.sideSquareSlides.length; 
+    this.cdr.detectChanges(); 
+  }
+
+  onSideTouchStart(e: TouchEvent) { this.pauseSide(); this.touchStartSideX = e.changedTouches[0].screenX; }
+  onSideTouchEnd(e: TouchEvent) { this.touchEndSideX = e.changedTouches[0].screenX; this.handleSideSwipe(); this.resumeSide(); }
+  handleSideSwipe() { const d = this.touchStartSideX - this.touchEndSideX; if (d > 50) this.nextSideSlide(); else if (d < -50) this.prevSideSlide(); }
 }

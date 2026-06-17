@@ -1,92 +1,128 @@
 <div class="home-premium-view">
   
-  <section class="hero-premium-slider">
-    
+  <!-- ==========================================================================
+       BANNER PRINCIPAL (VERSIÓN PC - PANORÁMICO)
+       ========================================================================== -->
+  <section class="hero-premium-slider desktop-hero-section">
     <div class="hero-slider-track"
-         (mouseenter)="pauseAutoPlay()"
-         (touchstart)="onTouchStart($event)" 
-         (touchend)="onTouchEnd($event)"
-         (mousedown)="onMouseDown($event)"
-         (mouseup)="onMouseUp($event)"
-         (mouseleave)="onMouseLeave()">
+         (mouseenter)="pauseDesktop()"
+         (touchstart)="onDesktopTouchStart($event)" 
+         (touchend)="onDesktopTouchEnd($event)"
+         (mousedown)="onDesktopMouseDown($event)"
+         (mouseup)="onDesktopMouseUp($event)"
+         (mouseleave)="onDesktopMouseLeave()">
       
-      <div *ngFor="let slide of heroSlides; let i = index" [class]="'hero-slide ' + getSlideClass(i)">
-        <a [href]="slide.link" class="slide-link-wrapper" draggable="false" (click)="onSlideClick($event)">
+      <div *ngFor="let slide of panoramicSlides; let i = index" [class]="'hero-slide ' + getDesktopClass(i)">
+        <a [href]="slide.link" class="slide-link-wrapper" draggable="false" (click)="onDesktopClick($event)">
           <div class="slide-image" [style.background-image]="'url(' + slide.imageUrl + ')'"></div>
           <div class="slide-overlay"></div>
         </a>
       </div>
-
     </div>
 
-    <button class="slider-arrow prev" aria-label="Anterior imagen" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" (click)="prevSlide()">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="15 18 9 12 15 6"></polyline>
-      </svg>
+    <button class="slider-arrow prev" aria-label="Anterior" (mouseenter)="pauseDesktop()" (mouseleave)="resumeDesktop()" (click)="prevDesktopSlide()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
     </button>
-    <button class="slider-arrow next" aria-label="Siguiente imagen" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" (click)="nextSlide()">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="9 18 15 12 9 6"></polyline>
-      </svg>
+    <button class="slider-arrow next" aria-label="Siguiente" (mouseenter)="pauseDesktop()" (mouseleave)="resumeDesktop()" (click)="nextDesktopSlide()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
     </button>
 
-    <div class="hero-loading-container" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()">
-      <div *ngFor="let slide of heroSlides; let i = index" class="loading-segment" (click)="goToSlide(i)">
-        <div class="fill" [style.width.%]="getSegmentWidth(i)"></div>
+    <div class="hero-loading-container" (mouseenter)="pauseDesktop()" (mouseleave)="resumeDesktop()">
+      <div *ngFor="let slide of panoramicSlides; let i = index" class="loading-segment" (click)="goToDesktopSlide(i)">
+        <div class="fill" [style.width.%]="getDesktopSegmentWidth(i)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       BANNER PRINCIPAL (VERSIÓN MÓVIL - CUADRADO)
+       ========================================================================== -->
+  <section class="hero-premium-slider mobile-hero-section">
+    <div class="hero-slider-track"
+         (mouseenter)="pauseMobile()"
+         (touchstart)="onMobileTouchStart($event)" 
+         (touchend)="onMobileTouchEnd($event)"
+         (mousedown)="onMobileMouseDown($event)"
+         (mouseup)="onMobileMouseUp($event)"
+         (mouseleave)="onMobileMouseLeave()">
+      
+      <!-- Utiliza el arreglo mobileSquareSlides -->
+      <div *ngFor="let slide of mobileSquareSlides; let i = index" [class]="'hero-slide ' + getMobileClass(i)">
+        <a [href]="slide.link" class="slide-link-wrapper" draggable="false" (click)="onMobileClick($event)">
+          <div class="slide-image" [style.background-image]="'url(' + slide.imageUrl + ')'"></div>
+          <div class="slide-overlay"></div>
+        </a>
       </div>
     </div>
 
+    <button class="slider-arrow prev" aria-label="Anterior" (click)="prevMobileSlide()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="slider-arrow next" aria-label="Siguiente" (click)="nextMobileSlide()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
+    <div class="hero-loading-container">
+      <div *ngFor="let slide of mobileSquareSlides; let i = index" class="loading-segment" (click)="goToMobileSlide(i)">
+        <div class="fill" [style.width.%]="getMobileSegmentWidth(i)"></div>
+      </div>
+    </div>
   </section>
 
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="home-main-container">
 
     <section class="quick-links-section">
-      
       <div class="quick-links-layout-wrapper">
         
+        <!-- PANEL DE CONTROL (Botones) -->
         <div class="dashboard-widget-block">
-          
           <div class="dashboard-header-inner">
             <div class="title-wrapper" style="margin-bottom: 0;">
               <div class="accent-bar" style="background-color: var(--cal-gold);"></div>
               <h3 class="section-title text-white">Panel de Control</h3>
             </div>
           </div>
-          
           <div class="dashboard-tiles-grid">
             <a href="#" *ngFor="let link of quickLinks" [href]="link.url" class="dash-tile-card">
               <div class="icon-wrapper" [innerHTML]="link.svgIcon"></div>
               <span>{{ link.title }}</span>
             </a>
           </div>
-
         </div>
 
-        <div class="side-carousel-wrapper" (mouseenter)="pauseSideBanner()" (mouseleave)="resumeSideBanner()">
-          <div class="dash-carousel-container">
-            <a *ngFor="let banner of sideBannerSlides; let i = index" 
+        <!-- ==========================================================================
+             CARRUSEL LATERAL (SIEMPRE CUADRADO, DERECHA EN PC, ABAJO EN MÓVIL)
+             ========================================================================== -->
+        <div class="side-carousel-wrapper" 
+             (mouseenter)="pauseSide()" 
+             (mouseleave)="resumeSide()">
+          
+          <div class="dash-carousel-container"
+               (touchstart)="onSideTouchStart($event)"
+               (touchend)="onSideTouchEnd($event)">
+               
+            <!-- Utiliza el arreglo sideSquareSlides -->
+            <a *ngFor="let banner of sideSquareSlides; let i = index" 
                [href]="banner.link" 
                class="dash-carousel-slide"
-               [class.active-side-slide]="i === currentSideIndex">
+               [class.active-side-slide]="i === sideIndex">
               <img [src]="banner.imageUrl" alt="Banner Institucional" draggable="false">
             </a>
           </div>
           
           <button class="side-slider-arrow prev" aria-label="Anterior banner" (click)="prevSideSlide()">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
           <button class="side-slider-arrow next" aria-label="Siguiente banner" (click)="nextSideSlide()">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
         </div>
 
       </div>
     </section>
 
+    <!-- SECCIÓN NOTICIAS -->
     <section class="news-section">
       <div class="section-header-center">
         <h3 class="section-title">Últimas noticias</h3>
@@ -101,19 +137,12 @@
           </div>
           <div class="news-content">
             <h4 class="news-title">{{ news.title }}</h4>
-            
             <div class="news-meta">
               <span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg> 
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 
                 {{ news.fechaPublicacion }}
               </span>
             </div>
-
             <p class="news-excerpt">{{ news.excerpt }}</p>
             <a [href]="news.link" class="news-link">
               Leer nota completa 
@@ -122,14 +151,13 @@
           </div>
         </article>
       </div>
-
       <div class="center-action">
         <a href="#" class="btn-primary">Ver todas las noticias</a>
       </div>
     </section>
 
+    <!-- SECCIÓN COMUNICADOS -->
     <section class="announcements-section">
-      
       <div class="section-header-center">
         <h3 class="section-title">Comunicados Oficiales</h3>
         <p>Documentos y pronunciamientos institucionales</p>
@@ -137,7 +165,6 @@
 
       <div class="announcements-premium-wrapper">
         <div class="announcements-layout">
-          
           <div class="announcements-graphic">
             <div class="graphic-side-wrapper">
               <div class="graphic-placeholder">
@@ -146,7 +173,6 @@
               </div>
             </div>
           </div>
-
           <div class="announcements-list">
             <a *ngFor="let item of announcements" [href]="item.link" class="announcement-item">
               <div class="announcement-date">
@@ -158,84 +184,59 @@
                 <p>{{ item.description }}</p>
               </div>
               <div class="announcement-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
               </div>
             </a>
           </div>
-
         </div>
       </div>
-      
       <div class="center-action" style="margin-top: 3.5rem;">
         <a href="#" class="btn-primary">Ver todos los comunicados</a>
       </div>
-        
     </section>
 
   </main> 
   
+  <!-- SECCIÓN SEDES -->
   <section class="schedules-band">
     <div class="schedules-container">
-      
       <div class="section-header-center">
         <h3 class="section-title text-white">Horarios de atención en nuestras sedes</h3>
         <p class="text-white-dim">Ubica la sede más cercana y conoce nuestros horarios de atención actualizados.</p>
       </div>
 
       <div class="schedules-grid">
-        <a class="schedule-card" 
-           *ngFor="let schedule of schedules" 
-           [href]="schedule.mapLink" 
-           target="_blank" 
-           rel="noopener noreferrer">
-          
+        <a class="schedule-card" *ngFor="let schedule of schedules" [href]="schedule.mapLink" target="_blank" rel="noopener noreferrer">
           <div class="schedule-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
           </div>
-          
           <h4>{{ schedule.title }}</h4>
           <p class="address">{{ schedule.address }}</p>
-          
           <div class="hours">
             <span *ngIf="schedule.hoursLine1">{{ schedule.hoursLine1 }}</span>
             <span *ngIf="schedule.hoursLine2">{{ schedule.hoursLine2 }}</span>
             <span *ngIf="schedule.hoursLine3">{{ schedule.hoursLine3 }}</span>
           </div>
-
         </a>
       </div>
-
     </div>
   </section>
 
+  <!-- SECCIÓN VIDEOS -->
   <section class="videos-section home-main-container">
     <div class="videos-premium-wrapper">
-      
       <div class="videos-grid">
         <div class="video-card" *ngFor="let video of videos">
           <p class="video-subtitle">{{ video.subtitle }}</p>
           <h4 class="video-title">{{ video.title }}</h4>
-          
           <div class="video-frame">
-            <iframe 
-              [src]="video.safeUrl" 
-              title="YouTube video player" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-            </iframe>
+            <iframe [src]="video.safeUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
           </div>
         </div>
       </div>
-
       <div class="center-action" style="margin-top: 3.5rem;">
         <a href="https://www.youtube.com/@ColegioDeAbogadosLima" target="_blank" rel="noopener noreferrer" class="btn-primary">Ver todos los videos</a>
       </div>
-      
     </div>
   </section>
 
