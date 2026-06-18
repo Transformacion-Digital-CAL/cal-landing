@@ -46,7 +46,6 @@
          (mouseup)="onMobileMouseUp($event)"
          (mouseleave)="onMobileMouseLeave()">
       
-      <!-- Utiliza el arreglo mobileSquareSlides -->
       <div *ngFor="let slide of mobileSquareSlides; let i = index" [class]="'hero-slide ' + getMobileClass(i)">
         <a [href]="slide.link" class="slide-link-wrapper" draggable="false" (click)="onMobileClick($event)">
           <div class="slide-image" [style.background-image]="'url(' + slide.imageUrl + ')'"></div>
@@ -75,12 +74,12 @@
     <section class="quick-links-section">
       <div class="quick-links-layout-wrapper">
         
-        <!-- PANEL DE CONTROL (Botones) -->
+        <!-- PANEL DE CONTROL -->
         <div class="dashboard-widget-block">
           <div class="dashboard-header-inner">
             <div class="title-wrapper" style="margin-bottom: 0;">
               <div class="accent-bar" style="background-color: var(--cal-gold);"></div>
-              <h3 class="section-title text-white">Panel de Control</h3>
+              <h3 class="section-title text-white">Accesos Directos</h3>
             </div>
           </div>
           <div class="dashboard-tiles-grid">
@@ -92,7 +91,7 @@
         </div>
 
         <!-- ==========================================================================
-             CARRUSEL LATERAL (SIEMPRE CUADRADO, DERECHA EN PC, ABAJO EN MÓVIL)
+             CARRUSEL LATERAL 
              ========================================================================== -->
         <div class="side-carousel-wrapper" 
              (mouseenter)="pauseSide()" 
@@ -102,11 +101,9 @@
                (touchstart)="onSideTouchStart($event)"
                (touchend)="onSideTouchEnd($event)">
                
-            <!-- Utiliza el arreglo sideSquareSlides -->
             <a *ngFor="let banner of sideSquareSlides; let i = index" 
                [href]="banner.link" 
-               class="dash-carousel-slide"
-               [class.active-side-slide]="i === sideIndex">
+               [class]="'dash-carousel-slide ' + getSideClass(i)">
               <img [src]="banner.imageUrl" alt="Banner Institucional" draggable="false">
             </a>
           </div>
