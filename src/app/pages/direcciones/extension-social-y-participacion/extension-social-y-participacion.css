@@ -250,10 +250,27 @@
    FOTO DE LA AUTORIDAD
    ========================================================================== */
 .director-card {
-  background-color: rgba(13, 27, 42, 0.97); border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(13, 27, 42, 0.1);
-  position: sticky; top: 2rem; 
+  background-color: rgba(13, 27, 42, 0.97); 
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde mínimo para contención */
+  border-radius: 16px;
+  overflow: hidden; 
+  /* SOMBRA MÁS NOTORIA: mayor dispersión y opacidad */
+  box-shadow: 0 20px 45px rgba(13, 27, 42, 0.3); 
+  transition: all 0.4s ease;
 }
-.director-card .img-container img { width: 100%; height: auto; display: block; object-fit: cover; }
+
+.director-card:hover {
+  transform: translateY(-5px); /* Pequeña elevación al pasar el cursor */
+  /* SOMBRA AÚN MÁS FUERTE AL HACER HOVER */
+  box-shadow: 0 25px 60px rgba(13, 27, 42, 0.45); 
+}
+
+.director-card .img-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
 
 /* ==========================================================================
    MEDIA QUERIES (Responsividad)
