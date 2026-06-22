@@ -1,1 +1,79 @@
-<p>footer works!</p>
+<footer class="cal-footer">
+  <div class="cal-footer-container">
+
+    <!-- Columna 1: Identidad y Redes -->
+    <div class="cal-footer-col">
+      <img src="https://www.cal.org.pe/v1/wp-content/uploads/2022/01/logo-cal-blanco.png"
+           alt="Colegio de Abogados de Lima"
+           class="cal-footer-logo">
+      <p class="cal-footer-desc">
+        Ingresar al Colegio de Abogados de Lima eleva la dignidad de la profesión. Más de 220 años de trayectoria al servicio de la justicia y el derecho.
+      </p>
+      <div class="cal-social-icons">
+        <a *ngFor="let social of socialLinks"
+           [href]="social.url"
+           [attr.aria-label]="social.label">
+          <i [class]="social.icon"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Columna 2: Contacto Principal y Horario -->
+    <div class="cal-footer-col">
+      <h3 class="cal-footer-title">Contacto Principal</h3>
+      <ul class="cal-footer-list contact-list">
+        <li>
+          <i class="fas fa-map-marker-alt"></i>
+          <span><strong>Sede Miraflores:</strong><br>Av. Santa Cruz Nº 255</span>
+        </li>
+        <li>
+          <i class="fas fa-phone-alt"></i>
+          <span>(01) 710 6600</span>
+        </li>
+        <li>
+          <i class="fas fa-envelope"></i>
+          <span>informes@colegiodeabogadosdelima.pe</span>
+        </li>
+        <li>
+          <i class="fas fa-clock"></i>
+          <span><strong>Atención:</strong> Lunes a viernes<br>8 a.m. - 1 p.m. / 2 p.m. - 6 p.m.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Columna 3: Directorio de Sedes (Dinámico) -->
+    <div class="cal-footer-col">
+      <h3 class="cal-footer-title">Directorio de Sedes</h3>
+      <ul class="cal-footer-list">
+        <li *ngFor="let hq of headquarters">
+          <strong>{{ hq.name }}:</strong> {{ hq.address }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Columna 4: Accesos Rápidos (Dinámico) -->
+    <div class="cal-footer-col">
+      <h3 class="cal-footer-title">Visita También</h3>
+      <ul class="cal-footer-list quick-links">
+        <li *ngFor="let link of quickLinks">
+          <a [href]="link.url">
+            <i class="fas fa-chevron-right"></i> {{ link.text }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Barra Inferior -->
+  <div class="cal-footer-bottom">
+    <div class="cal-bottom-container">
+      <p>&copy; {{ currentYear }} Colegio de Abogados de Lima | Dirección de Comunicaciones e Informática Jurídica</p>
+      <div class="cal-footer-legal">
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Libro de Reclamaciones</a>
+      </div>
+    </div>
+  </div>
+</footer>
