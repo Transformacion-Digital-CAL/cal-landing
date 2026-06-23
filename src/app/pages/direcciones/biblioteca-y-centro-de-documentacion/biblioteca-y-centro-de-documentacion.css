@@ -1,6 +1,4 @@
-/* ==========================================================================
-   CONFIGURACIÓN DE LA VISTA Y FONDO BLANCO CON PUNTOS AZULES
-   ========================================================================== */
+/* View Configuration */
 .biblioteca-view {
   --primary-blue: #2980b9; 
   --text-dark: #1a252f;
@@ -24,9 +22,7 @@
   background-attachment: fixed;
 }
 
-/* ==========================================================================
-   CABECERA / BANNER
-   ========================================================================== */
+/* Header */
 .biblioteca-header {
   background-color: transparent;
   text-align: center;
@@ -73,9 +69,7 @@
   opacity: 0.8;
 }
 
-/* ==========================================================================
-   GRILLA Y CONTENEDOR ESTRUCTURAL
-   ========================================================================== */
+/* Main Structure */
 .biblioteca-main-container {
   max-width: 1250px;
   margin: 0 auto;
@@ -89,9 +83,7 @@
   align-items: start;
 }
 
-/* ==========================================================================
-   COLUMNA IZQUIERDA
-   ========================================================================== */
+/* Text Column */
 .text-column {
   color: var(--text-dark);
   line-height: 1.8;
@@ -153,9 +145,7 @@
   font-weight: 700;
 }
 
-/* ==========================================================================
-   TARJETAS
-   ========================================================================== */
+/* Component Cards */
 .info-cards-wrapper {
   display: flex;
   flex-direction: column;
@@ -194,7 +184,7 @@
   stroke: #d4af37; 
 }
 
-/* --- TARJETA DE CONTACTO --- */
+/* Contact Card */
 .contact-card {
   display: flex;
   flex-direction: column;
@@ -234,6 +224,7 @@
   line-height: 1.4;
 }
 
+/* Downloads */
 .downloads-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
@@ -298,9 +289,7 @@
   letter-spacing: 0.5px;
 }
 
-/* ==========================================================================
-   ACORDEÓN
-   ========================================================================== */
+/* Accordion Component */
 .acervo-section {
   margin-top: 2rem; 
 }
@@ -317,7 +306,7 @@
   height: 24px; 
 }
 
-.premium-accordion {
+.custom-accordion {
   background-color: rgba(13, 27, 42, 0.97); 
   border-radius: 16px;
   box-shadow: var(--shadow-soft);
@@ -325,7 +314,7 @@
   transition: box-shadow 0.4s ease;
 }
 
-.premium-accordion:hover {
+.custom-accordion:hover {
   box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25);
 }
 
@@ -373,7 +362,6 @@
   stroke: #d4af37; 
 }
 
-/* --- ANIMACIONES ACTIVADAS CUANDO EL CHECKBOX SE MARCA --- */
 .accordion-checkbox:checked + .accordion-header .accordion-icon {
   transform: rotate(180deg); 
   background-color: rgba(212, 175, 55, 0.15); 
@@ -383,7 +371,6 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
-/* --- CONTENEDOR DEL CUERPO --- */
 .accordion-content-wrapper {
   display: grid;
   grid-template-rows: 0fr; 
@@ -394,7 +381,6 @@
   grid-template-rows: 1fr; 
 }
 
-/* --- CUERPO INTERNO Y LA IMAGEN --- */
 .accordion-body {
   overflow: hidden; 
   background-color: rgba(255, 0, 0, 0.02); 
@@ -422,25 +408,18 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); 
 }
 
-/* ==========================================================================
-   COLUMNA DERECHA: FOTO DE LA AUTORIDAD
-   ========================================================================== */
-/* ==========================================================================
-   COLUMNA DERECHA: FOTO DE LA AUTORIDAD
-   ========================================================================== */
+/* Director Image */
 .director-card {
   background-color: rgba(13, 27, 42, 0.97); 
-  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde mínimo para contención */
+  border: 1px solid rgba(255, 255, 255, 0.05); 
   border-radius: 16px;
   overflow: hidden; 
-  /* SOMBRA MÁS NOTORIA: mayor dispersión y opacidad */
   box-shadow: 0 20px 45px rgba(13, 27, 42, 0.3); 
   transition: all 0.4s ease;
 }
 
 .director-card:hover {
-  transform: translateY(-5px); /* Pequeña elevación al pasar el cursor */
-  /* SOMBRA AÚN MÁS FUERTE AL HACER HOVER */
+  transform: translateY(-5px); 
   box-shadow: 0 25px 60px rgba(13, 27, 42, 0.45); 
 }
 
@@ -451,9 +430,7 @@
   object-fit: cover;
 }
 
-/* ==========================================================================
-   MEDIA QUERIES (Responsividad)
-   ========================================================================== */
+/* Media Queries */
 @media (max-width: 992px) {
   .content-grid {
     grid-template-columns: 1fr; 

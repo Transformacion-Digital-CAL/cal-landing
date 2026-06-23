@@ -1,6 +1,4 @@
-/* ==========================================================================
-   CONFIGURACIÓN DE LA VISTA Y FONDO BLANCO CON PUNTOS AZULES
-   ========================================================================== */
+/* View Configuration */
 .comunicaciones-e-informatica-juridica-view {
   --primary-blue: #2980b9; 
   --text-dark: #1a252f;
@@ -24,9 +22,7 @@
   background-attachment: fixed;
 }
 
-/* ==========================================================================
-   CABECERA / BANNER
-   ========================================================================== */
+/* Header */
 .comunicaciones-e-informatica-juridica-header {
   background-color: transparent; text-align: center; padding: 4rem 1rem 2rem 1rem; margin-bottom: 4rem;
 }
@@ -36,15 +32,11 @@
 .header-content p { font-size: 1rem; font-weight: 500; margin: 0; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; }
 .header-separator { width: 60px; height: 4px; background-color: var(--primary-blue); border-radius: 2px; margin-top: 1.5rem; opacity: 0.8; }
 
-/* ==========================================================================
-   GRILLA Y CONTENEDOR ESTRUCTURAL
-   ========================================================================== */
+/* Main Container */
 .comunicaciones-e-informatica-juridica-main-container { max-width: 1250px; margin: 0 auto; padding: 0 1.5rem; }
 .content-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 5rem; align-items: start; }
 
-/* ==========================================================================
-   COLUMNA IZQUIERDA (CONTENIDO TEXTUAL)
-   ========================================================================== */
+/* Text Column */
 .text-column { color: var(--text-dark); line-height: 1.8; }
 .title-wrapper { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
 .accent-bar { width: 6px; height: 30px; background-color: var(--primary-blue); border-radius: 4px; }
@@ -52,28 +44,31 @@
 .intro-text p { font-size: 1.1rem; margin-bottom: 1.2rem; color: var(--text-dark); }
 .intro-text p:last-child { margin-bottom: 2.5rem; }
 
-/* ==========================================================================
-   COMPONENTE: TARJETAS (ESTILO OSCURO)
-   ========================================================================== */
+/* Info Cards */
 .info-cards-wrapper { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
-.info-card { background-color: rgba(13, 27, 42, 0.97); border: none; border-radius: 16px; padding: 1.8rem 2rem; box-shadow: var(--shadow-soft); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.info-card { background-color: rgba(13, 27, 42, 0.97); border: none; border-radius: 16px; padding: 1.8rem 2rem; box-sizing: border-box; box-shadow: var(--shadow-soft); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
 .info-card:hover { transform: translateY(-5px); background-color: rgba(13, 27, 42, 1); box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); }
 
 .icon-wrapper { display: flex; justify-content: center; align-items: center; border-radius: 12px; background-color: rgba(255, 255, 255, 0.07); padding: 12px; transition: transform 0.3s ease, background-color 0.3s ease; }
 .icon-wrapper svg { width: 28px; height: 28px; stroke: #d4af37; }
 
+/* Contact Card */
 .contact-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1.5rem; }
 .contact-group { display: flex; align-items: center; gap: 1.2rem; max-width: 100%; }
 .contact-text { color: #ffffff; font-size: 1.05rem; font-weight: 600; word-break: break-word; display: block; }
 .contact-text-multi { display: flex; flex-direction: column; color: #ffffff; font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
 
-/* ==========================================================================
-   COMPONENTE: DESCARGAS APILADAS (DOCUMENTOS DE GESTIÓN)
-   ========================================================================== */
+/* Downloads Section */
 .documentos-section { margin-top: 3.5rem; }
 .title-margin-top { margin-bottom: 1.8rem; }
 .documentos-section .section-title { font-size: 1.8rem; }
 .documentos-section .accent-bar { height: 26px; }
+
+.downloads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+  gap: 1.5rem;
+}
 
 .stacked-downloads {
   display: flex;
@@ -90,7 +85,10 @@
   padding: 1.5rem 2rem;
 }
 
-/* El texto principal toma todo el espacio posible empujando el bloque de acción a la derecha */
+.downloads-grid .download-card {
+  padding: 1.5rem;
+}
+
 .card-text-content { 
   display: flex; 
   flex-direction: column; 
@@ -100,15 +98,16 @@
 .card-text-content h4 { color: #ffffff; font-size: 1.25rem; font-weight: 800; margin: 0 0 0.4rem 0; line-height: 1.2; }
 .card-text-content p { color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin: 0; }
 
-/* --- MAGIA DE ALINEACIÓN --- 
-   Al darle un ancho fijo (width: 220px) evitamos que el bloque se redimensione
-   dependiendo del texto inferior. Así, todos los íconos quedan en línea recta. */
 .card-action { 
   display: flex; 
   flex-direction: column; 
   align-items: center; 
   width: 220px; 
   flex-shrink: 0; 
+}
+
+.downloads-grid .card-action {
+  width: auto;
 }
 
 .download-icon-box { border-radius: 50%; margin-bottom: 0.5rem; }
@@ -118,10 +117,8 @@
 .card-action .btn-text { color: #d4af37; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 .card-action .btn-subtext { color: rgba(255, 255, 255, 0.45); font-size: 0.75rem; margin-top: 0.3rem; font-weight: 500; text-align: center; }
 
-/* ==========================================================================
-   COMPONENTE: ACORDEÓN PREMIUM (CARRUSEL INCLUIDO)
-   ========================================================================== */
-.premium-accordion {
+/* Accordion Component */
+.custom-accordion {
   background-color: rgba(13, 27, 42, 0.97); 
   border-radius: 16px; 
   box-shadow: var(--shadow-soft);
@@ -170,15 +167,13 @@
   opacity: 1; transform: translateY(0);
 }
 
-/* ==========================================================================
-   CARRUSEL CSS DE BOLETINES (PAGINACIÓN ESTRICTA DE 3 EN 3)
-   ========================================================================== */
+/* Carousel Component */
 .boletin-carousel-wrapper {
   position: relative; 
   width: 100%; 
   max-width: 650px; 
   margin: 0 auto; 
-  padding: 0 60px; /* Margen lateral donde vivirán las flechas */
+  padding: 0 60px; 
   box-sizing: border-box;
 }
 
@@ -241,22 +236,18 @@
 #slide-1:checked ~ .go-to-2 { display: flex; }
 #slide-2:checked ~ .go-to-1 { display: flex; }
 
-/* ==========================================================================
-   COLUMNA DERECHA: FOTO DE LA AUTORIDAD
-   ========================================================================== */
+/* Director Image */
 .director-card {
   background-color: rgba(13, 27, 42, 0.97); 
-  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde mínimo para contención */
+  border: 1px solid rgba(255, 255, 255, 0.05); 
   border-radius: 16px;
   overflow: hidden; 
-  /* SOMBRA MÁS NOTORIA: mayor dispersión y opacidad */
   box-shadow: 0 20px 45px rgba(13, 27, 42, 0.3); 
   transition: all 0.4s ease;
 }
 
 .director-card:hover {
-  transform: translateY(-5px); /* Pequeña elevación al pasar el cursor */
-  /* SOMBRA AÚN MÁS FUERTE AL HACER HOVER */
+  transform: translateY(-5px); 
   box-shadow: 0 25px 60px rgba(13, 27, 42, 0.45); 
 }
 
@@ -267,9 +258,7 @@
   object-fit: cover;
 }
 
-/* ==========================================================================
-   MEDIA QUERIES (Responsividad)
-   ========================================================================== */
+/* Media Queries */
 @media (max-width: 992px) {
   .content-grid { grid-template-columns: 1fr; gap: 3rem; }
   .image-column { order: -1; }
@@ -290,8 +279,7 @@
   .control-arrow { width: 30px; height: 30px; }
   .control-arrow svg { width: 16px; height: 16px; }
   
-  /* Ajuste responsivo de la tarjeta de descarga para celulares */
   .download-card { flex-direction: column; text-align: center; gap: 1rem; padding: 1.5rem; }
   .card-text-content { padding-right: 0; align-items: center; }
-  .card-action { width: 100%; } /* Restablece el ancho en celulares */
+  .card-action { width: 100%; } 
 }

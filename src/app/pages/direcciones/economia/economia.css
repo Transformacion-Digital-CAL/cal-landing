@@ -1,6 +1,4 @@
-/* ==========================================================================
-   CONFIGURACIÓN DE LA VISTA Y FONDO BLANCO CON PUNTOS AZULES
-   ========================================================================== */
+/* View Configuration */
 .economia-view {
   --primary-blue: #2980b9; 
   --text-dark: #1a252f;
@@ -24,9 +22,7 @@
   background-attachment: fixed;
 }
 
-/* ==========================================================================
-   CABECERA / BANNER MINIMALISTA
-   ========================================================================== */
+/* Header */
 .economia-header {
   background-color: transparent; text-align: center; padding: 4rem 1rem 2rem 1rem; margin-bottom: 4rem;
 }
@@ -37,15 +33,11 @@
 .header-content p { font-size: 1rem; font-weight: 500; margin: 0; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; }
 .header-separator { width: 60px; height: 4px; background-color: var(--primary-blue); border-radius: 2px; margin-top: 1.5rem; opacity: 0.8; }
 
-/* ==========================================================================
-   GRILLA Y CONTENEDOR ESTRUCTURAL
-   ========================================================================== */
+/* Main Structure */
 .economia-main-container { max-width: 1250px; margin: 0 auto; padding: 0 1.5rem; }
 .content-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 5rem; align-items: start; }
 
-/* ==========================================================================
-   COLUMNA IZQUIERDA (CONTENIDO TEXTUAL)
-   ========================================================================== */
+/* Text Column */
 .text-column { color: var(--text-dark); line-height: 1.8; }
 .title-wrapper { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
 .accent-bar { width: 6px; height: 30px; background-color: var(--primary-blue); border-radius: 4px; }
@@ -54,9 +46,7 @@
 .intro-text p { font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-dark); }
 .intro-text p:last-child { margin-bottom: 2.5rem; }
 
-/* ==========================================================================
-   COMPONENTE: TARJETAS (ESTILO OSCURO SIN BORDES)
-   ========================================================================== */
+/* Cards Component */
 .info-cards-wrapper { display: flex; flex-direction: column; gap: 1.5rem; }
 
 .info-card {
@@ -71,7 +61,7 @@
 }
 .icon-wrapper svg { width: 28px; height: 28px; stroke: #d4af37; }
 
-/* --- TARJETA DE CONTACTO --- */
+/* Contact Card */
 .contact-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1.5rem; }
 .contact-group { display: flex; align-items: center; gap: 1.2rem; max-width: 100%; }
 .email-group { flex: 1 1 auto; min-width: 0; }
@@ -79,7 +69,7 @@
 .contact-text { color: #ffffff; font-size: 1.05rem; font-weight: 600; word-break: break-word; display: block; }
 .contact-text-multi { display: flex; flex-direction: column; color: #ffffff; font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
 
-/* --- TARJETAS DE DESCARGA --- */
+/* Downloads */
 .downloads-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
@@ -99,27 +89,24 @@
 
 .card-action .btn-text { color: #d4af37; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* ==========================================================================
-   COMPONENTE: LISTA DE ACORDEONES PREMIUM (ANIMADO CON GRID)
-   ========================================================================== */
+/* Accordion Group */
 .acervo-section { margin-top: 2.5rem; }
 .title-margin-top { margin-bottom: 1.5rem; }
 
-/* Wrapper para apilar ordenadamente los acordeones */
 .accordions-list-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1rem; 
 }
 
-.premium-accordion {
+.custom-accordion {
   background-color: rgba(13, 27, 42, 0.97); 
   border-radius: 16px;
   box-shadow: var(--shadow-soft);
   overflow: hidden; 
   transition: box-shadow 0.4s ease;
 }
-.premium-accordion:hover { box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); }
+.custom-accordion:hover { box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); }
 
 .accordion-checkbox { display: none; }
 
@@ -145,34 +132,71 @@
 .accordion-body { overflow: hidden; background-color: rgba(255, 255, 255, 0.02); }
 
 .accordion-body-inner {
-  padding: 2rem; display: flex; justify-content: center; align-items: center;
+  padding: 1rem 0; display: block; width: 100%;
   opacity: 0; transform: translateY(-20px); transition: opacity 0.4s ease-out, transform 0.45s ease-out;
 }
 .accordion-checkbox:checked ~ .accordion-content-wrapper .accordion-body-inner { opacity: 1; transform: translateY(0); }
 
-/* --- Estilos para el texto Placeholder --- */
-.placeholder-content { text-align: center; padding: 1.5rem; }
+/* Accordion Documents List */
+.document-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.document-list li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.document-list li:last-child {
+  border-bottom: none;
+}
+.document-list a {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  padding: 1.2rem 2rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+.document-list a:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  padding-left: 2.5rem;
+}
+.document-list svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--primary-blue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.document-list .highlight-doc {
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+
+/* Placeholder Content */
+.placeholder-content { text-align: center; padding: 2.5rem 1.5rem; }
 .placeholder-icon { display: inline-flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.05); padding: 16px; border-radius: 50%; margin-bottom: 1rem; }
 .placeholder-icon svg { width: 32px; height: 32px; stroke: var(--text-gray); }
 .placeholder-title { color: #d4af37; font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem 0; text-transform: uppercase; letter-spacing: 0.5px; }
-.placeholder-content p { color: rgba(255, 255, 255, 0.6); font-size: 1.05rem; line-height: 1.6; margin: 0; max-width: 450px; }
+.placeholder-content p { color: rgba(255, 255, 255, 0.6); font-size: 1.05rem; line-height: 1.6; margin: 0; max-width: 450px; margin: 0 auto; }
 
-/* ==========================================================================
-   COLUMNA DERECHA: FOTO DE LA AUTORIDAD
-   ========================================================================== */
+/* Image Column */
 .director-card {
   background-color: rgba(13, 27, 42, 0.97); 
-  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde mínimo para contención */
+  border: 1px solid rgba(255, 255, 255, 0.05); 
   border-radius: 16px;
   overflow: hidden; 
-  /* SOMBRA MÁS NOTORIA: mayor dispersión y opacidad */
   box-shadow: 0 20px 45px rgba(13, 27, 42, 0.3); 
   transition: all 0.4s ease;
 }
 
 .director-card:hover {
-  transform: translateY(-5px); /* Pequeña elevación al pasar el cursor */
-  /* SOMBRA AÚN MÁS FUERTE AL HACER HOVER */
+  transform: translateY(-5px); 
   box-shadow: 0 25px 60px rgba(13, 27, 42, 0.45); 
 }
 
@@ -183,9 +207,7 @@
   object-fit: cover;
 }
 
-/* ==========================================================================
-   MEDIA QUERIES (Responsividad)
-   ========================================================================== */
+/* Media Queries */
 @media (max-width: 992px) {
   .content-grid { grid-template-columns: 1fr; gap: 3rem; }
   .image-column { order: -1; }
@@ -198,7 +220,9 @@
   
   .contact-card { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
   .accordion-header { padding: 1.2rem 1.5rem; }
-  .accordion-body-inner { padding: 1.5rem; }
+  
+  .document-list a { padding: 1.2rem 1.5rem; }
+  .document-list a:hover { padding-left: 1.8rem; }
   
   .download-card { flex-direction: column; text-align: center; gap: 1rem; padding: 1.5rem; }
   .card-text-content { padding-right: 0; align-items: center; }
