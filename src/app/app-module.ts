@@ -28,6 +28,8 @@ import { DerechosHumanos } from './pages/direcciones/derechos-humanos/derechos-h
 import { Economia } from './pages/direcciones/economia/economia';
 import { EticaProfesional } from './pages/direcciones/etica-profesional/etica-profesional';
 import { ExtensionSocialYParticipacion } from './pages/direcciones/extension-social-y-participacion/extension-social-y-participacion';
+import { Institucional } from './pages/institucional/institucional';
+import { Publicaciones } from './pages/publicaciones/publicaciones';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { ExtensionSocialYParticipacion } from './pages/direcciones/extension-soc
     Economia,
     EticaProfesional,
     ExtensionSocialYParticipacion,
+    Institucional,
+    Publicaciones,
   ],
   imports: [
     BrowserModule,

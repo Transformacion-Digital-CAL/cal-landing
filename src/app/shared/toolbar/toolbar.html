@@ -43,10 +43,9 @@
           <li class="navbar__nav-item"><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="navbar__nav-link">Inicio</a></li>
 
           <li class="navbar__nav-item navbar__nav-item--dropdown">
-            <button class="navbar__nav-link navbar__nav-link--btn" [attr.aria-expanded]="activeDropdown === 'institucional'" (click)="toggleDropdown('institucional')">
+            <a routerLink="/institucional" class="navbar__nav-link">
               Institucional
-              <svg class="navbar__nav-caret" [class.open]="activeDropdown === 'institucional'" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </button>
+            </a>
             <div class="navbar__dropdown" [class.navbar__dropdown--open]="activeDropdown === 'institucional'">
               <div class="navbar__dropdown-inner">
                 <a routerLink="/institucional" class="navbar__dropdown-item">Historia del CAL</a>
