@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Institucional } from './pages/institucional/institucional';
 import { Direcciones } from './pages/direcciones/direcciones';
-import { Publicaciones } from './pages/publicaciones/publicaciones';
 import { Contacto } from './pages/contacto/contacto';
 import { Inicio } from './pages/inicio/inicio';
 import { AcademicaYPromocionCultural } from './pages/direcciones/academica-y-promocion-cultural/academica-y-promocion-cultural';
