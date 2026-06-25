@@ -1,0 +1,357 @@
+/* =========================================
+   Variables y Fondo Punteado
+   ========================================= */
+.prensa-view {
+  --primary-blue: #2980b9; 
+  --cal-navy: #0D1B2A; 
+  --text-dark: #1a252f;
+  --text-gray: #5a6b7c;
+  --cal-gold: #d4af37;
+  
+  /* Se eliminaron las variables de fuentes locales para no crear conflictos */
+  
+  background-color: #ffffff; 
+  background-image: 
+    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px), 
+    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px); 
+  background-position: 0 0, 16px 16px;
+  background-size: 32px 32px; 
+  background-attachment: fixed;
+  
+  min-height: 100vh;
+  padding-bottom: 6rem;
+}
+
+.home-main-container {
+  max-width: 1250px; 
+  margin: 0 auto; 
+  padding: 0 1.5rem;
+}
+
+/* =========================================
+   Encabezado Centrado
+   ========================================= */
+.page-header {
+  background-color: transparent;
+  text-align: center;
+  padding: 4rem 1rem 2rem 1rem;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-title {
+  color: var(--cal-navy);
+  /* ELIMINADA la propiedad font-family para que herede tu fuente Serif global */
+  font-size: 3.2rem;
+  font-weight: 800;
+  margin: 0 0 0.8rem 0;
+  letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+  color: var(--primary-blue);
+  /* ELIMINADA la propiedad font-family para que herede tu fuente Serif global */
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.header-separator {
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-blue);
+  border-radius: 2px;
+  margin-top: 1.5rem;
+  opacity: 0.8;
+}
+
+/* =========================================
+   Filtros Profesionales
+   ========================================= */
+.filters-section {
+  margin-bottom: 4.5rem;
+}
+
+.filters-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.filters-scroll-wrapper {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem 0.5rem 1.5rem 0.5rem; 
+  scrollbar-width: none; 
+  margin: 0 auto;
+}
+
+.filters-scroll-wrapper::-webkit-scrollbar { 
+  display: none; 
+}
+
+.filter-tile {
+  background-color: var(--cal-navy);
+  border: 2px solid transparent; 
+  border-radius: 8px; 
+  padding: 0.8rem 1.6rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.3s ease,
+              color 0.3s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(13, 27, 42, 0.12); 
+}
+
+.filter-tile:hover {
+  border-color: rgba(212, 175, 55, 0.6); 
+  color: var(--cal-gold); 
+  transform: translateY(-3px); 
+  box-shadow: 0 10px 22px rgba(13, 27, 42, 0.2); 
+}
+
+.filter-tile.active {
+  background-color: var(--cal-navy);
+  border-color: var(--cal-gold);
+  color: var(--cal-gold);
+  transform: translateY(0); 
+  box-shadow: 0 2px 6px rgba(13, 27, 42, 0.15); 
+  cursor: default; 
+}
+
+.filter-tile.active:hover {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(13, 27, 42, 0.15);
+  border-color: var(--cal-gold);
+}
+
+/* =========================================
+   Grilla y Tarjetas
+   ========================================= */
+.publications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 4.5rem;
+}
+
+.pub-card {
+  background-color: #0b1524; 
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(13, 27, 42, 0.25); 
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.4s ease;
+}
+
+.pub-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--cal-gold);
+  box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15);
+}
+
+.pub-img-wrapper {
+  position: relative;
+  height: 220px; 
+  overflow: hidden;
+  border-bottom: 2px solid var(--cal-gold);
+}
+
+.pub-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.pub-card:hover .pub-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.pub-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: var(--cal-navy);
+  border: 1px solid var(--cal-gold);
+  color: var(--cal-gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.pub-content {
+  padding: 1.8rem; 
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.pub-title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 5.25rem; 
+  transition: color 0.3s ease;
+}
+
+.pub-card:hover .pub-title {
+  color: var(--cal-gold);
+}
+
+.pub-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--cal-gold); 
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.pub-meta svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--cal-gold);
+}
+
+.pub-excerpt {
+  color: #e2e8f0; 
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pub-link {
+  color: var(--cal-gold);
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  width: max-content;
+  margin-top: auto; 
+  transition: all 0.3s ease;
+}
+
+.pub-link svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.pub-card:hover .pub-link {
+  color: #ffffff;
+}
+
+.pub-card:hover .pub-link svg {
+  transform: translateX(5px);
+}
+
+/* =========================================
+   Paginación Mejorada
+   ========================================= */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 3.5rem; 
+  margin-bottom: 2rem;
+}
+
+.page-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background-color: #ffffff;
+  border: 1px solid rgba(13, 27, 42, 0.1);
+  border-radius: 10px; 
+  color: var(--cal-navy);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 4px 10px rgba(13, 27, 42, 0.05); 
+}
+
+.page-btn:hover:not(.active):not(:disabled) {
+  border-color: var(--cal-gold);
+  color: var(--cal-navy);
+  transform: translateY(-2px); 
+  box-shadow: 0 8px 18px rgba(212, 175, 55, 0.15); 
+}
+
+.page-btn.active {
+  background-color: var(--cal-navy);
+  border-color: var(--cal-navy);
+  color: var(--cal-gold);
+  box-shadow: 0 6px 15px rgba(13, 27, 42, 0.2);
+  transform: translateY(-1px);
+}
+
+.page-btn.prev svg, .page-btn.next svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2.5px; 
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f8fafc;
+  color: #cbd5e1;
+  border-color: rgba(13, 27, 42, 0.05);
+  box-shadow: none;
+  transform: none;
+}
+
+/* =========================================
+   Media Queries Ajustados
+   ========================================= */
+@media (max-width: 1100px) {
+  .publications-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+}
+
+@media (max-width: 768px) {
+  /* Alineación con academica.css en móviles */
+  .page-header { padding: 3rem 1rem 1rem 1rem; margin-bottom: 2rem; }
+  .section-title { font-size: 2.2rem; }
+  .section-subtitle { font-size: 1.15rem; }
+  
+  .filters-container { justify-content: flex-start; } 
+  .publications-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .pub-img-wrapper { height: 200px; }
+  .pub-title { min-height: auto; }
+}

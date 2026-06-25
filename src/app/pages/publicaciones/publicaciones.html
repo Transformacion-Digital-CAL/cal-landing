@@ -1,1 +1,80 @@
-<p>publicaciones works!</p>
+<div class="prensa-view">
+  <main class="home-main-container page-content">
+    
+    <header class="page-header">
+      <h1 class="section-title">Prensa</h1>
+      <h2 class="section-subtitle">Dirección de Comunicaciones e Informática Jurídica</h2>
+      <div class="header-separator"></div>
+    </header>
+
+    <section class="filters-section">
+      <div class="filters-container">
+        <div class="filters-scroll-wrapper">
+          <button 
+            class="filter-tile" 
+            [class.active]="selectedCategory === 'Todos'"
+            (click)="setCategory('Todos')">
+            Todos
+          </button>
+          <button 
+            class="filter-tile" 
+            *ngFor="let cat of categories" 
+            [class.active]="selectedCategory === cat"
+            (click)="setCategory(cat)">
+            {{ cat }}
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="publications-grid">
+      <article class="pub-card" *ngFor="let pub of paginatedPublications">
+        
+        <div class="pub-img-wrapper">
+          <span class="pub-badge">{{ pub.category }}</span>
+          <img [src]="pub.imageUrl" [alt]="pub.title" loading="lazy">
+        </div>
+        
+        <div class="pub-content">
+          <h3 class="pub-title">{{ pub.title }}</h3>
+          
+          <div class="pub-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            {{ pub.date }}
+          </div>
+          
+          <p class="pub-excerpt">{{ pub.excerpt }}</p>
+          
+          <a [href]="pub.link" class="pub-link">
+            Leer nota completa 
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+      </article>
+    </section>
+
+    <div class="pagination-container" *ngIf="totalPages > 1">
+      <button class="page-btn prev" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+
+      <button class="page-btn" *ngFor="let page of pagesArray" [class.active]="currentPage === page" (click)="goToPage(page)">
+        {{ page }}
+      </button>
+
+      <button class="page-btn next" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+
+  </main>
+</div>
