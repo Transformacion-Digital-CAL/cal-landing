@@ -15,10 +15,28 @@ import { EticaProfesional } from './pages/direcciones/etica-profesional/etica-pr
 import {
   ExtensionSocialYParticipacion
 } from './pages/direcciones/extension-social-y-participacion/extension-social-y-participacion';
+import { Decanato } from './pages/decanato/decanato';
+import { Vicedecanato } from './pages/decanato/vicedecanato/vicedecanato';
+import { SecretariaGeneral } from './pages/decanato/secretaria-general/secretaria-general';
+import { Publicaciones } from './pages/publicaciones/publicaciones';
+import { Institucional } from './pages/institucional/institucional';
+import { CajaDePrevisionSocial } from './pages/otras-areas/caja-de-prevision-social/caja-de-prevision-social';
+import { ComiteElectoral } from './pages/otras-areas/comite-electoral/comite-electoral';
+import { JuntaDeVigilancia } from './pages/otras-areas/junta-de-vigilancia/junta-de-vigilancia';
+import { DelegadosDeLaOrden } from './pages/otras-areas/delegados-de-la-orden/delegados-de-la-orden';
 
 
 const routes: Routes = [
   { path: '', component: Inicio },
+
+  { path: 'institucional', component: Institucional },
+
+  // Decanato
+  { path: 'decanato', component: Decanato },
+  { path: 'vicedecanato', component: Vicedecanato },
+  { path: 'secretaria-general', component: SecretariaGeneral },
+
+  // Direcciones
   { path: 'direcciones', component: Direcciones },
   { path: 'academica-y-promocion-cultural', component: AcademicaYPromocionCultural },
   { path: 'biblioteca-y-centro-de-documentacion', component: BibliotecaYCentroDeDocumentacion },
@@ -30,6 +48,15 @@ const routes: Routes = [
   { path: 'economia', component: Economia },
   { path: 'etica-profesional', component: EticaProfesional },
   { path: 'extensión-social-y-participacion', component: ExtensionSocialYParticipacion },
+
+  // Otras Areas
+  { path: 'caja-de-prevision-social', component: CajaDePrevisionSocial },
+  { path: 'comite-electoral', component: ComiteElectoral },
+  { path: 'junta-de-vigilancia', component: JuntaDeVigilancia },
+  { path: 'delegados-de-la-orden', component: DelegadosDeLaOrden },
+
+  { path: 'publicaciones', component: Publicaciones },
+  { path: 'contacto', component: Contacto },
 
   { path: 'contacto', component: Contacto },
 

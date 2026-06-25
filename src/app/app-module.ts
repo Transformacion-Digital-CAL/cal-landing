@@ -28,6 +28,15 @@ import { DerechosHumanos } from './pages/direcciones/derechos-humanos/derechos-h
 import { Economia } from './pages/direcciones/economia/economia';
 import { EticaProfesional } from './pages/direcciones/etica-profesional/etica-profesional';
 import { ExtensionSocialYParticipacion } from './pages/direcciones/extension-social-y-participacion/extension-social-y-participacion';
+import { Decanato } from './pages/decanato/decanato';
+import { SecretariaGeneral } from './pages/decanato/secretaria-general/secretaria-general';
+import { Vicedecanato } from './pages/decanato/vicedecanato/vicedecanato';
+import { CajaDePrevisionSocial } from './pages/otras-areas/caja-de-prevision-social/caja-de-prevision-social';
+import { ComiteElectoral } from './pages/otras-areas/comite-electoral/comite-electoral';
+import { JuntaDeVigilancia } from './pages/otras-areas/junta-de-vigilancia/junta-de-vigilancia';
+import { DelegadosDeLaOrden } from './pages/otras-areas/delegados-de-la-orden/delegados-de-la-orden';
+import { Publicaciones } from './pages/publicaciones/publicaciones';
+import { Institucional } from './pages/institucional/institucional';
 
 @NgModule({
   declarations: [
@@ -47,6 +56,15 @@ import { ExtensionSocialYParticipacion } from './pages/direcciones/extension-soc
     Economia,
     EticaProfesional,
     ExtensionSocialYParticipacion,
+    Decanato,
+    SecretariaGeneral,
+    Vicedecanato,
+    CajaDePrevisionSocial,
+    ComiteElectoral,
+    JuntaDeVigilancia,
+    DelegadosDeLaOrden,
+    Publicaciones,
+    Institucional,
   ],
   imports: [
     BrowserModule,
