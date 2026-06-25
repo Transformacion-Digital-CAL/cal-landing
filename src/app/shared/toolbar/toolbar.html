@@ -19,19 +19,19 @@
 
   <!-- Main bar -->
   <div class="navbar__main">
-    <div class="container navbar__main-inner">
+    <div class="container navbar__main-inner" style="max-width: unset">
 
       <!-- Logo -->
       <a routerLink="/" class="navbar__logo">
-        <div class="navbar__logo-emblem">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 2L4 10V26L18 34L32 26V10L18 2Z" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
-            <path d="M18 7L9 12V24L18 29L27 24V12L18 7Z" fill="rgba(201,168,76,0.1)" stroke="#C9A84C" stroke-width="1"/>
-            <text x="18" y="22" text-anchor="middle" font-family="Georgia, serif" font-size="9" font-weight="700" fill="#C9A84C">CAL</text>
-          </svg>
+        <div>
+          <img
+            src="https://www.cal.org.pe/v1/wp-content/uploads/2026/06/Just-Strar.png"
+            alt="Colegio de Abogados de Lima"
+            class="footer__logo-img" style="width: 40px;">
         </div>
+
         <div class="navbar__logo-text">
-          <span class="navbar__logo-title">Colegio de Abogados</span>
+          <span class="navbar__logo-title">Ilustre Colegio de Abogados</span>
           <span class="navbar__logo-sub">de Lima</span>
         </div>
       </a>
@@ -40,40 +40,47 @@
       <nav class="navbar__nav" role="navigation">
         <ul class="navbar__nav-list">
 
+          <!-- Inicio -->
           <li class="navbar__nav-item"><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="navbar__nav-link">Inicio</a></li>
 
+          <!-- Institucional -->
+          <li class="navbar__nav-item"><a routerLink="/institucional" routerLinkActive="active" class="navbar__nav-link">Institucional</a></li>
+
+          <!-- Decanato -->
           <li class="navbar__nav-item navbar__nav-item--dropdown">
-            <a routerLink="/institucional" class="navbar__nav-link">
-              Institucional
-            </a>
-            <div class="navbar__dropdown" [class.navbar__dropdown--open]="activeDropdown === 'institucional'">
+            <div class="navbar__nav-dropdown-trigger">
+
+              <a routerLink="/decanato" class="navbar__nav-link" [class.active]="isDecanatoSection()">
+                Decanato
+              </a>
+
+              <button
+                type="button"
+                class="navbar__nav-link navbar__nav-link--btn"
+                [attr.aria-expanded]="activeDropdown === 'decanato'"
+                (click)="toggleDropdown('decanato')">
+
+                <svg
+                  class="navbar__nav-caret"
+                  [class.open]="activeDropdown === 'decanato'"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none">
+                  <path d="M2 4l4 4 4-4"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"/>
+                </svg>
+              </button>
+
+            </div>
+
+            <div class="navbar__dropdown"
+                 [class.navbar__dropdown--open]="activeDropdown === 'decanato'">
               <div class="navbar__dropdown-inner">
-                <a routerLink="/institucional" class="navbar__dropdown-item">Historia del CAL</a>
-                <a routerLink="/decanato" class="navbar__dropdown-item">Decanato</a>
                 <a routerLink="/vicedecanato" class="navbar__dropdown-item">Vicedecanato</a>
                 <a routerLink="/secretaria-general" class="navbar__dropdown-item">Secretaría General</a>
-                <a routerLink="/junta-directiva" class="navbar__dropdown-item">Junta Directiva</a>
-                <a routerLink="/comite-electoral" class="navbar__dropdown-item">Comité Electoral</a>
-                <a routerLink="/junta-vigilancia" class="navbar__dropdown-item">Junta de Vigilancia</a>
-              </div>
-            </div>
-          </li>
-
-          <!-- Servicios -->
-          <li class="navbar__nav-item navbar__nav-item--dropdown">
-            <button class="navbar__nav-link navbar__nav-link--btn" [attr.aria-expanded]="activeDropdown === 'servicios'" (click)="toggleDropdown('servicios')">
-              Servicios
-              <svg class="navbar__nav-caret" [class.open]="activeDropdown === 'servicios'" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </button>
-            <div class="navbar__dropdown" [class.navbar__dropdown--open]="activeDropdown === 'servicios'">
-              <div class="navbar__dropdown-inner">
-                <a href="https://servicioscal.org.pe/consulta_habilidad/" target="_blank" class="navbar__dropdown-item">Consulta de habilidad</a>
-                <a href="https://servicioscal.org.pe/consulta_deuda/" target="_blank" class="navbar__dropdown-item">Consulta de deuda</a>
-                <a href="https://pagoenlineacal.org.pe/" target="_blank" class="navbar__dropdown-item">Papeleta de habilidad</a>
-                <a href="https://incorporacion.cal.org.pe/" target="_blank" class="navbar__dropdown-item">Nuevas incorporaciones</a>
-                <a href="https://digital.cal.org.pe/" target="_blank" class="navbar__dropdown-item">Actualiza tus datos</a>
-                <a href="https://abogados.cal.org.pe/buscador" target="_blank" class="navbar__dropdown-item">Conoce a tu Juez Abogado</a>
-                <a routerLink="/bolsa-trabajo" class="navbar__dropdown-item">Bolsa de trabajo</a>
               </div>
             </div>
           </li>
@@ -85,8 +92,6 @@
               <a routerLink="/direcciones" class="navbar__nav-link" [class.active]="isDireccionesSection()">
                 Direcciones
               </a>
-
-
 
               <button
                 type="button"
@@ -127,24 +132,69 @@
             </div>
           </li>
 
+          <!-- Servicios -->
           <li class="navbar__nav-item navbar__nav-item--dropdown">
-            <button class="navbar__nav-link navbar__nav-link--btn" [attr.aria-expanded]="activeDropdown === 'academico'" (click)="toggleDropdown('academico')">
-              Académico
-              <svg class="navbar__nav-caret" [class.open]="activeDropdown === 'academico'" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <button class="navbar__nav-link navbar__nav-link--btn" [attr.aria-expanded]="activeDropdown === 'servicios'" (click)="toggleDropdown('servicios')">
+              Servicios
+              <svg class="navbar__nav-caret" [class.open]="activeDropdown === 'servicios'" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             </button>
-            <div class="navbar__dropdown" [class.navbar__dropdown--open]="activeDropdown === 'academico'">
+            <div class="navbar__dropdown" [class.navbar__dropdown--open]="activeDropdown === 'servicios'">
               <div class="navbar__dropdown-inner">
-                <a routerLink="/academico" class="navbar__dropdown-item">Formación Integral</a>
-                <a href="https://biblioteca.cal.org.pe/inicio" target="_blank" class="navbar__dropdown-item">Biblioteca Virtual</a>
-                <a routerLink="/centro-arbitraje" class="navbar__dropdown-item">Centro de Arbitraje</a>
-                <a routerLink="/derechos-humanos" class="navbar__dropdown-item">Derechos Humanos</a>
-                <a routerLink="/etica-profesional" class="navbar__dropdown-item">Ética Profesional</a>
+                <a href="https://servicioscal.org.pe/consulta_habilidad/" target="_blank" class="navbar__dropdown-item">Consulta de habilidad</a>
+                <a href="https://servicioscal.org.pe/consulta_deuda/" target="_blank" class="navbar__dropdown-item">Consulta de deuda</a>
+                <a href="https://servicioscal.org.pe/papeleta/" target="_blank" class="navbar__dropdown-item">Papeleta de habilidad</a>
+                <a href="https://documentos.pagoenlineacal.org.pe/" target="_blank" class="navbar__dropdown-item">Constancias</a>
+                <a href="https://incorporacion.cal.org.pe/" target="_blank" class="navbar__dropdown-item">Nuevas incorporaciones</a>
+                <a href="https://digital.cal.org.pe/" target="_blank" class="navbar__dropdown-item">Actualiza tus datos</a>
+                <a href="https://abogados.cal.org.pe/buscador" target="_blank" class="navbar__dropdown-item">Conoce a tu Juez Abogado</a>
               </div>
             </div>
           </li>
 
-          <li class="navbar__nav-item"><a routerLink="/prensa" routerLinkActive="active" class="navbar__nav-link">Prensa</a></li>
+          <!-- Otras áreas -->
+          <li class="navbar__nav-item navbar__nav-item--dropdown">
+            <div class="navbar__nav-dropdown-trigger">
 
+              <a routerLink="/otras-areas" class="navbar__nav-link" [class.active]="isOtrasAreasSection()">
+                Otras Áreas
+              </a>
+
+              <button
+                type="button"
+                class="navbar__nav-link navbar__nav-link--btn"
+                [attr.aria-expanded]="activeDropdown === 'otras-areas'"
+                (click)="toggleDropdown('otras-areas')">
+
+                <svg
+                  class="navbar__nav-caret"
+                  [class.open]="activeDropdown === 'otras-areas'"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none">
+                  <path d="M2 4l4 4 4-4"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="navbar__dropdown"
+                 [class.navbar__dropdown--open]="activeDropdown === 'otras-areas'">
+              <div class="navbar__dropdown-inner">
+                <a routerLink="/caja-de-prevision-social" class="navbar__dropdown-item">Caja de Previsión Social</a>
+                <a routerLink="/comite-electoral" class="navbar__dropdown-item">Comité Electoral</a>
+                <a routerLink="/junta-de-vigilancia" class="navbar__dropdown-item">Junta de Vigilancia</a>
+                <a routerLink="/delegados-de-la-orden" class="navbar__dropdown-item">Delegados de la Orden</a>
+              </div>
+            </div>
+          </li>
+
+          <!-- Publicaciones -->
+          <li class="navbar__nav-item"><a routerLink="/publicaciones" routerLinkActive="active" class="navbar__nav-link">Publicaciones</a></li>
+
+          <!-- Contacto -->
           <li class="navbar__nav-item"><a routerLink="/contacto" routerLinkActive="active" class="navbar__nav-link">Contacto</a></li>
 
         </ul>

@@ -82,7 +82,7 @@
   display: flex;
   align-items: center;
   height: var(--navbar-h);
-  gap: 2rem;
+  gap: 1rem;
 }
 
 /* ---- Logo ---- */
