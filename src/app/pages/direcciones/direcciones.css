@@ -23,8 +23,11 @@
 /* Section Header */
 .section-header-center { 
   text-align: center; 
-  margin-bottom: 4rem; 
+  /* Mismos espacios de la vista académica */
+  padding: 4rem 1rem 2rem 1rem; 
+  margin-bottom: 2rem; 
 }
+
 .section-header-center .section-title { 
   display: flex; 
   justify-content: center; 
@@ -33,6 +36,7 @@
   margin-bottom: 0.5rem; 
   letter-spacing: -0.5px;
 }
+
 .section-header-center p { 
   color: var(--text-gray); 
   font-size: 1.1rem; 
@@ -50,12 +54,12 @@
 .decana-section {
   display: flex;
   justify-content: center;
-  margin-bottom: 6rem;
+  margin-bottom: 4rem; 
 }
 
 .decana-container {
   background-color: transparent; 
-  padding: 1.5rem;
+  padding: 1rem; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,7 +75,7 @@
 
 .decana-img-wrapper {
   width: 100%;
-  margin-bottom: 1.8rem;
+  margin-bottom: 0; 
   display: flex;
   justify-content: center;
   position: relative;
@@ -79,34 +83,51 @@
 
 .decana-img-wrapper img {
   width: 100%;
-  max-width: 380px; 
+  max-width: 600px; 
   height: auto;
   object-fit: cover;
-  border-radius: 16px; 
-  box-shadow: 0 20px 50px rgba(13, 27, 42, 0.2); 
-  border-bottom: 4px solid var(--cal-gold);
+  display: block; 
+  border-radius: 20px; 
+  border: 4px solid #ffffff; 
+  box-shadow: 
+    0px 6px 0px 0px var(--cal-gold), 
+    0 25px 50px rgba(13, 27, 42, 0.2); 
+  transition: all 0.4s ease;
+}
+
+.decana-container:hover .decana-img-wrapper img {
+  box-shadow: 
+    0px 8px 0px 0px var(--cal-gold), 
+    0 30px 60px rgba(13, 27, 42, 0.25);
+  transform: scale(1.01);
+}
+
+.decana-text {
+  margin-top: 1rem; 
 }
 
 .decana-text .role-highlight {
   color: var(--cal-gold); 
-  font-size: 1.7rem; 
+  font-size: 1.5rem; 
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin: 0 0 0.4rem 0;
+  margin: 0; 
 }
 
 .decana-text .period {
   color: var(--text-gray); 
-  font-size: 1.05rem;
-  margin: 0 0 1rem 0;
+  font-size: 1rem; 
+  margin: 0.2rem 0 0.5rem 0; 
   font-weight: 600;
 }
 
 .decana-text .name {
   color: var(--cal-navy); 
-  font-size: 1.8rem;
-  font-weight: 800;
+  font-size: 1.6rem; 
+  font-weight: 700; 
+  letter-spacing: 0.3px; 
+  line-height: 1.35;
   margin: 0;
 }
 
@@ -259,6 +280,10 @@
 }
 
 @media (max-width: 768px) {
+  .section-header-center {
+    /* Mismos espacios móviles de la vista académica */
+    padding: 3rem 1rem 1rem 1rem; 
+  }
   .section-header-center .section-title {
     font-size: 2.2rem;
   }
@@ -274,7 +299,11 @@
     width: 100%;
   }
   .decana-container {
-    padding: 1rem;
+    padding: 0; 
+    max-width: 100%; 
+  }
+  .decana-img-wrapper img {
+    max-width: 100%; 
   }
   .decana-text .name {
     font-size: 1.5rem;

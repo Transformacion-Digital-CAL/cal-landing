@@ -75,7 +75,7 @@
             </div>
           </div>
           <div class="dashboard-tiles-grid">
-            <a href="#" *ngFor="let link of quickLinks" [href]="link.url" class="dash-tile-card">
+            <a href="#" target="_blank" *ngFor="let link of quickLinks" [href]="link.url" class="dash-tile-card">
               <div class="icon-wrapper" [innerHTML]="link.svgIcon"></div>
               <span>{{ link.title }}</span>
             </a>
