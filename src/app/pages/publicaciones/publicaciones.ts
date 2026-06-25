@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-publicaciones',
@@ -18,12 +18,10 @@ export class Publicaciones implements OnInit {
   
   selectedCategory: string = 'Todos';
 
-  // --- CONFIGURACIÓN DE PAGINACIÓN ---
   currentPage: number = 1;
-  itemsPerPage: number = 12; // 3 columnas * 4 filas máximo = 12
+  itemsPerPage: number = 12; 
 
   publications = [
-    // --- NOTAS DE PRENSA ---
     {
       category: 'Notas de Prensa',
       title: 'Decana del CAL firma convenios con Palestra Editores para fortalecer la capacitación',
@@ -48,8 +46,6 @@ export class Publicaciones implements OnInit {
       imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/NOTAS-DE-PRENSA.jpg',
       link: '#'
     },
-
-    // --- COMUNICADOS ---
     {
       category: 'Comunicados',
       title: 'Llamado urgente a la acción frente a la crisis de derechos humanos e impunidad institucional',
@@ -74,8 +70,6 @@ export class Publicaciones implements OnInit {
       imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/COMUNICADOS.jpg',
       link: '#'
     },
-
-    // --- AVISOS ---
     {
       category: 'Avisos',
       title: 'Campaña de vacunación contra la Influenza y Neumococo para agremiados',
@@ -100,8 +94,6 @@ export class Publicaciones implements OnInit {
       imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/02/AVISOS.jpg',
       link: '#'
     },
-
-    // --- FORMACIÓN INTEGRAL ---
     {
       category: 'Formación Integral',
       title: 'Diplomado Especializado en Nuevas tendencias del Derecho Familiar',
@@ -126,8 +118,6 @@ export class Publicaciones implements OnInit {
       imageUrl: 'https://www.cal.org.pe/v1/wp-content/uploads/2026/06/FORMACION-INTEGRAL.jpg',
       link: '#'
     },
-
-    // --- CONVOCATORIAS ---
     {
       category: 'Convocatorias',
       title: 'Corte Suprema de Justicia: Selección de Personal CAS',
@@ -155,19 +145,46 @@ export class Publicaciones implements OnInit {
   ];
 
   ngOnInit() {
-    // Al iniciar el componente, mezcla aleatoriamente las tarjetas
-    this.shuffleArray(this.publications);
+    this.updateItemsPerPage();
+    this.publications.sort((a, b) => this.parseDate(b.date) - this.parseDate(a.date));
   }
 
-  // Algoritmo Fisher-Yates para randomizar el array
-  shuffleArray(array: any[]) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.updateItemsPerPage();
+  }
+
+  updateItemsPerPage() {
+    if (window.innerWidth <= 768) {
+      this.itemsPerPage = 5;
+    } else {
+      this.itemsPerPage = 12;
+    }
+    
+    if (this.currentPage > this.totalPages && this.totalPages > 0) {
+      this.currentPage = this.totalPages;
     }
   }
 
-  // 1. Filtra primero por categoría
+  parseDate(dateStr: string): number {
+    const months: { [key: string]: number } = {
+      'ENE': 0, 'FEB': 1, 'MAR': 2, 'ABR': 3, 'MAY': 4, 'JUN': 5,
+      'JUL': 6, 'AGO': 7, 'SEP': 8, 'OCT': 9, 'NOV': 10, 'DIC': 11
+    };
+    
+    const parts = dateStr.replace(',', '').split(' ');
+    
+    if (parts.length === 3) {
+      const day = parseInt(parts[0], 10);
+      const month = months[parts[1].toUpperCase()] || 0;
+      const year = parseInt(parts[2], 10);
+      
+      return new Date(year, month, day).getTime();
+    }
+    
+    return 0; 
+  }
+
   get filteredPublications() {
     if (this.selectedCategory === 'Todos') {
       return this.publications;
@@ -175,33 +192,27 @@ export class Publicaciones implements OnInit {
     return this.publications.filter(pub => pub.category === this.selectedCategory);
   }
 
-  // 2. Aplica la paginación al resultado filtrado
   get paginatedPublications() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return this.filteredPublications.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
-  // 3. Calcula cuántas páginas hay en total
   get totalPages(): number {
     return Math.ceil(this.filteredPublications.length / this.itemsPerPage);
   }
 
-  // 4. Crea un arreglo [1, 2, 3...] para pintar los botones
   get pagesArray(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
-  // Cambiar categoría y regresar a la página 1
   setCategory(category: string) {
     this.selectedCategory = category;
     this.currentPage = 1; 
   }
 
-  // Navegar entre páginas
   goToPage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
-      // Opcional: Hace scroll suave hacia arriba al cambiar de página
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
