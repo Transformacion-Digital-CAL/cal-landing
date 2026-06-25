@@ -55,6 +55,22 @@ export class Toolbar implements OnInit, OnDestroy {
     ].includes(url);
   }
 
+  isDecanatoSection(): boolean {
+    const url = this.router.url;
+
+    return ['/decanato', '/vicedecanato', '/secretaria-general'].includes(url);
+  }
+  isOtrasAreasSection(): boolean {
+    const url = this.router.url;
+
+    return [
+      '/caja-de-prevision-social',
+      '/comite-electoral',
+      '/junta-de-vigilancia',
+      '/delegados-de-la-orden',
+    ].includes(url);
+  }
+
   @HostListener('window:scroll')
   onScroll(): void {
     this.scrolled = window.scrollY > 40;
