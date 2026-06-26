@@ -63,6 +63,11 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": [
+              "store-troubleshooting-palmer-tel.trycloudflare.com"
+            ]
+          },
           "configurations": {
             "production": {
               "buildTarget": "cal-landing:build:production"
