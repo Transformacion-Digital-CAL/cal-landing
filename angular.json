@@ -63,6 +63,11 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": [
+              "mathematics-portal-meter-pose.trycloudflare.com"
+            ]
+          },
           "configurations": {
             "production": {
               "buildTarget": "cal-landing:build:production"
