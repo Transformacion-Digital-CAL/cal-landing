@@ -1,0 +1,252 @@
+/* View Configuration */
+.decanato-view {
+  --primary-blue: #2980b9; 
+  --text-dark: #1a252f;
+  --text-gray: #5a6b7c;
+  --bg-card: #ffffff;             
+  
+  --shadow-soft: 0 12px 30px rgba(13, 27, 42, 0.08); 
+  --shadow-hover: 0 20px 40px rgba(41, 128, 185, 0.15);
+  
+  font-family: var(--font-sans); 
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  
+  background-color: #ffffff; 
+  background-image: 
+    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px), 
+    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px); 
+  
+  background-position: 0 0, 16px 16px;
+  background-size: 32px 32px; 
+  background-attachment: fixed;
+}
+
+/* Header */
+.decanato-header {
+  background-color: transparent;
+  text-align: center;
+  padding: 4rem 1rem 2rem 1rem;
+  margin-bottom: 4rem;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-content h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #0D1B2A;
+  margin: 0 0 0.8rem 0;
+  letter-spacing: -0.5px;
+}
+
+.header-content h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--primary-blue); 
+  margin: 0 0 0.5rem 0;
+}
+
+.header-content p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-separator {
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-blue);
+  border-radius: 2px;
+  margin-top: 1.5rem;
+  opacity: 0.8;
+}
+
+/* Main Structure */
+.decanato-main-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr; 
+  gap: 5rem;
+  align-items: start;
+}
+
+/* Text Column */
+.text-column {
+  color: var(--text-dark);
+  line-height: 1.8;
+}
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.accent-bar {
+  width: 6px;
+  height: 30px;
+  background-color: var(--primary-blue);
+  border-radius: 4px;
+}
+
+.section-title {
+  color: #0D1B2A;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+}
+
+/* Component Cards */
+.info-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+  margin-top: 1.5rem;
+}
+
+.info-card {
+  background-color: rgba(13, 27, 42, 0.97); 
+  border: none; 
+  border-radius: 16px; 
+  padding: 1.8rem 2rem;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-soft); 
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(13, 27, 42, 1); 
+  box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); 
+}
+
+/* Downloads Button */
+.downloads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+  gap: 1.5rem;
+}
+
+.download-card {
+  text-decoration: none; 
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.card-text-content {
+  display: flex;
+  flex-direction: column;
+  padding-right: 1rem;
+}
+
+.card-text-content h4 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.4rem 0;
+  line-height: 1.2;
+}
+
+.card-text-content p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.card-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.download-icon-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; 
+  background-color: rgba(255, 255, 255, 0.07);
+  padding: 12px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.download-icon-box svg {
+  width: 24px;
+  height: 24px;
+  stroke: #d4af37;
+}
+
+.download-card:hover .download-icon-box {
+  transform: scale(1.1);
+  background-color: rgba(212, 175, 55, 0.15); 
+}
+
+.card-action .btn-text {
+  color: #d4af37;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Director Image */
+.director-card {
+  background-color: rgba(13, 27, 42, 0.97); 
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden; 
+  box-shadow: 0 20px 45px rgba(13, 27, 42, 0.3); 
+  transition: all 0.4s ease;
+}
+
+.director-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 25px 60px rgba(13, 27, 42, 0.45); 
+}
+
+.director-card .img-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .content-grid {
+    grid-template-columns: 1fr; 
+    gap: 3rem;
+  }
+  .image-column {
+    order: -1; 
+  }
+}
+
+@media (max-width: 768px) {
+  .decanato-header { padding: 3rem 1rem 1rem 1rem; }
+  .header-content h1 { font-size: 2.2rem; }
+  .section-title { font-size: 1.8rem; }
+}
