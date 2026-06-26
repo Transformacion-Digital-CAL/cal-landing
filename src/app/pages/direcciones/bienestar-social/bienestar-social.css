@@ -1,13 +1,10 @@
-/* ==========================================================================
-   CONFIGURACIÓN DE LA VISTA Y FONDO BLANCO CON PUNTOS AZULES
-   ========================================================================== */
+/* View Configuration */
 .bienestar-view {
   --primary-blue: #2980b9; 
   --text-dark: #1a252f;
   --text-gray: #5a6b7c;
   --bg-card: #ffffff;             
   
-  /* Sombras de alta fidelidad para fondo claro */
   --shadow-soft: 0 12px 30px rgba(13, 27, 42, 0.08); 
   --shadow-hover: 0 20px 40px rgba(41, 128, 185, 0.15);
   
@@ -25,9 +22,7 @@
   background-attachment: fixed;
 }
 
-/* ==========================================================================
-   CABECERA / BANNER MINIMALISTA
-   ========================================================================== */
+/* Header */
 .bienestar-header {
   background-color: transparent;
   text-align: center;
@@ -74,9 +69,7 @@
   opacity: 0.8;
 }
 
-/* ==========================================================================
-   GRILLA Y CONTENEDOR ESTRUCTURAL
-   ========================================================================== */
+/* Main Structure */
 .bienestar-main-container {
   max-width: 1250px;
   margin: 0 auto;
@@ -90,9 +83,7 @@
   align-items: start;
 }
 
-/* ==========================================================================
-   COLUMNA IZQUIERDA (CONTENIDO TEXTUAL)
-   ========================================================================== */
+/* Text Column */
 .text-column {
   color: var(--text-dark);
   line-height: 1.8;
@@ -154,9 +145,7 @@
   font-weight: 700;
 }
 
-/* ==========================================================================
-   COMPONENTE: TARJETAS (ESTILO OSCURO SIN BORDES)
-   ========================================================================== */
+/* Component Cards */
 .info-cards-wrapper {
   display: flex;
   flex-direction: column;
@@ -195,11 +184,11 @@
   stroke: #d4af37; 
 }
 
-/* --- TARJETA DE CONTACTO (APILADO VERTICALMENTE) --- */
+/* Contact Card */
 .contact-card {
   display: flex;
-  flex-direction: column; /* Apila el correo y el teléfono */
-  align-items: flex-start; /* Los alinea a la izquierda */
+  flex-direction: column; 
+  align-items: flex-start; 
   justify-content: center;
   gap: 1.5rem;
 }
@@ -235,7 +224,7 @@
   line-height: 1.4;
 }
 
-/* --- TARJETAS DE DESCARGA --- */
+/* Downloads */
 .downloads-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
@@ -300,9 +289,7 @@
   letter-spacing: 0.5px;
 }
 
-/* ==========================================================================
-   COMPONENTE: ACORDEÓN PREMIUM (ANIMADO CON GRID Y CHECKBOX)
-   ========================================================================== */
+/* Accordion Component */
 .acervo-section {
   margin-top: 2rem; 
 }
@@ -319,7 +306,7 @@
   height: 24px; 
 }
 
-.premium-accordion {
+.custom-accordion {
   background-color: rgba(13, 27, 42, 0.97); 
   border-radius: 16px;
   box-shadow: var(--shadow-soft);
@@ -327,7 +314,7 @@
   transition: box-shadow 0.4s ease;
 }
 
-.premium-accordion:hover {
+.custom-accordion:hover {
   box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25);
 }
 
@@ -413,7 +400,7 @@
   transform: translateY(0);
 }
 
-/* --- ESTILOS ESPECÍFICOS PARA EL TEXTO DEL ACERVO (DENTRO DEL ACORDEÓN) --- */
+/* Acervo Text Content */
 .acervo-text-content {
   width: 100%;
   color: #ffffff;
@@ -455,20 +442,19 @@
   margin-bottom: 0;
 }
 
-/* ==========================================================================
-   COLUMNA DERECHA: FOTO DE LA AUTORIDAD
-   ========================================================================== */
+/* Director Image */
 .director-card {
   background-color: rgba(13, 27, 42, 0.97); 
-  border: none; 
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   overflow: hidden; 
-  box-shadow: 0 12px 30px rgba(13, 27, 42, 0.1); 
+  box-shadow: 0 20px 45px rgba(13, 27, 42, 0.3); 
   transition: all 0.4s ease;
 }
 
 .director-card:hover {
-  box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); 
+  transform: translateY(-5px); 
+  box-shadow: 0 25px 60px rgba(13, 27, 42, 0.45); 
 }
 
 .director-card .img-container img {
@@ -478,9 +464,7 @@
   object-fit: cover;
 }
 
-/* ==========================================================================
-   MEDIA QUERIES (Responsividad)
-   ========================================================================== */
+/* Media Queries */
 @media (max-width: 992px) {
   .content-grid {
     grid-template-columns: 1fr; 

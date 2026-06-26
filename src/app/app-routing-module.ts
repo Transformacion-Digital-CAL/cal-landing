@@ -38,6 +38,7 @@ const routes: Routes = [
 
   // Direcciones
   { path: 'direcciones', component: Direcciones },
+  { path: 'publicaciones', component: Publicaciones },
   { path: 'academica-y-promocion-cultural', component: AcademicaYPromocionCultural },
   { path: 'biblioteca-y-centro-de-documentacion', component: BibliotecaYCentroDeDocumentacion },
   { path: 'bienestar-social', component: BienestarSocial },

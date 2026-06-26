@@ -4,11 +4,12 @@
 
 .navbar {
   position: fixed;
-  top: 0;
+  top: -1px;
   left: 0;
   right: 0;
   z-index: 1000;
   transition: all 0.3s ease;
+  background: var(--cal-navy);
 }
 
 /* ---- Top bar ---- */
