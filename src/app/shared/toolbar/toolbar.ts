@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -52,6 +52,22 @@ export class Toolbar implements OnInit, OnDestroy {
       '/economia',
       '/etica-profesional',
       '/extension-social-y-participacion',
+    ].includes(url);
+  }
+
+  isDecanatoSection(): boolean {
+    const url = this.router.url;
+
+    return ['/decanato', '/vicedecanato', '/secretaria-general'].includes(url);
+  }
+  isOtrasAreasSection(): boolean {
+    const url = this.router.url;
+
+    return [
+      '/caja-de-prevision-social',
+      '/comite-electoral',
+      '/junta-de-vigilancia',
+      '/delegados-de-la-orden',
     ].includes(url);
   }
 

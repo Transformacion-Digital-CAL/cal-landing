@@ -1,6 +1,4 @@
-/* ==========================================================================
-   CONFIGURACIÓN DE LA VISTA Y FONDO BLANCO CON PUNTOS AZULES
-   ========================================================================== */
+/* View Configuration */
 .academica-view {
   --primary-blue: #2980b9; 
   --text-dark: #1a252f;
@@ -13,7 +11,6 @@
   font-family: var(--font-sans); 
   min-height: 100vh;
   padding-bottom: 6rem;
-
   background-color: #ffffff; 
 
   background-image: 
@@ -25,9 +22,7 @@
   background-attachment: fixed;
 }
 
-/* ==========================================================================
-   CABECERA / BANNER
-   ========================================================================== */
+/* Header */
 .academica-header {
   background-color: transparent;
   text-align: center;
@@ -74,9 +69,7 @@
   opacity: 0.8;
 }
 
-/* ==========================================================================
-   GRILLA Y CONTENEDOR ESTRUCTURAL
-   ========================================================================== */
+/* Main Structure */
 .academica-main-container {
   max-width: 1250px;
   margin: 0 auto;
@@ -90,9 +83,7 @@
   align-items: start;
 }
 
-/* ==========================================================================
-   COLUMNA IZQUIERDA (CONTENIDO TEXTUAL)
-   ========================================================================== */
+/* Text Column */
 .text-column {
   color: var(--text-dark);
   line-height: 1.8;
@@ -154,9 +145,7 @@
   font-weight: 700;
 }
 
-/* ==========================================================================
-   COMPONENTE BASE: TODAS LAS TARJETAS
-   ========================================================================== */
+/* Cards Component */
 .info-cards-wrapper {
   display: flex;
   flex-direction: column;
@@ -164,7 +153,7 @@
 }
 
 .info-card {
-  background-color: rgba(13, 27, 42, 0.97);; 
+  background-color: rgba(13, 27, 42, 0.97); 
   border: none; 
   border-radius: 16px; 
   padding: 1.8rem 2rem;
@@ -195,7 +184,7 @@
   stroke: #d4af37; 
 }
 
-/* --- TARJETA DE CONTACTO --- */
+/* Contact Card */
 .contact-card {
   display: flex;
   flex-wrap: wrap; 
@@ -235,7 +224,7 @@
   line-height: 1.4;
 }
 
-/* --- TARJETAS DE DESCARGA --- */
+/* Downloads */
 .downloads-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
@@ -300,20 +289,19 @@
   letter-spacing: 0.5px;
 }
 
-/* ==========================================================================
-   COLUMNA DERECHA: FOTO DE LA AUTORIDAD
-   ========================================================================== */
+/* Director Image */
 .director-card {
   background-color: rgba(13, 27, 42, 0.97); 
-  border: none; 
+  border: 1px solid rgba(255, 255, 255, 0.05); 
   border-radius: 16px;
   overflow: hidden; 
-  box-shadow: 0 12px 30px rgba(13, 27, 42, 0.1); 
+  box-shadow: 0 20px 45px rgba(13, 27, 42, 0.3); 
   transition: all 0.4s ease;
 }
 
 .director-card:hover {
-  box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25); 
+  transform: translateY(-5px); 
+  box-shadow: 0 25px 60px rgba(13, 27, 42, 0.45); 
 }
 
 .director-card .img-container img {
@@ -323,9 +311,7 @@
   object-fit: cover;
 }
 
-/* ==========================================================================
-   MEDIA QUERIES (Responsividad)
-   ========================================================================== */
+/* Media Queries */
 @media (max-width: 992px) {
   .content-grid {
     grid-template-columns: 1fr; 

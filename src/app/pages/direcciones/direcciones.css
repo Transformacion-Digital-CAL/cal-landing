@@ -1,107 +1,71 @@
-/* ==========================================================================
-   CONFIGURACIÓN DE LA VISTA Y FONDO BLANCO CON PUNTOS AZULES
-   ========================================================================== */
+/* View Configuration */
 .direcciones-view {
   --primary-blue: #2980b9; 
+  --cal-navy: #0D1B2A; 
+  --cal-gold: #d4af37;
   --text-dark: #1a252f;
   --text-gray: #5a6b7c;
   
-  --shadow-soft: 0 12px 30px rgba(13, 27, 42, 0.08); 
-  --shadow-hover: 0 20px 40px rgba(41, 128, 185, 0.15);
-  
-  font-family: var(--font-sans);
+  font-family: var(--font-sans), sans-serif;
   min-height: 100vh;
   padding-bottom: 6rem;
+  overflow-x: hidden;
 
   background-color: #ffffff; 
   background-image: 
-    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px), 
-    radial-gradient(circle, rgba(41, 128, 185, 0.12) 1.5px, transparent 2.5px); 
-  
+    radial-gradient(circle, rgba(41, 128, 185, 0.1) 1.5px, transparent 2.5px), 
+    radial-gradient(circle, rgba(41, 128, 185, 0.1) 1.5px, transparent 2.5px); 
   background-position: 0 0, 16px 16px;
   background-size: 32px 32px; 
   background-attachment: fixed;
 }
 
-/* ==========================================================================
-   CABECERA / BANNER MINIMALISTA 
-   ========================================================================== */
-.junta-header {
-  background-color: transparent;
-  text-align: center;
-  padding: 3.5rem 1rem 1rem 1rem; 
-  margin-bottom: 1.5rem; 
+/* Section Header */
+.section-header-center { 
+  text-align: center; 
+  /* Mismos espacios de la vista académica */
+  padding: 4rem 1rem 2rem 1rem; 
+  margin-bottom: 2rem; 
 }
 
-.header-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.header-content h1 {
-  font-size: 3.2rem;
-  font-weight: 800;
-  color: #0D1B2A;
-  margin: 0 0 0.8rem 0;
+.section-header-center .section-title { 
+  display: flex; 
+  justify-content: center; 
+  font-size: 3.2rem; 
+  font-weight: 800; 
+  margin-bottom: 0.5rem; 
   letter-spacing: -0.5px;
 }
 
-.header-content h2 {
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--primary-blue);
-  margin: 0 0 0.5rem 0;
+.section-header-center p { 
+  color: var(--text-gray); 
+  font-size: 1.1rem; 
+  margin: 0; 
 }
 
-.header-content p {
-  font-size: 1rem;
-  font-weight: 500;
-  margin: 0;
-  color: var(--text-gray);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.header-separator {
-  width: 60px;
-  height: 4px;
-  background-color: var(--primary-blue);
-  border-radius: 2px;
-  margin-top: 1.5rem;
-  opacity: 0.8;
-}
-
-/* ==========================================================================
-   CONTENEDOR PRINCIPAL
-   ========================================================================== */
+/* Main Container */
 .junta-main-container {
-  /* --- Aumentado a 1350px para dar espacio perfecto a 4 columnas --- */
   max-width: 1350px; 
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* ==========================================================================
-   SECCIÓN DECANA
-   ========================================================================== */
+/* Decana Section */
 .decana-section {
   display: flex;
   justify-content: center;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem; 
 }
 
 .decana-container {
   background-color: transparent; 
-  border: none;
-  padding: 1.5rem;
+  padding: 1rem; 
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   max-width: 600px; 
   width: 100%;
-  box-shadow: none; 
   transition: transform 0.4s ease;
 }
 
@@ -111,183 +75,237 @@
 
 .decana-img-wrapper {
   width: 100%;
-  margin-bottom: 1.8rem;
+  margin-bottom: 0; 
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .decana-img-wrapper img {
   width: 100%;
-  max-width: 380px; 
+  max-width: 600px; 
   height: auto;
   object-fit: cover;
-  border-radius: 16px; 
-  box-shadow: 0 15px 40px rgba(13, 27, 42, 0.18); 
+  display: block; 
+  border-radius: 20px; 
+  border: 4px solid #ffffff; 
+  box-shadow: 
+    0px 6px 0px 0px var(--cal-gold), 
+    0 25px 50px rgba(13, 27, 42, 0.2); 
+  transition: all 0.4s ease;
+}
+
+.decana-container:hover .decana-img-wrapper img {
+  box-shadow: 
+    0px 8px 0px 0px var(--cal-gold), 
+    0 30px 60px rgba(13, 27, 42, 0.25);
+  transform: scale(1.01);
+}
+
+.decana-text {
+  margin-top: 1rem; 
 }
 
 .decana-text .role-highlight {
-  color: #d4af37; 
-  font-size: 1.7rem; 
+  color: var(--cal-gold); 
+  font-size: 1.5rem; 
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin: 0 0 0.4rem 0;
+  margin: 0; 
 }
 
 .decana-text .period {
   color: var(--text-gray); 
-  font-size: 1.05rem;
-  margin: 0 0 1rem 0;
+  font-size: 1rem; 
+  margin: 0.2rem 0 0.5rem 0; 
+  font-weight: 600;
 }
 
 .decana-text .name {
-  color: #0D1B2A; 
-  font-size: 1.5rem;
-  font-weight: 800;
+  color: var(--cal-navy); 
+  font-size: 1.6rem; 
+  font-weight: 700; 
+  letter-spacing: 0.3px; 
+  line-height: 1.35;
   margin: 0;
 }
 
-/* ==========================================================================
-   GRILLA Y TARJETAS DE DIRECTORES (4 COLUMNAS)
-   ========================================================================== */
+/* Directors Grid */
 .directors-grid {
   display: grid;
-  /* --- FORZAMOS 4 COLUMNAS EXACTAS EN ESCRITORIO --- */
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem; /* Gap levemente ajustado para balancear las 4 columnas */
+  gap: 2.5rem; 
 }
 
 .profile-card {
-  background-color: rgba(13, 27, 42, 0.97); 
-  border: 1px solid rgba(41, 128, 185, 0.25); 
+  background-color: #0b1524; 
+  border: 1px solid rgba(212, 175, 55, 0.35); 
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: var(--shadow-soft); 
+  box-shadow: 0 15px 40px rgba(13, 27, 42, 0.08); 
   display: flex;
   flex-direction: column;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .profile-card:hover {
-  transform: translateY(-6px); 
-  box-shadow: 0 15px 35px rgba(13, 27, 42, 0.25);
-  border-color: rgba(41, 128, 185, 0.6); 
+  transform: translateY(-8px); 
+  border-color: rgba(212, 175, 55, 0.9); 
+  box-shadow: 0 25px 50px rgba(13, 27, 42, 0.15), 0 0 20px rgba(212, 175, 55, 0.15); 
 }
 
+/* Image Container */
 .profile-card .img-container {
   width: 100%;
-  height: 330px; /* Ligeramente ajustado para mantener la proporción estética en 4 columnas */
+  height: 255px;
   display: flex;
   justify-content: center;
-  align-items: center; 
-  background-color: #ffffff; 
+  align-items: flex-start;
+  background: #ffffff;
+  border-bottom: 4px solid var(--cal-gold); 
+  position: relative;
   overflow: hidden;
 }
 
 .profile-card .img-container img {
   width: 100%;
-  height: 100%;
+  height: 310px; 
   object-fit: contain; 
-  transition: transform 0.4s ease;
+  object-position: top center;
+  padding: 0; 
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .profile-card:hover .img-container img {
-  transform: scale(1.03); 
+  transform: scale(1.05); 
 }
 
-/* Textos compactos */
+/* Card Info */
 .card-info {
-  padding: 1.2rem 1.2rem; 
+  padding: 1.5rem 1.2rem; 
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   flex-grow: 1;
+  background: linear-gradient(to bottom, #0b1524 0%, #08101b 100%);
 }
 
 .profile-card .name {
-  font-size: 1.1rem; 
-  font-weight: 700;
+  font-size: 1.15rem; 
+  font-weight: 700; 
   color: #ffffff; 
-  margin: 0 0 0.3rem 0; 
-  line-height: 1.3;
+  margin: 0 0 0.4rem 0; 
+  line-height: 1.35;
   min-height: 2.8rem; 
   display: flex;
   align-items: center;
   justify-content: center;
+  letter-spacing: 0.3px;
+  text-shadow: none; 
+  transition: color 0.3s ease;
+}
+
+.profile-card:hover .name {
+  color: var(--cal-gold);
 }
 
 .profile-card .role {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7); 
+  color: #a0aec0; 
   margin: 0 0 1.2rem 0; 
   min-height: 2rem; 
-  line-height: 1.3;
+  line-height: 1.4;
+  font-weight: 400; 
 }
 
-/* ==========================================================================
-   BOTONES DE ACCIÓN
-   ========================================================================== */
+/* Button */
 .btn-ver-mas {
-  background-color: rgba(255, 255, 255, 0.05); 
-  color: #d4af37; 
-  border: none;
-  padding: 0.6rem 2rem; 
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: auto; 
-  width: 90%;
-  text-decoration: none;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
+  gap: 10px; 
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px; 
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background-color: rgba(212, 175, 55, 0.04); 
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: var(--cal-gold);
+  margin-top: auto; 
+  width: 100%; 
   box-sizing: border-box;
 }
 
-.btn-ver-mas:hover {
-  background-color: rgba(212, 175, 55, 0.15); 
-  transform: scale(1.02);
-  color: #d4af37;
+.btn-ver-mas svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--cal-gold);
+  transition: transform 0.3s ease, stroke 0.3s ease;
 }
 
-/* ==========================================================================
-   PUNTOS DE QUIEBRE / MEDIA QUERIES (Responsividad Fluida)
-   ========================================================================== */
+.btn-ver-mas:hover {
+  background-color: var(--cal-gold); 
+  border-color: var(--cal-gold);
+  color: var(--cal-navy); 
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+}
 
-/* Laptop pequeñas o Tablets horizontales -> Baja a 3 columnas */
+.btn-ver-mas:hover svg {
+  stroke: var(--cal-navy);
+  transform: translateX(6px); 
+}
+
+/* Media Queries */
 @media (max-width: 1200px) {
   .directors-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Tablets en vertical -> Baja a 2 columnas */
-@media (max-width: 900px) {
-  .header-content h1 {
-    font-size: 2.6rem;
+@media (max-width: 1024px) {
+  .section-header-center .section-title {
+    font-size: 2.8rem;
   }
   .directors-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 }
 
-/* Celulares -> Baja a 1 columna y botones ocupan 100% */
-@media (max-width: 600px) {
-  .header-content h1 {
+@media (max-width: 768px) {
+  .section-header-center {
+    /* Mismos espacios móviles de la vista académica */
+    padding: 3rem 1rem 1rem 1rem; 
+  }
+  .section-header-center .section-title {
     font-size: 2.2rem;
   }
   .directors-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .profile-card .img-container {
+    height: auto;
+    aspect-ratio: 4/3; 
   }
   .btn-ver-mas {
     width: 100%;
   }
   .decana-container {
-    padding: 1rem;
+    padding: 0; 
+    max-width: 100%; 
+  }
+  .decana-img-wrapper img {
+    max-width: 100%; 
+  }
+  .decana-text .name {
+    font-size: 1.5rem;
   }
 }
